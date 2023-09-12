@@ -1,6 +1,6 @@
 # 맛집소모임 WIKI APP
 
-맛집을 공유하는 소모임을 
+맛집을 공유하는 소모임을
 관리하는 웹서비스
 
 ### 아키텍쳐
@@ -17,7 +17,7 @@ my-wiki-app/
 │   │   │   ├── Footer/
 │   │   │   |   ├── Footer.tsx
 │   │   │   ├── Sidebar/
-│   │   │   |   ├── Sidebar.tsx 
+│   │   │   |   ├── Sidebar.tsx
 │   │   │   ├── Modal/
 │   │   │   |   ├── CommuteModal.tsx
 │   │   ├── Home/
@@ -58,6 +58,4 @@ my-wiki-app/
 - `main`: 서비스 배포용도의 브랜치
 - `dev`: 배포 전, 모든 feature 브랜치 병합 및 테스트용도의 브랜치
 - `feature/#issuenumber_issuetitle`: github issue 넘버로 기능 구현
-    
-    > 예시: feature/#3_ButtonComponent
-
+  > 예시: feature/#3_ButtonComponent
