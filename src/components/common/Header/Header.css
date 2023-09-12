@@ -1,12 +1,29 @@
 .header {
   display: flex;
-  background: blue;
+  align-items: center;
+  justify-content: space-between;
+
+  color: #ffd850;
+  background: #393939;
+  padding: 0.5% 3%;
 }
 
 .header__left {
   display: flex;
+  align-items: center;
+
+  gap: 1rem;
 }
 
 .header__left--icon {
-  width: 50px;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.header__right {
+  display: flex;
+}
+
+.header__right--item {
+  text-decoration: none;
 }
