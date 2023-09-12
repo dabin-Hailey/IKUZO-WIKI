@@ -1,10 +1,9 @@
 ---
 name: Feature request
 about: Feature 작업 사항을 입력해주세요
-title: 'Issue: feature/#issuenumber_issuetitle'
+title: 'Feat: 이슈 제목목'
 labels: ''
 assignees: ''
-
 ---
 
 ## Description
