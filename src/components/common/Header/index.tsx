@@ -14,17 +14,46 @@ const Header = () => {
         />
         <h1 className="header__left-title">IKUZO</h1>
       </div>
-      <ul className="header__right">
-        <li className="header__right--item">
-          <NavLink to="/">HOME</NavLink>
-        </li>
-        <li className="header__right--item">
-          <NavLink to="/wiki">WIKI</NavLink>
-        </li>
-        <li className="header__right--item">
-          <NavLink to="/gallery">GALLERY</NavLink>
-        </li>
-      </ul>
+      <div className="header__right">
+        <ul className="header__right--wrapper">
+          <li className="header__right--item">
+            <NavLink
+              className={({ isActive }) => {
+                return isActive ? 'nav__active' : 'nav__defualt';
+              }}
+              to="/"
+            >
+              Home
+            </NavLink>
+          </li>
+          <li className="header__right--item">
+            <NavLink
+              className={({ isActive }) => {
+                return isActive ? 'nav__active' : 'nav__default';
+              }}
+              to="/wiki"
+            >
+              Wiki
+            </NavLink>
+          </li>
+          <li className="header__right--item">
+            <NavLink
+              className={({ isActive }) => {
+                return isActive ? 'nav__active' : 'nav__default';
+              }}
+              to="/gallery"
+            >
+              Gallery
+            </NavLink>
+          </li>
+        </ul>
+        <button
+          className="btn btn-primary"
+          type="button"
+        >
+          Mypage
+        </button>
+      </div>
     </div>
   );
 };
