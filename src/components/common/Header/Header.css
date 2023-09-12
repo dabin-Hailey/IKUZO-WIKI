@@ -1,0 +1,12 @@
+.header {
+  display: flex;
+  background: blue;
+}
+
+.header__left {
+  display: flex;
+}
+
+.header__left--icon {
+  width: 50px;
+}
