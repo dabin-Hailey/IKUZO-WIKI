@@ -1,8 +1,9 @@
 import React from 'react';
-import Wikis from '../components/wiki';
+
+import SidebarWiki from '../components/common/SidebarWiki';
 
 const Wiki = () => {
-  return <Wikis />;
+  return <SidebarWiki />;
 };
 
 export default Wiki;
