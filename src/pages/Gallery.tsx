@@ -2,8 +2,8 @@ import React from 'react';
 
 import SidebarGallery from '../components/common/SidebarGallery';
 
-const HomePage = () => {
+const Gallery = () => {
   return <SidebarGallery />;
 };
 
-export default HomePage;
+export default Gallery;

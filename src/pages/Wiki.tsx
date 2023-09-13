@@ -2,8 +2,8 @@ import React from 'react';
 
 import SidebarWiki from '../components/common/SidebarWiki';
 
-const HomePage = () => {
+const Wiki = () => {
   return <SidebarWiki />;
 };
 
-export default HomePage;
+export default Wiki;

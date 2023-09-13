@@ -1,6 +1,6 @@
 // SidebarGallery.js
 import React from 'react';
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes, NavLink } from 'react-router-dom';
 import Korean from '../../../pages/Korean';
 import Chinese from '../../../pages/Chinese';
 import Japanese from '../../../pages/Japanese';
@@ -13,16 +13,16 @@ const SidebarGallery = () => {
       <nav>
         <ul>
           <li>
-            <Link to="/gallery">한식</Link>
+            <NavLink to="/gallery">한식</NavLink>
           </li>
           <li>
-            <Link to="/gallery/chinese">중식</Link>
+            <NavLink to="/gallery/chinese">중식</NavLink>
           </li>
           <li>
-            <Link to="/gallery/japanese">일식</Link>
+            <NavLink to="/gallery/japanese">일식</NavLink>
           </li>
           <li>
-            <Link to="/gallery/western">양식</Link>
+            <NavLink to="/gallery/western">양식</NavLink>
           </li>
         </ul>
       </nav>

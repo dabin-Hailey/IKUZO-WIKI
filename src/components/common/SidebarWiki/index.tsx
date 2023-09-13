@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes, NavLink } from 'react-router-dom';
 import Notice from '../../../pages/Notice';
 import Intro from '../../../pages/Intro';
 import With from '../../../pages/With';
@@ -7,17 +7,17 @@ import With from '../../../pages/With';
 const SidebarWiki = () => {
   return (
     <div>
-      <h2>Wiki</h2>
+      <h2>위키</h2>
       <nav>
         <ul>
           <li>
-            <Link to="/wiki">공지사항</Link>
+            <NavLink to="/wiki">공지사항</NavLink>
           </li>
           <li>
-            <Link to="/wiki/intro">소개</Link>
+            <NavLink to="/wiki/intro">소개</NavLink>
           </li>
           <li>
-            <Link to="/wiki/with">같이 먹을 사람 구해요</Link>
+            <NavLink to="/wiki/with">같이 먹을 사람 구해요</NavLink>
           </li>
         </ul>
       </nav>
