@@ -4,46 +4,55 @@ import {
   doc,
   getDocs,
   setDoc,
-  Firestore,
-  QueryDocumentSnapshot,
+  query,
+  where,
 } from 'firebase/firestore';
+import { db } from './firebase.config';
 
-export const getData = async (
-  db: Firestore,
-  collectionName: string,
-): Promise<void> => {
+export const getData = async (collectionName: string) => {
   const querySnapshot = await getDocs(collection(db, collectionName));
-  querySnapshot.forEach((doc: QueryDocumentSnapshot) => {
-    console.log(doc.id, ' => ', doc.data());
+  const docs = querySnapshot.docs.map(doc => {
+    return {
+      ...doc.data(),
+      id: doc.id,
+    };
   });
+  return docs;
+};
+
+export const getDataByField = async (
+  collectionName: string,
+  fieldName: string,
+  fieldValue: string,
+) => {
+  const q = query(
+    collection(db, collectionName),
+    where(fieldName, '==', fieldValue),
+  );
+  const querySnapshot = await getDocs(q);
+  const docs = querySnapshot.docs.map(doc => {return { ...doc.data(), id: doc.id }});
+  return docs;
 };
 
 export const setData = async (
-  db: Firestore,
   collectionName: string,
-  inputTitle: string,
+  props: any,
 ): Promise<void> => {
   const date = new Date();
   const dataId = `${collectionName}-${date.getTime()}`;
 
-  await setDoc(doc(db, collectionName, dataId), {
-    title: inputTitle,
-  });
+  await setDoc(doc(db, collectionName, dataId), props);
 };
 
 export const updateData = async (
-  db: Firestore,
   collectionName: string,
   dataId: string,
-  inputTitle: string,
+  props: any,
 ): Promise<void> => {
-  await setDoc(doc(db, collectionName, dataId), {
-    title: inputTitle,
-  });
+  await setDoc(doc(db, collectionName, dataId), props);
 };
 
 export const deleteData = async (
-  db: Firestore,
   collectionName: string,
   dataId: string,
 ): Promise<void> => {
