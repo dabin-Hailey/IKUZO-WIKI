@@ -51,7 +51,7 @@ const Header = () => {
           className="btn btn-primary"
           type="button"
         >
-          Mypage
+          MYPAGE
         </button>
       </div>
     </div>
