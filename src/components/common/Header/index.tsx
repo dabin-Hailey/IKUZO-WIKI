@@ -51,7 +51,7 @@ const Header = () => {
           className="btn btn-primary"
           type="button"
         >
-          MYPAGE
+          MYPAGE보기
         </button>
       </div>
     </div>
