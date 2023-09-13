@@ -13,7 +13,7 @@ const App = () => {
         element={<Home />}
       />
       <Route
-        path="/wiki"
+        path="/wiki/*"
         element={<Wiki />}
       />
       <Route

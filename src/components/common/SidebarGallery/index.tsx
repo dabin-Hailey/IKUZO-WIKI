@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const SidebarWiki = () => {
+const SidebarGallery = () => {
   return (
     <div>
       <h3>Wiki Sidebar</h3>
@@ -18,4 +18,4 @@ const SidebarWiki = () => {
   );
 };
 
-export default SidebarWiki;
+export default SidebarGallery;
