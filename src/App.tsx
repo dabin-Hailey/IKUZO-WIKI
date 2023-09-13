@@ -7,7 +7,6 @@ import Gallery from './pages/Gallery';
 const App = () => {
   return (
     <Routes>
-      {/* <Route path="/" element={<Home />} /> */}
       <Route
         path="/"
         element={<Home />}
@@ -17,7 +16,7 @@ const App = () => {
         element={<Wiki />}
       />
       <Route
-        path="/gallery"
+        path="/gallery/*"
         element={<Gallery />}
       />
     </Routes>
