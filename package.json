@@ -45,5 +45,17 @@
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": "eslint --cache --fix",
     "src/**/*.{js,jsx,ts,tsx,css,scss,md}": "prettier --write --ignore-unknown"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
