@@ -4,15 +4,33 @@ import {
   doc,
   getDocs,
   setDoc,
+  query,
+  where,
 } from 'firebase/firestore';
 import { db } from './firebase.config';
 
 export const getData = async (collectionName: string) => {
   const querySnapshot = await getDocs(collection(db, collectionName));
-  const docs = querySnapshot.docs.map(doc => {return {
-    ...doc.data(),
-    id: doc.id,
-  }});
+  const docs = querySnapshot.docs.map(doc => {
+    return {
+      ...doc.data(),
+      id: doc.id,
+    };
+  });
+  return docs;
+};
+
+export const getDataByField = async (
+  collectionName: string,
+  fieldName: string,
+  fieldValue: string,
+) => {
+  const q = query(
+    collection(db, collectionName),
+    where(fieldName, '==', fieldValue),
+  );
+  const querySnapshot = await getDocs(q);
+  const docs = querySnapshot.docs.map(doc => {return { ...doc.data(), id: doc.id }});
   return docs;
 };
 
