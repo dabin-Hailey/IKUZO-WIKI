@@ -1,12 +1,11 @@
 import React from 'react';
-import { Route, Routes, NavLink, useLocation } from 'react-router-dom';
+import { Route, Routes, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import Notice from '../../../pages/Notice';
 import Intro from '../../../pages/Intro';
 import With from '../../../pages/With';
 import sidebar from '../../../assets/sidebar.svg';
 
-// 스타일드 컴포넌트를 사용하여 스타일을 정의합니다.
 const WikiWrapper = styled.div`
   display: flex;
 `;
@@ -121,10 +120,6 @@ const SidebarWiki = () => {
       <ContentWrapper>
         <Routes>
           <Route
-            path="/"
-            element={<Notice />}
-          />
-          <Route
             path="notice"
             element={<Notice />}
           />
@@ -135,6 +130,10 @@ const SidebarWiki = () => {
           <Route
             path="with"
             element={<With />}
+          />
+          <Route
+            path="/"
+            element={<Notice />}
           />
         </Routes>
       </ContentWrapper>
