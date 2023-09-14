@@ -19,6 +19,7 @@ const With = (): JSX.Element => {
 
     fetchData();
 
+    // 실시간 요청
     getDataBySnapshot('with-collection', setDatas);
   }, []);
 
