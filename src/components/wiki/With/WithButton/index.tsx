@@ -29,7 +29,7 @@ const WithBtn = styled.button`
 
   &:hover {
     background-color: ${props => {
-      return props.disabled ? '#393939' : '#ffda4f';
+      return props.disabled ? '#393938' : '#ffda4f';
     }};
   }
 `;
