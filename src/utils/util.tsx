@@ -4,8 +4,12 @@ import {
   doc,
   getDocs,
   setDoc,
+  updateDoc,
   query,
   where,
+  increment,
+  onSnapshot,
+  QuerySnapshot,
 } from 'firebase/firestore';
 import { db } from './firebase.config';
 
@@ -30,7 +34,9 @@ export const getDataByField = async (
     where(fieldName, '==', fieldValue),
   );
   const querySnapshot = await getDocs(q);
-  const docs = querySnapshot.docs.map(doc => {return { ...doc.data(), id: doc.id }});
+  const docs = querySnapshot.docs.map(doc => {
+    return { ...doc.data(), id: doc.id };
+  });
   return docs;
 };
 
@@ -57,4 +63,39 @@ export const deleteData = async (
   dataId: string,
 ): Promise<void> => {
   await deleteDoc(doc(db, collectionName, dataId));
+};
+
+export const updateDataByField = async (
+  collectionName: string,
+  dataId: string,
+  fieldName: string,
+  fieldValue: string | number | boolean,
+): Promise<void> => {
+  const dataRef = doc(db, collectionName, dataId);
+  await updateDoc(dataRef, {
+    [fieldName]: fieldValue,
+  });
+};
+
+export const updateDataByNumber = async (
+  collectionName: string,
+  dataId: string,
+  fieldName: string,
+): Promise<void> => {
+  const dataRef = doc(db, collectionName, dataId);
+  await updateDoc(dataRef, {
+    [fieldName]: increment(1),
+  });
+};
+
+export const getDataBySnapshot = (
+  collectionName: string,
+  callback: (data: any) => void,
+) => {
+  onSnapshot(collection(db, collectionName), (querySnapshot: QuerySnapshot) => {
+    const docs = querySnapshot.docs.map(doc => {
+      return { ...doc.data(), id: doc.id };
+    });
+    callback(docs);
+  });
 };
