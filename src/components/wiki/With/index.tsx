@@ -17,6 +17,7 @@ export interface WithProp {
   location: string;
   people: number;
   time: number;
+  joined: number;
 }
 
 const Container = styled.div`
@@ -50,15 +51,18 @@ const index: React.FC<Props> = ({ data }): JSX.Element => {
       {data &&
         data.map((item: Root) => {
           const { id } = item;
-          const { title, contents, location, people, time } = item as WithProp;
+          const { title, joined, contents, location, people, time } =
+            item as WithProp;
           return (
             <WithItem
               key={id}
+              id={id}
               title={title}
               contents={contents}
               location={location}
               people={people}
               time={time}
+              joined={joined}
             />
           );
         })}
