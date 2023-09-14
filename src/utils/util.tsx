@@ -8,6 +8,8 @@ import {
   query,
   where,
   increment,
+  onSnapshot,
+  QuerySnapshot,
 } from 'firebase/firestore';
 import { db } from './firebase.config';
 
@@ -83,5 +85,17 @@ export const updateDataByNumber = async (
   const dataRef = doc(db, collectionName, dataId);
   await updateDoc(dataRef, {
     [fieldName]: increment(1),
+  });
+};
+
+export const getDataBySnapshot = (
+  collectionName: string,
+  callback: (data: any) => void,
+) => {
+  onSnapshot(collection(db, collectionName), (querySnapshot: QuerySnapshot) => {
+    const docs = querySnapshot.docs.map(doc => {
+      return { ...doc.data(), id: doc.id };
+    });
+    callback(docs);
   });
 };

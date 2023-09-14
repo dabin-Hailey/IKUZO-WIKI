@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getData } from '../utils/util';
+import { getData, getDataBySnapshot } from '../utils/util';
 import WithComponent from '../components/wiki/With';
 
 export interface Root {
@@ -16,7 +16,11 @@ const With = (): JSX.Element => {
         setDatas(data);
       }
     };
+
     fetchData();
+
+    // 실시간 요청
+    getDataBySnapshot('with-collection', setDatas);
   }, []);
 
   return <WithComponent data={datas} />;
