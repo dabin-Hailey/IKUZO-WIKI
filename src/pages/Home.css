@@ -29,7 +29,7 @@
 
 .home .home__inner {
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 50%;
   display: flex;
   justify-content: space-between;
@@ -102,5 +102,21 @@
 }
 
 .home .home__inner .homeSwiper {
-  width: 60%;
+  width: 50%;
+  margin-left: 5rem;
+  position: relative;
+  padding: 0.2rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid white;
+}
+
+.home .home__inner .homeSwiper .homeSwiper__frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  border: none;
+  z-index: 1;
 }

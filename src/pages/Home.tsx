@@ -2,6 +2,9 @@ import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import Header from '../components/common/Header';
 import bcImg from '../assets/Home-bcimage.jpg';
+import slide1 from '../assets/slide_1.jpg';
+import slide2 from '../assets/slide_2.jpg';
+import slide3 from '../assets/slide_3.jpg';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './Home.css';
 
@@ -44,17 +47,85 @@ const HomePage = () => {
           </div>
         </div>
         <div className="homeSwiper">
-          <Carousel>
+          <div className="homeSwiper__frame"> </div>
+          <Carousel
+            showThumbs={false} // 미리보기 사진 비활성화
+            autoPlay={true as boolean}
+            interval={2000}
+            infiniteLoop={true as boolean}
+            renderArrowPrev={(onClickHandler, hasPrev) => {
+              if (hasPrev) {
+                return (
+                  <button
+                    type="button"
+                    onClick={onClickHandler}
+                    title="<"
+                    style={{
+                      width: '2rem',
+                      height: '2rem',
+                      position: 'absolute',
+                      top: '50%',
+                      left: '0.2rem',
+                      zIndex: 2,
+                      transform: 'translateY(-50%)',
+                      background: 'transparent',
+                      border: '1px solid white',
+                      borderRadius: '50%',
+                      color: 'white',
+                      backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                    }}
+                  >
+                    &lt;
+                  </button>
+                );
+              }
+              return null;
+            }}
+            renderArrowNext={(onClickHandler, hasNext) => {
+              if (hasNext) {
+                return (
+                  <button
+                    type="button"
+                    onClick={onClickHandler}
+                    title=">"
+                    style={{
+                      width: '2rem',
+                      height: '2rem',
+                      position: 'absolute',
+                      top: '50%',
+                      right: '.2rem',
+                      zIndex: 2,
+                      transform: 'translateY(-50%)',
+                      background: 'transparent',
+                      border: '1px solid white',
+                      borderRadius: '50%',
+                      color: 'white',
+                      backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                    }}
+                  >
+                    &gt;
+                  </button>
+                );
+              }
+              return null;
+            }}
+          >
             <div>
               <img
-                src={bcImg}
+                src={slide1}
                 alt="Slide 1"
               />
             </div>
             <div>
               <img
-                src={bcImg}
+                src={slide2}
                 alt="Slide 2"
+              />
+            </div>
+            <div>
+              <img
+                src={slide3}
+                alt="Slide 3"
               />
             </div>
           </Carousel>

@@ -1,50 +1,119 @@
-// SidebarGallery.js
 import React from 'react';
 import { Route, Routes, NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 import Korean from '../../../pages/Korean';
 import Chinese from '../../../pages/Chinese';
 import Japanese from '../../../pages/Japanese';
 import Western from '../../../pages/Western';
+import sidebar from '../../../assets/sidebar.svg';
+
+const WikiWrapper = styled.div`
+  display: flex;
+`;
+
+const SidebarWikiWrapper = styled.div`
+  position: fixed;
+  top: 6.5rem;
+  left: 2rem;
+  width: 12rem;
+  height: 65%;
+  padding: 2rem;
+  background-color: var(--color-beige);
+  border-radius: 1rem;
+  color: var(--color-black);
+  box-shadow: 0 0.2rem 0.4rem 0 #c3c3c3;
+`;
+
+const SidebarHeader = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 1.2rem;
+`;
+
+const SidebarIcon = styled.img`
+  width: 2rem;
+  color: #ffa800;
+`;
+
+const SidebarNavLink = styled(NavLink)`
+  display: block;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.7rem;
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: var(--color-black);
+  transition: 0.5s;
+
+  &.active {
+    font-weight: bold;
+    color: #ffa800;
+  }
+
+  &:hover {
+    background-color: #fff0b8;
+    box-shadow: inset 0 0.1rem 0.1rem 0 #f6e6ac;
+  }
+`;
+
+const ContentWrapper = styled.div`
+  margin-left: 23rem;
+  margin-top: 7rem;
+`;
 
 const SidebarGallery = () => {
   return (
-    <div>
-      <h2>맛집 추천</h2>
-      <nav>
-        <ul>
-          <li>
-            <NavLink to="/gallery">한식</NavLink>
-          </li>
-          <li>
-            <NavLink to="/gallery/chinese">중식</NavLink>
-          </li>
-          <li>
-            <NavLink to="/gallery/japanese">일식</NavLink>
-          </li>
-          <li>
-            <NavLink to="/gallery/western">양식</NavLink>
-          </li>
-        </ul>
-      </nav>
-      <Routes>
-        <Route
-          path="/"
-          element={<Korean />}
-        />
-        <Route
-          path="chinese"
-          element={<Chinese />}
-        />
-        <Route
-          path="japanese"
-          element={<Japanese />}
-        />
-        <Route
-          path="western"
-          element={<Western />}
-        />
-      </Routes>
-    </div>
+    <WikiWrapper>
+      <SidebarWikiWrapper>
+        <SidebarHeader>
+          <SidebarIcon
+            src={sidebar}
+            alt="sidebar"
+          />
+          <h2>맛집 추천</h2>
+        </SidebarHeader>
+        <nav>
+          <ul>
+            <li>
+              <SidebarNavLink to="/gallery/korean">한식</SidebarNavLink>
+            </li>
+            <li>
+              <SidebarNavLink to="/gallery/chinese">중식</SidebarNavLink>
+            </li>
+            <li>
+              <SidebarNavLink to="/gallery/japanese">일식</SidebarNavLink>
+            </li>
+            <li>
+              <SidebarNavLink to="/gallery/western">양식</SidebarNavLink>
+            </li>
+          </ul>
+        </nav>
+      </SidebarWikiWrapper>
+      <ContentWrapper>
+        <Routes>
+          <Route
+            path="korean"
+            element={<Korean />}
+          />
+          <Route
+            path="chinese"
+            element={<Chinese />}
+          />
+          <Route
+            path="japanese"
+            element={<Japanese />}
+          />
+          <Route
+            path="western"
+            element={<Western />}
+          />
+          <Route
+            path="/"
+            element={<Korean />}
+          />
+        </Routes>
+      </ContentWrapper>
+    </WikiWrapper>
   );
 };
 
