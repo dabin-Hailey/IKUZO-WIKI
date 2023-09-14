@@ -1,16 +1,23 @@
 import React from 'react';
+import styled from 'styled-components';
 import Header from '../components/common/Header';
+import SidebarGallery from '../components/common/SidebarGallery';
 import GalleryListing from '../components/gallery/GalleryListing';
 
-const GalleryPage = () => {
-  // 파베 storage 함수 만들어서 사용하고 나중에 util로 빼기
+const ContentWrapper = styled.div`
+  display: flex;
+`;
 
+const Gallery = () => {
   return (
     <>
       <Header />
-      <GalleryListing />
+      <ContentWrapper>
+        <SidebarGallery />
+        <GalleryListing />
+      </ContentWrapper>
     </>
   );
 };
 
-export default GalleryPage;
+export default Gallery;
