@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { db, storage } from '../../utils/firebase.config';
-import { getData, getDataByField } from '../../utils/util';
 import ReplaceIconSvg from '../../assets/galleryReplaceIcon.svg';
 import DeleteIconSvg from '../../assets/galleryDeleteIcon.svg';
+
+// type
+export interface WithProps {
+  restaurant: string;
+  location: string;
+  photo: string;
+}
 
 // styled-components
 
@@ -18,9 +23,7 @@ const ItemImage = styled.img`
   width: 100%;
   height: 100%;
 
-  content: url('https://www.hotelrestaurant.co.kr/data/photos/20180205/art_15175330519518_43b250.bmp');
   object-fit: cover;
-
   transition: all 0.3s;
 `;
 
@@ -39,7 +42,7 @@ const ItemHover = styled.div`
   left: 0;
 
   background: rgba(0, 0, 0, 0.5);
-  /* visibility: hidden; */
+  visibility: hidden;
 `;
 
 // container
@@ -53,7 +56,7 @@ const ItemWrapper = styled.div`
   border-radius: 1rem;
   box-shadow: 2px 3px 5px 0 gray;
   box-sizing: border-box;
-  margin: 3rem;
+  /* margin: 1rem; */
   overflow: hidden;
 
   &:hover ${ItemHover} {
@@ -112,37 +115,15 @@ const Content = styled.p`
 `;
 
 // Component
-
-const GalleryItems: React.FC = () => {
-  type Restaurant = {
-    restaurant: string;
-    location: string;
-    category: string;
-    photo: string;
-  };
-
-  // const data = getDataByField('data-collection', 'fieldName', 'fieldValue');
-
-  const data: Restaurant = {
-    restaurant: '김치골',
-    location: '경기도 수원',
-    category: '한식',
-    photo:
-      'https://www.hotelrestaurant.co.kr/data/photos/20180205/art_15175330519518_43b250.bmp',
-  };
-
-  const [restaurant, setRestaurant] = useState(data);
-
+const GalleryItems = ({ restaurant, location, photo }: WithProps) => {
   return (
     <ItemWrapper>
       <Item>
-        <ItemImage />
+        <ItemImage src={photo} />
       </Item>
       <ItemHover>
         <ButtonWrapper>
           <Button>
-            {/* 나중에 react-icons 설치하고 공유 */}
-            {/* <MdPublishedWithChanges /> */}
             <img
               src={ReplaceIconSvg}
               alt="ReplaceIcon"
@@ -150,18 +131,16 @@ const GalleryItems: React.FC = () => {
             변경
           </Button>
           <Button>
-            {/* <TiDeleteOutline /> */}
-            {/* <RiDeleteBin2Line /> */}
             <img
               src={DeleteIconSvg}
-              alt="ReplaceIcon"
+              alt="DeleteIcon"
             />
             삭제
           </Button>
         </ButtonWrapper>
         <ContentWrapper>
-          <Title>{restaurant.restaurant}</Title>
-          <Content>{restaurant.location}</Content>
+          <Title>{restaurant}</Title>
+          <Content>{location}</Content>
         </ContentWrapper>
       </ItemHover>
     </ItemWrapper>

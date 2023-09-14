@@ -2,23 +2,56 @@ import React from 'react';
 import styled from 'styled-components';
 import GalleryItems from './GalleryItems';
 
-// styled-components
+// type
+export interface Root {
+  id: string;
+}
 
-const GalleryListingContent = styled.div`
+export type Props = {
+  restaurantList: Root[];
+};
+
+export interface WithProp {
+  id: string;
+  restaurant: string;
+  location: string;
+  photo: string;
+  category: string;
+}
+
+// styled-components
+const GalleryListWrapper = styled.div`
+  width: auto;
+`;
+
+const GalleryList = styled.div`
+  width: 100%;
   display: flex;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem 2%;
 `;
 
 // Component
 
-const GalleryListing = () => {
+const GalleryListing: React.FC<Props> = ({ restaurantList }) => {
   return (
-    <GalleryListingContent>
-      {/* 아이템은 나중에 map해서 출력하기 */}
-      <GalleryItems />
-      <GalleryItems />
-      <GalleryItems />
-    </GalleryListingContent>
+    <GalleryListWrapper>
+      <GalleryList>
+        {restaurantList &&
+          restaurantList.map((item: Root) => {
+            const { id } = item;
+            const { restaurant, location, photo } = item as WithProp;
+            return (
+              <GalleryItems
+                key={id}
+                restaurant={restaurant}
+                location={location}
+                photo={photo}
+              />
+            );
+          })}
+      </GalleryList>
+    </GalleryListWrapper>
   );
 };
 
