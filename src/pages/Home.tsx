@@ -1,7 +1,8 @@
 import React from 'react';
-
+import { Carousel } from 'react-responsive-carousel';
 import Header from '../components/common/Header';
 import bcImg from '../assets/Home-bcimage.jpg';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './Home.css';
 
 const HomePage = () => {
@@ -42,7 +43,22 @@ const HomePage = () => {
             </button>
           </div>
         </div>
-        <div className="homeSwiper">캐로셀</div>
+        <div className="homeSwiper">
+          <Carousel>
+            <div>
+              <img
+                src={bcImg}
+                alt="Slide 1"
+              />
+            </div>
+            <div>
+              <img
+                src={bcImg}
+                alt="Slide 2"
+              />
+            </div>
+          </Carousel>
+        </div>
       </div>
     </div>
   );
