@@ -54,14 +54,7 @@ const index: React.FC<Props> = ({ data }): JSX.Element => {
     maxPeople: 0,
   });
 
-  const openModal = (data: WithProp) => {
-    setModalData({
-      restaurantLocation: data.location,
-      title: data.title,
-      contents: data.contents,
-      recruitmentTime: data.time.toString(),
-      maxPeople: data.people,
-    });
+  const openModal = () => {
     setIsModalOpen(true);
   };
 
@@ -95,7 +88,7 @@ const index: React.FC<Props> = ({ data }): JSX.Element => {
   };
 
   const handleRecruitmentTimeChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLButtonElement>,
   ) => {
     setModalData({
       ...modalData,
@@ -116,6 +109,14 @@ const index: React.FC<Props> = ({ data }): JSX.Element => {
     <Container>
       <Title>
         <Highlight>같이 먹을사람</Highlight> 구해요
+        <button
+          type="button"
+          onClick={() => {
+            openModal();
+          }}
+        >
+          Open Modal
+        </button>{' '}
       </Title>
       <div style={{ width: '100%' }}>
         {data &&
@@ -134,14 +135,6 @@ const index: React.FC<Props> = ({ data }): JSX.Element => {
                   time={time}
                   joined={joined}
                 />
-                <button
-                  type="button"
-                  onClick={() => {
-                    openModal(item as WithProp);
-                  }}
-                >
-                  Open Modal
-                </button>{' '}
               </div>
             );
           })}
