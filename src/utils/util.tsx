@@ -104,7 +104,13 @@ export const getDataBySnapshot = (
   collectionName: string,
   callback: (data: any) => void,
 ) => {
-  onSnapshot(collection(db, collectionName), (querySnapshot: QuerySnapshot) => {
+  const staleTime = Math.floor(new Date().getTime() / 1000) - 20;
+  const q = query(
+    collection(db, collectionName),
+    where('time', '>', staleTime),
+    orderBy('time', 'asc'),
+  );
+  onSnapshot(q, (querySnapshot: QuerySnapshot) => {
     const docs = querySnapshot.docs.map(doc => {
       return { ...doc.data(), id: doc.id };
     });
@@ -116,7 +122,7 @@ export const getDataByTimestamp = async (
   collectionName: string,
   fieldName: string,
 ): Promise<Notice[]> => {
-  const staleTime = Math.floor(new Date().getTime() / 1000) - 60;
+  const staleTime = Math.floor(new Date().getTime() / 1000) - 20;
   const q = query(
     collection(db, collectionName),
     where(fieldName, '>', staleTime),

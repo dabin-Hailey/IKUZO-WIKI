@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import WithButton from '../WithButton';
+import WithTime from '../WithTime';
 
 export interface WithProps {
   title: string;
@@ -12,8 +13,10 @@ export interface WithProps {
   id: string;
 }
 
-const WithContainer = styled.div`
-  display: flex;
+const WithContainer = styled.div<{ $nowOnView: boolean }>`
+  display: ${({ $nowOnView }) => {
+    return $nowOnView ? 'flex' : 'none';
+  }};
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -69,13 +72,6 @@ const WithLocation = styled.div`
   border-radius: 0.5rem;
 `;
 
-const WithTime = styled.p`
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #ffd337;
-  margin-left: 2rem;
-`;
-
 const WithBottom = styled.div`
   display: flex;
   justify-content: space-between;
@@ -101,16 +97,21 @@ const WithItem = ({
   people,
   time,
 }: WithProps) => {
-  const currentTime = Math.floor(Date.now() / 1000);
-  const lastTime = Math.floor(time / 1000);
-  const leftTime = Math.floor((currentTime - lastTime) / 3600);
+  const [nowOnView, setNowOnView] = useState(true);
+
+  const unLoadItem = () => {
+    setNowOnView(!nowOnView);
+  };
 
   return (
-    <WithContainer>
+    <WithContainer $nowOnView={nowOnView}>
       <WithWrapper>
         <WithTop>
           <WithLocation>{location}</WithLocation>
-          <WithTime>{leftTime}시간 전</WithTime>
+          <WithTime
+            time={time}
+            unLoadItem={unLoadItem}
+          />
         </WithTop>
         <WithBottom>
           <WithBottomLeft>
