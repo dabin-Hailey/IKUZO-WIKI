@@ -22,6 +22,9 @@ export interface WithProp {
 // styled-components
 const GalleryListWrapper = styled.div`
   width: auto;
+
+  background-color: #ddeef8;
+  margin-left: 20rem;
 `;
 
 const GalleryList = styled.div`
