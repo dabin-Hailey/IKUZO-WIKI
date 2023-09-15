@@ -13,7 +13,17 @@ import {
 } from 'firebase/firestore';
 import { db } from './firebase.config';
 
-export const getData = async (collectionName: string) => {
+interface Notice {
+  id: string;
+  html?: string;
+  markdown?: string;
+  title?: string;
+  location?: string;
+  people?: number;
+  time?: number;
+}
+
+export const getData = async (collectionName: string): Promise<Notice[]> => {
   const querySnapshot = await getDocs(collection(db, collectionName));
   const docs = querySnapshot.docs.map(doc => {
     return {
