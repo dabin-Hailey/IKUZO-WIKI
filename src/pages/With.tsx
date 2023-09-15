@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getData, getDataBySnapshot } from '../utils/util';
+import { getDataBySnapshot, getDataByTimestamp } from '../utils/util';
 import WithComponent from '../components/wiki/With';
 
 export interface Root {
@@ -11,7 +11,7 @@ const With = (): JSX.Element => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getData('with-collection');
+      const data = await getDataByTimestamp('with-collection', 'time');
       if (data) {
         setDatas(data);
       }
