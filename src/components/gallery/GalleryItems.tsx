@@ -4,7 +4,7 @@ import ReplaceIconSvg from '../../assets/galleryReplaceIcon.svg';
 import DeleteIconSvg from '../../assets/galleryDeleteIcon.svg';
 
 // type
-export interface WithProps {
+export interface OwnProps {
   restaurant: string;
   location: string;
   photo: string;
@@ -115,7 +115,7 @@ const Content = styled.p`
 `;
 
 // Component
-const GalleryItems = ({ restaurant, location, photo }: WithProps) => {
+const GalleryItems = ({ restaurant, location, photo }: OwnProps) => {
   return (
     <ItemWrapper>
       <Item>
