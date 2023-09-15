@@ -12,6 +12,7 @@ import {
   QuerySnapshot,
   orderBy,
 } from 'firebase/firestore';
+import React from 'react';
 import { db } from './firebase.config';
 
 interface Notice {
@@ -114,7 +115,7 @@ export const getDataBySnapshot = (
 export const getDataByTimestamp = async (
   collectionName: string,
   fieldName: string,
-) => {
+): Promise<Notice[]> => {
   const staleTime = Math.floor(new Date().getTime() / 1000) - 60;
   const q = query(
     collection(db, collectionName),
