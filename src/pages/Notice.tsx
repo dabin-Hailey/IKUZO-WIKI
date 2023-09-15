@@ -1,7 +1,14 @@
 import React from 'react';
+import Header from '../components/common/Header';
+import Notice from '../components/wiki/Notice/Notice';
 
-const Notice = () => {
-  return <div>Notice</div>;
+const NoticePage = () => {
+  return (
+    <>
+      <Header />
+      <Notice />
+    </>
+  );
 };
 
-export default Notice;
+export default NoticePage;
