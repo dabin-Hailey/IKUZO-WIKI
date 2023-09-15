@@ -1,7 +1,13 @@
 import React from 'react';
+import GalleryListing from '../components/gallery/GalleryListing';
 
-const Western = () => {
-  return <div>Western</div>;
+// type
+export interface Root {
+  id: string;
+}
+
+const Western = (): JSX.Element => {
+  return <GalleryListing />;
 };
 
 export default Western;
