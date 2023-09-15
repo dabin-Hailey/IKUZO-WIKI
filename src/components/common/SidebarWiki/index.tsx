@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Routes, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import Notice from '../../../pages/Notice';
-import Intro from '../../../pages/Intro';
+import NoticePage from '../../../pages/Notice';
+import IntroPage from '../../../pages/Intro';
 import With from '../../../pages/With';
 import sidebar from '../../../assets/sidebar.svg';
 
@@ -121,11 +121,11 @@ const SidebarWiki = () => {
         <Routes>
           <Route
             path="notice"
-            element={<Notice />}
+            element={<NoticePage />}
           />
           <Route
             path="intro"
-            element={<Intro />}
+            element={<IntroPage />}
           />
           <Route
             path="with"
@@ -133,7 +133,7 @@ const SidebarWiki = () => {
           />
           <Route
             path="/"
-            element={<Notice />}
+            element={<NoticePage />}
           />
         </Routes>
       </ContentWrapper>
