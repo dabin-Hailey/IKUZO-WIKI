@@ -11,14 +11,18 @@ import {
   onSnapshot,
   QuerySnapshot,
 } from 'firebase/firestore';
-import { db } from './firebase.config';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { db, storage } from './firebase.config';
 
 interface Notice {
   id: string;
   html?: string;
   markdown?: string;
   title?: string;
+  category?: string;
   location?: string;
+  photo?: string;
+  restaurant?: string;
   people?: number;
   time?: number;
 }
@@ -50,6 +54,30 @@ export const getDataByField = async (
   return docs;
 };
 
+export const addImage = async (image: File) => {
+  return new Promise<string | undefined>((resolve, reject) => {
+    const filename = Date.now();
+    const imageRef = ref(storage, `gallery/${filename}`);
+    const uploadTask = uploadBytesResumable(imageRef, image);
+
+    uploadTask.on(
+      'state_changed',
+      null,
+      error => {
+        reject(error);
+      },
+      async () => {
+        try {
+          const imageURL = await getDownloadURL(uploadTask.snapshot.ref);
+          resolve(imageURL);
+        } catch (error) {
+          reject(error);
+        }
+      },
+    );
+  });
+};
+
 export const setData = async (
   collectionName: string,
   props: any,
@@ -58,6 +86,23 @@ export const setData = async (
   const dataId = `${collectionName}-${date.getTime()}`;
 
   await setDoc(doc(db, collectionName, dataId), props);
+};
+
+export const setGalleryData = async (
+  collectionName: string,
+  props: any,
+): Promise<void> => {
+  const date = new Date();
+  const dataId = `food${date.getTime()}`;
+
+  await setDoc(
+    doc(
+      db,
+      `data-collection/best-restaurant-collection/${collectionName}-food`,
+      dataId,
+    ),
+    props,
+  );
 };
 
 export const updateData = async (

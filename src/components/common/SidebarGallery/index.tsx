@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Routes, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import AddModal from './AddModal';
 import Korean from '../../../pages/Korean';
 import Chinese from '../../../pages/Chinese';
 import Japanese from '../../../pages/Japanese';
@@ -24,6 +25,7 @@ const SidebarWikiWrapper = styled.div`
   box-shadow: 0 0.2rem 0.4rem 0 #c3c3c3;
   display: flex;
   flex-direction: column;
+  z-index: 9;
 `;
 
 const SidebarHeader = styled.div`
@@ -79,6 +81,11 @@ const ContentWrapper = styled.div`
 `;
 
 const SidebarGallery = () => {
+  const [modal, setModal] = useState(false);
+  const handleModal = () => {
+    setModal(!modal);
+  };
+
   return (
     <WikiWrapper>
       <SidebarWikiWrapper>
@@ -105,7 +112,8 @@ const SidebarGallery = () => {
             </li>
           </ul>
         </SidebarNav>
-        <AddButton>맛집 추가하기</AddButton>
+        <AddButton onClick={handleModal}>맛집 추가하기</AddButton>
+        {modal === true ? <AddModal onChange={handleModal} /> : null}
       </SidebarWikiWrapper>
       <ContentWrapper>
         <Routes>
