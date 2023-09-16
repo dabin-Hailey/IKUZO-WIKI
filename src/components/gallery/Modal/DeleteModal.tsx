@@ -7,11 +7,10 @@ export interface Root {
 }
 
 export interface OwnProps {
-  modal: boolean;
-  setModal: React.Dispatch<React.SetStateAction<boolean>>;
   id: string;
   category: string;
   handleDelete: (id: string, category: string) => void;
+  handleDeleteModal: () => void;
 }
 
 // styled components
@@ -75,11 +74,10 @@ const Button = styled.button`
 `;
 
 const DeleteModal: React.FC<OwnProps> = ({
-  modal,
-  setModal,
   id,
   category,
   handleDelete,
+  handleDeleteModal,
 }) => {
   const outside = useRef<HTMLDivElement>(null);
 
@@ -87,7 +85,7 @@ const DeleteModal: React.FC<OwnProps> = ({
     <ModalBackground
       ref={outside}
       onClick={e => {
-        if (e.target === outside.current) setModal(!modal);
+        if (e.target === outside.current) handleDeleteModal();
       }}
     >
       <ModalWindow>
@@ -95,7 +93,7 @@ const DeleteModal: React.FC<OwnProps> = ({
         <Content>
           <Button
             onClick={() => {
-              setModal(!modal);
+              handleDeleteModal();
             }}
           >
             취소

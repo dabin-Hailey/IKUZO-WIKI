@@ -1,8 +1,9 @@
-import React, { useState, SetStateAction } from 'react';
+import React, { SetStateAction } from 'react';
 import styled from 'styled-components';
 import DeleteModal from '../Modal/DeleteModal';
-import ReplaceIconSvg from '../../../assets/galleryReplaceIcon.svg';
-import DeleteIconSvg from '../../../assets/galleryDeleteIcon.svg';
+import UpdateModal from '../Modal/UpdateModal';
+import UpdateIconSvg from '../../../assets/UpdateIcon.svg';
+import DeleteIconSvg from '../../../assets/DeleteIcon.svg';
 
 // type
 export interface Root {
@@ -11,8 +12,15 @@ export interface Root {
 
 export interface OwnProps {
   id: string;
+  restaurant: string;
+  location: string;
+  photo: string;
   category: string;
   handleDelete: (id: string, category: string) => void;
+  deleteModal: boolean;
+  handleDeleteModal: () => void;
+  updateModal: boolean;
+  handleUpdateModal: () => void;
 }
 
 const ButtonWrapper = styled.div`
@@ -39,29 +47,44 @@ const Button = styled.button`
   padding: 0.2rem 0.5rem;
 `;
 
-const GalleryButton: React.FC<OwnProps> = ({ id, category, handleDelete }) => {
-  const [modal, setModal] = useState<boolean>(false);
-
-  const handleModal = () => {
-    setModal(!modal);
-  };
-  // const handleReplace = async () => {
-  //   // await
-  //   // 모달 나오면 생성하기
-  // };
-
+const GalleryButton: React.FC<OwnProps> = ({
+  id,
+  restaurant,
+  location,
+  photo,
+  category,
+  handleDelete,
+  deleteModal,
+  handleDeleteModal,
+  updateModal,
+  handleUpdateModal,
+}) => {
   return (
     <ButtonWrapper>
-      <Button>
+      <Button
+        onClick={() => {
+          handleUpdateModal();
+        }}
+      >
         <img
-          src={ReplaceIconSvg}
-          alt="ReplaceIcon"
+          src={UpdateIconSvg}
+          alt="UpdateIcon"
         />
         변경
       </Button>
+      {updateModal && (
+        <UpdateModal
+          id={id}
+          restaurant={restaurant}
+          location={location}
+          photo={photo}
+          category={category}
+          handleUpdateModal={handleUpdateModal}
+        />
+      )}
       <Button
         onClick={() => {
-          handleModal();
+          handleDeleteModal();
         }}
       >
         <img
@@ -70,13 +93,12 @@ const GalleryButton: React.FC<OwnProps> = ({ id, category, handleDelete }) => {
         />
         삭제
       </Button>
-      {modal && (
+      {deleteModal && (
         <DeleteModal
-          modal={modal}
-          setModal={setModal}
           id={id}
           category={category}
           handleDelete={handleDelete}
+          handleDeleteModal={handleDeleteModal}
         />
       )}
     </ButtonWrapper>

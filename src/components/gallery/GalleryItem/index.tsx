@@ -1,6 +1,6 @@
 import React, { SetStateAction } from 'react';
 import styled from 'styled-components';
-import GalleryButton from '../GalleryButton/GalleryButton';
+import GalleryButton from '../GalleryButton/index';
 
 // type
 export interface Root {
@@ -14,6 +14,10 @@ export interface OwnProps {
   photo: string;
   category: string;
   handleDelete: (id: string, category: string) => void;
+  deleteModal: boolean;
+  handleDeleteModal: () => void;
+  updateModal: boolean;
+  handleUpdateModal: () => void;
 }
 
 // styled-components
@@ -99,6 +103,10 @@ const GalleryItems: React.FC<OwnProps> = ({
   photo,
   category,
   handleDelete,
+  deleteModal,
+  handleDeleteModal,
+  updateModal,
+  handleUpdateModal,
 }) => {
   return (
     <ItemWrapper>
@@ -108,8 +116,15 @@ const GalleryItems: React.FC<OwnProps> = ({
       <ItemHover>
         <GalleryButton
           id={id}
+          restaurant={restaurant}
+          location={location}
+          photo={photo}
           category={category}
           handleDelete={handleDelete}
+          deleteModal={deleteModal}
+          handleDeleteModal={handleDeleteModal}
+          updateModal={updateModal}
+          handleUpdateModal={handleUpdateModal}
         />
         <ContentWrapper>
           <Title>{restaurant}</Title>

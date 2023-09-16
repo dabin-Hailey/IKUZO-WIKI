@@ -41,7 +41,18 @@ const GalleryListing = (): JSX.Element => {
   const category = route === 'gallery' ? 'korean' : route;
 
   const [list, setList] = useState<Root[]>([]);
+  const [deleteModal, setDeleteModal] = useState<boolean>(false);
+  const [updateModal, setUpdateModal] = useState<boolean>(false);
 
+  const handleDeleteModal = () => {
+    setDeleteModal(!deleteModal);
+  };
+
+  const handleUpdateModal = () => {
+    setUpdateModal(!updateModal);
+  };
+
+  // 모달에서 사용할 삭제 버튼
   const handleDelete = async (id: string, category: string) => {
     const newList = list.filter(item => {
       return item.id !== id;
@@ -52,6 +63,11 @@ const GalleryListing = (): JSX.Element => {
       `data-collection/best-restaurant-collection/${category}-food`,
       id,
     );
+  };
+
+  // 모달에서 사용할 update 버튼
+  const handleUpdate = async () => {
+    return 1;
   };
 
   const fetchData = async (category: string) => {
@@ -83,6 +99,10 @@ const GalleryListing = (): JSX.Element => {
                 photo={photo}
                 category={category}
                 handleDelete={handleDelete}
+                deleteModal={deleteModal}
+                handleDeleteModal={handleDeleteModal}
+                updateModal={updateModal}
+                handleUpdateModal={handleUpdateModal}
               />
             );
           })}
