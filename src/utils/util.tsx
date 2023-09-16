@@ -10,6 +10,7 @@ import {
   increment,
   onSnapshot,
   QuerySnapshot,
+  orderBy,
 } from 'firebase/firestore';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { db, storage } from './firebase.config';
@@ -147,10 +148,33 @@ export const getDataBySnapshot = (
   collectionName: string,
   callback: (data: any) => void,
 ) => {
-  onSnapshot(collection(db, collectionName), (querySnapshot: QuerySnapshot) => {
+  const staleTime = Math.floor(new Date().getTime() / 1000) - 20;
+  const q = query(
+    collection(db, collectionName),
+    where('time', '>', staleTime),
+    orderBy('time', 'asc'),
+  );
+  onSnapshot(q, (querySnapshot: QuerySnapshot) => {
     const docs = querySnapshot.docs.map(doc => {
       return { ...doc.data(), id: doc.id };
     });
     callback(docs);
   });
+};
+
+export const getDataByTimestamp = async (
+  collectionName: string,
+  fieldName: string,
+): Promise<Notice[]> => {
+  const staleTime = Math.floor(new Date().getTime() / 1000) - 20;
+  const q = query(
+    collection(db, collectionName),
+    where(fieldName, '>', staleTime),
+    orderBy(fieldName, 'asc'),
+  );
+  const querySnapshot = await getDocs(q);
+  const docs = querySnapshot.docs.map(doc => {
+    return { ...doc.data(), id: doc.id };
+  });
+  return docs;
 };

@@ -9,7 +9,9 @@ interface ModalProps {
   onLocationChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onTitleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onContentsChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  onRecruitmentTimeChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onRecruitmentTimeChange: (
+    event: React.ChangeEvent<HTMLButtonElement>,
+  ) => void;
   onMaxPeopleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -49,8 +51,6 @@ const ModalTextarea = styled.textarea`
   border-radius: 5px;
 `;
 
-const date = new Date();
-
 const setData = async (collectionName: string, props: any): Promise<void> => {
   const date = new Date();
   const dataId = `${collectionName}-${date.getTime()}`;
@@ -72,17 +72,17 @@ const Modal: React.FC<ModalProps> = ({
   const [location, setLocation] = useState('');
   const [title, setTitle] = useState('');
   const [contents, setContents] = useState('');
-  const [recruitmentTime, setRecruitmentTime] = useState('');
+  const [recruitmentTime, setRecruitmentTime] = useState(0);
   const [maxPeople, setMaxPeople] = useState(0);
 
   const handleRegister = async () => {
     try {
       await setData('with-collection', {
         contents,
-        joined: 0,
+        joined: 1,
         location,
         people: maxPeople,
-        time: date.getTime(),
+        time: Math.floor(Date.now() / 1000) + recruitmentTime * 60,
         title,
       });
 
@@ -90,6 +90,10 @@ const Modal: React.FC<ModalProps> = ({
     } catch (error) {
       console.error('Firestore 데이터 추가 중 오류 발생:', error);
     }
+  };
+
+  const modalClose = () => {
+    onClose();
   };
 
   return (
@@ -135,15 +139,30 @@ const Modal: React.FC<ModalProps> = ({
 
         <label htmlFor="recruitmentTime">
           모집 시간:
-          <ModalInput
-            type="text"
-            id="recruitmentTime"
-            value={recruitmentTime}
-            onChange={e => {
-              setRecruitmentTime(e.target.value);
-              onRecruitmentTimeChange(e);
+          <button
+            type="button"
+            onClick={() => {
+              setRecruitmentTime(10);
             }}
-          />
+          >
+            10
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setRecruitmentTime(20);
+            }}
+          >
+            20
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setRecruitmentTime(30);
+            }}
+          >
+            30
+          </button>
         </label>
 
         <label htmlFor="maxPeople">
@@ -164,6 +183,13 @@ const Modal: React.FC<ModalProps> = ({
           onClick={handleRegister}
         >
           등록
+        </button>
+
+        <button
+          type="button"
+          onClick={modalClose}
+        >
+          닫기
         </button>
       </ModalContent>
     </ModalWrapper>
