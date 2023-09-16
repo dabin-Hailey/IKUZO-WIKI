@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import { deleteData } from '../../../utils/util';
 
 // type
 export interface Root {

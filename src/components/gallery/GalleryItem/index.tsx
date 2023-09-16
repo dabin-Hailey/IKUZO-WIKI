@@ -1,6 +1,6 @@
 import React, { SetStateAction } from 'react';
 import styled from 'styled-components';
-import ButtonWrapper from '../GalleryButton/index';
+import GalleryButton from '../GalleryButton/GalleryButton';
 
 // type
 export interface Root {
@@ -106,7 +106,7 @@ const GalleryItems: React.FC<OwnProps> = ({
         <ItemImage src={photo} />
       </Item>
       <ItemHover>
-        <ButtonWrapper
+        <GalleryButton
           id={id}
           category={category}
           handleDelete={handleDelete}
