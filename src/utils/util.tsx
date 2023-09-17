@@ -12,7 +12,12 @@ import {
   QuerySnapshot,
   orderBy,
 } from 'firebase/firestore';
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import {
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+  deleteObject,
+} from 'firebase/storage';
 import { db, storage } from './firebase.config';
 
 interface Notice {
@@ -77,6 +82,14 @@ export const addImage = async (image: File) => {
       },
     );
   });
+};
+
+export const deleteImage = async (photo: string) => {
+  const refLocation = photo.indexOf('gallery');
+  const filename = photo.slice(refLocation + 11, refLocation + 23);
+  const imageRef = ref(storage, filename);
+
+  await deleteObject(imageRef);
 };
 
 export const setData = async (

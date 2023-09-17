@@ -81,7 +81,7 @@ const GalleryListing = (): JSX.Element => {
 
   useEffect(() => {
     fetchData(category);
-  }, [list]);
+  }, []);
 
   return (
     <GalleryListWrapper>

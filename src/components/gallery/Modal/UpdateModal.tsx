@@ -1,8 +1,7 @@
-import React, { useState, useRef, SetStateAction } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
-import addImg from '../../../assets/add-image.png';
 import closeIcon from '../../../assets/close-icon.png';
-import { addImage, updateData } from '../../../utils/util';
+import { addImage, updateData, deleteImage } from '../../../utils/util';
 
 // type
 export interface Root {
@@ -24,6 +23,7 @@ interface Props {
 
 const ModalBackground = styled.div`
   position: fixed;
+  z-index: 10;
   top: 0;
   left: 0;
   right: 0;
@@ -63,11 +63,11 @@ const ImageLabel = styled.label<Props>`
   width: 100%;
   height: 160px;
 
+  cursor: pointer;
   background: url(${props => {
       return props.src;
     }})
     center/cover;
-  cursor: pointer;
 `;
 
 const InputFile = styled.input`
@@ -132,8 +132,6 @@ const UpdateModal: React.FC<OwnProps> = ({
   category,
   handleUpdateModal,
 }) => {
-  // 원래 코드
-  // const [imgPath, setImgPath] = useState('');
   const [imgPath, setImgPath] = useState(photo);
   const [imgFile, setImgFile] = useState<File>();
   const imgRef = useRef<HTMLInputElement>(null);
@@ -154,22 +152,28 @@ const UpdateModal: React.FC<OwnProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
+    const collectionName = `data-collection/best-restaurant-collection/${form.category.value}-food`;
+    const dataId = id;
 
     if (imgFile) {
-      const imageURL = await addImage(imgFile as File);
+      deleteImage(photo);
 
-      await updateData(
-        `data-collection/best-restaurant-collection/${form.category.value}-food`,
-        id,
-        {
-          category: form.category.value,
-          location: form.location.value,
-          photo: imageURL,
-          restaurant: form.restaurant.value,
-        },
-      );
-      window.location.replace('/gallery');
+      const imageURL = await addImage(imgFile as File);
+      await updateData(collectionName, dataId, {
+        category: form.category.value,
+        location: form.location.value,
+        photo: imageURL,
+        restaurant: form.restaurant.value,
+      });
+    } else {
+      await updateData(collectionName, dataId, {
+        category: form.category.value,
+        location: form.location.value,
+        photo,
+        restaurant: form.restaurant.value,
+      });
     }
+    window.location.replace('/gallery');
   };
 
   return (
@@ -207,7 +211,7 @@ const UpdateModal: React.FC<OwnProps> = ({
                   id="korean"
                   name="category"
                   value="korean"
-                  checked={category === 'korean'}
+                  defaultChecked={category === 'korean'}
                 />
                 한식
               </label>
@@ -217,7 +221,7 @@ const UpdateModal: React.FC<OwnProps> = ({
                   id="chinese"
                   name="category"
                   value="chinese"
-                  checked={category === 'chinese'}
+                  defaultChecked={category === 'chinese'}
                 />
                 중식
               </label>
@@ -227,7 +231,7 @@ const UpdateModal: React.FC<OwnProps> = ({
                   id="japanese"
                   name="category"
                   value="japanese"
-                  checked={category === 'japanese'}
+                  defaultChecked={category === 'japanese'}
                 />
                 일식
               </label>
@@ -237,7 +241,7 @@ const UpdateModal: React.FC<OwnProps> = ({
                   id="western"
                   name="category"
                   value="western"
-                  checked={category === 'western'}
+                  defaultChecked={category === 'western'}
                 />
                 양식
               </label>
@@ -247,14 +251,14 @@ const UpdateModal: React.FC<OwnProps> = ({
             <InputTitle>맛집 이름</InputTitle>
             <InputField
               name="restaurant"
-              value={restaurant}
+              defaultValue={restaurant}
             />
           </InputContainer>
           <InputContainer>
             <InputTitle>맛집 위치</InputTitle>
             <InputField
               name="location"
-              value={location}
+              defaultValue={location}
             />
           </InputContainer>
           <SubmitButton type="submit">정보 수정</SubmitButton>
