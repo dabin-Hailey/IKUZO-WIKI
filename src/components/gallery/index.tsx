@@ -24,7 +24,7 @@ export interface OwnProps {
 
 const GalleryListWrapper = styled.div`
   /* width를 지정하지 않으면 아이템 정렬이 망가져서 일단 px로 고정해놓음 */
-  width: 850px;
+  width: calc(100vw - 23rem);
 `;
 
 const GalleryList = styled.div`
@@ -63,11 +63,6 @@ const GalleryListing = (): JSX.Element => {
       `data-collection/best-restaurant-collection/${category}-food`,
       id,
     );
-  };
-
-  // 모달에서 사용할 update 버튼
-  const handleUpdate = async () => {
-    return 1;
   };
 
   const fetchData = async (category: string) => {

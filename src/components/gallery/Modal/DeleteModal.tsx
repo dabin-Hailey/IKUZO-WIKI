@@ -79,16 +79,17 @@ const DeleteModal: React.FC<OwnProps> = ({
   handleDelete,
   handleDeleteModal,
 }) => {
-  const outside = useRef<HTMLDivElement>(null);
-
   return (
     <ModalBackground
-      ref={outside}
-      onClick={e => {
-        if (e.target === outside.current) handleDeleteModal();
+      onClick={() => {
+        handleDeleteModal();
       }}
     >
-      <ModalWindow>
+      <ModalWindow
+        onClick={e => {
+          e.stopPropagation();
+        }}
+      >
         <Title>정말 삭제하시겠습니까?</Title>
         <Content>
           <Button
