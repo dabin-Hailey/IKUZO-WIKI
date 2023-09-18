@@ -23,7 +23,8 @@ export interface OwnProps {
 // styled-components
 const GalleryListWrapper = styled.div`
   /* width를 지정하지 않으면 아이템 정렬이 망가져서 일단 px로 고정해놓음 */
-  width: calc(100vw - 20rem);
+  width: calc(100vw - 23rem);
+  /* width: 900px; */
 `;
 
 const GalleryList = styled.div`
@@ -40,15 +41,23 @@ const GalleryListing = (): JSX.Element => {
   const category = route === 'gallery' ? 'korean' : route;
 
   const [list, setList] = useState<Root[]>([]);
-  const [deleteModal, setDeleteModal] = useState<boolean>(false);
-  const [updateModal, setUpdateModal] = useState<boolean>(false);
+  const [updateModalID, setUpdateModalID] = useState<string | null>(null);
+  const [deleteModalID, setDeleteModalID] = useState<string | null>(null);
 
-  const handleDeleteModal = () => {
-    setDeleteModal(!deleteModal);
+  const openUpdateModal = (id: string) => {
+    setUpdateModalID(id);
   };
 
-  const handleUpdateModal = () => {
-    setUpdateModal(!updateModal);
+  const closeUpdateModal = () => {
+    setUpdateModalID(null);
+  };
+
+  const openDeleteModal = (id: string) => {
+    setDeleteModalID(id);
+  };
+
+  const closeDeleteModal = () => {
+    setDeleteModalID(null);
   };
 
   // 모달에서 사용할 삭제 버튼
@@ -93,10 +102,12 @@ const GalleryListing = (): JSX.Element => {
                 photo={photo}
                 category={category}
                 handleDelete={handleDelete}
-                deleteModal={deleteModal}
-                handleDeleteModal={handleDeleteModal}
-                updateModal={updateModal}
-                handleUpdateModal={handleUpdateModal}
+                updateModalID={updateModalID}
+                openUpdateModal={openUpdateModal}
+                closeUpdateModal={closeUpdateModal}
+                deleteModalID={deleteModalID}
+                openDeleteModal={openDeleteModal}
+                closeDeleteModal={closeDeleteModal}
               />
             );
           })}
