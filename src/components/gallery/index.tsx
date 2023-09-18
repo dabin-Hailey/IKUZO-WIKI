@@ -23,7 +23,7 @@ export interface OwnProps {
 // styled-components
 const GalleryListWrapper = styled.div`
   /* width를 지정하지 않으면 아이템 정렬이 망가져서 일단 px로 고정해놓음 */
-  width: calc(100vw - 20rem);
+  width: calc(100% - 20rem);
 `;
 
 const GalleryList = styled.div`
