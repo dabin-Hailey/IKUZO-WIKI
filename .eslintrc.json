@@ -17,8 +17,15 @@
         "namedComponents": ["arrow-function"]
       }
     ],
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "labelAttributes": ["htmlFor"]
+      }
+    ],
     "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-shadow": "off",
-    "react/self-closing-comp": "off"
+    "react/self-closing-comp": "off",
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
   }
 }

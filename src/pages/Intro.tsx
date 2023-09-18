@@ -1,15 +1,14 @@
 import React from 'react';
-
 import Header from '../components/common/Header';
-import SidebarWiki from '../components/common/SidebarWiki';
+import Intro from '../components/wiki/Intro/Intro';
 
-const Wiki = () => {
+const IntroPage = () => {
   return (
     <>
       <Header />
-      <SidebarWiki />
+      <Intro />
     </>
   );
 };
 
-export default Wiki;
+export default IntroPage;

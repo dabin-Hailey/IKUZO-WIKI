@@ -1,7 +1,14 @@
 import React from 'react';
+import Header from '../components/common/Header';
+import SidebarGallery from '../components/common/SidebarGallery';
 
-const GalleryPage = () => {
-  return <div>GalleryPage</div>;
+const Gallery = (): JSX.Element => {
+  return (
+    <>
+      <Header />
+      <SidebarGallery />
+    </>
+  );
 };
 
-export default GalleryPage;
+export default Gallery;

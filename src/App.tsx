@@ -8,17 +8,16 @@ import Map from './pages/Map';
 const App = () => {
   return (
     <Routes>
-      {/* <Route path="/" element={<Home />} /> */}
       <Route
         path="/"
         element={<Home />}
       />
       <Route
-        path="/wiki"
+        path="/wiki/*"
         element={<Wiki />}
       />
       <Route
-        path="/gallery"
+        path="/gallery/*"
         element={<Gallery />}
       />
       <Route
