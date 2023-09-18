@@ -47,12 +47,13 @@ const Header = () => {
             </NavLink>
           </li>
         </ul>
+        {/* Mypage보기 버튼 주석처리
         <button
           className="btn btn-primary"
           type="button"
         >
           MYPAGE보기
-        </button>
+        </button> */}
       </div>
     </div>
   );
