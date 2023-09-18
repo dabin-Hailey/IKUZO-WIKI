@@ -4,6 +4,9 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Header from '../common/Header';
 import bcImg from '../../assets/Home-bcimage.jpg';
+import bcImgMiddle from '../../assets/Home-bcimage-middle.jpg';
+import bcImgSmall from '../../assets/Home-bcimage-small.jpg';
+import bcImgXSmall from '../../assets/Home-bcimage-Xsmall.jpg';
 import slide1 from '../../assets/slide_1.jpg';
 import slide2 from '../../assets/slide_2.jpg';
 import slide3 from '../../assets/slide_3.jpg';
@@ -21,6 +24,22 @@ const HomeBgImage = styled.img`
   width: 100%;
   height: auto;
   display: block;
+
+  @media screen and (max-width: 2000px) {
+    content: url(${bcImg});
+  }
+
+  @media screen and (max-width: 1200px) {
+    content: url(${bcImgMiddle});
+  }
+
+  @media screen and (max-width: 800px) {
+    content: url(${bcImgSmall});
+  }
+
+  @media screen and (max-width: 500px) {
+    content: url(${bcImgXSmall});
+  }
 `;
 
 const HomeBgImageCover = styled.div`
@@ -44,6 +63,16 @@ const HomeInner = styled.div`
   text-align: center;
   color: white;
   transform: translate(-50%, -50%);
+
+  @media screen and (max-width: 800px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media screen and (max-width: 500px) {
+  }
 `;
 
 const HomeText = styled.div`
@@ -53,6 +82,18 @@ const HomeText = styled.div`
   width: 70%;
   text-align: left;
   word-break: keep-all;
+
+  @media screen and (max-width: 800px) {
+    position: absolute;
+    top: -17rem;
+    left: 5rem;
+  }
+
+  @media screen and (max-width: 600px) {
+    position: absolute;
+    top: -11rem;
+    left: 5rem;
+  }
 `;
 
 const HomeTextSubtitle = styled.div`
@@ -164,6 +205,20 @@ const HomeSwiper = styled.div`
   padding: 0.2rem;
   background-color: rgba(255, 255, 255, 0.2);
   border: 1px solid white;
+
+  @media screen and (max-width: 800px) {
+    position: absolute;
+    top: 1rem;
+    left: 0;
+    right: 0;
+  }
+
+  @media screen and (max-width: 600px) {
+    position: absolute;
+    top: 4rem;
+    left: 0;
+    right: 0;
+  }
 `;
 
 const HomeSwiperFrame = styled.div`
@@ -308,8 +363,8 @@ const Home = () => {
               />
             </div>
           </Carousel>
-        </HomeSwiper>{' '}
-      </HomeInner>{' '}
+        </HomeSwiper>
+      </HomeInner>
     </HomeWrapper>
   );
 };
