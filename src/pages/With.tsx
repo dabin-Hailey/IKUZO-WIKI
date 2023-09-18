@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getDataBySnapshot, getDataByTimestamp, setData } from '../utils/util';
+import { getDataBySnapshot, getDataByTimestamp } from '../utils/util';
 import WithComponent from '../components/wiki/With';
 
 export interface Root {
@@ -10,16 +10,11 @@ const With = (): JSX.Element => {
   const [datas, setDatas] = useState<Root[]>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await getDataByTimestamp('with-collection', 'time');
-      if (data) {
-        setDatas(data);
-      }
+    const unsubscribe = getDataBySnapshot('with-collection', setDatas);
+
+    return () => {
+      unsubscribe();
     };
-
-    fetchData();
-
-    getDataBySnapshot('with-collection', setDatas);
   }, []);
 
   return <WithComponent data={datas} />;
