@@ -8,6 +8,7 @@ const Gallery = (): JSX.Element => {
     <>
       <Header transparent={false} />
       <SidebarGallery />
+
       <Footer />
     </>
   );

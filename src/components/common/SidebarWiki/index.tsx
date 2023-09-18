@@ -8,15 +8,16 @@ import sidebar from '../../../assets/sidebar.svg';
 
 const WikiWrapper = styled.div`
   display: flex;
-
-  width: 100%;
+  justify-content: center;
+  position: relative;
+  height: 100vh;
 `;
 
 const SidebarWikiWrapper = styled.div`
-  position: fixed;
-  top: 6.5rem;
-  left: 2rem;
-  width: 12rem;
+  position: relative;
+  top: 9rem;
+  left: 10rem;
+  width: 15rem;
   height: 65%;
   padding: 2rem;
   background-color: var(--color-beige);
@@ -62,7 +63,7 @@ const SidebarWikiWrapper = styled.div`
   .sidebar__wiki--items:hover {
     background-color: #fff0b8;
     box-shadow: inset 0 0.1rem 0.1rem 0 #f6e6ac;
-    padding: 0.8rem 1.5rem; /* hover 시에 padding 추가 */
+    padding: 0.8rem 1.5rem;
   }
 `;
 
@@ -90,8 +91,10 @@ const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  left: -9rem;
 
-  width: calc(100% - 20rem);
+  width: calc(100% - 30rem);
   margin: 6.5rem 0 0 20rem;
 `;
 

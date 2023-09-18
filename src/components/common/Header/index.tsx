@@ -29,6 +29,7 @@ const LeftWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+  cursor: pointer;
 `;
 
 const HeaderIcon = styled.img`
@@ -68,6 +69,10 @@ const RightList = styled.ul`
 `;
 
 const StyledHeader: React.FC<StyledHeaderProps> = ({ transparent }) => {
+  const handleGoToHome = () => {
+    window.location.href = '/';
+  };
+
   return (
     <HeaderWrapper transparent={transparent}>
       <LeftWrapper>
@@ -75,7 +80,7 @@ const StyledHeader: React.FC<StyledHeaderProps> = ({ transparent }) => {
           src={headerIconSvg}
           alt="headerIcon"
         />
-        <LeftTitle>IKUZO</LeftTitle>
+        <LeftTitle onClick={handleGoToHome}>IKUZO</LeftTitle>
       </LeftWrapper>
       <RightWrapper>
         <RightList>
