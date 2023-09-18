@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { getDataByField } from '../../utils/util';
-import GalleryItems from './GalleryItems';
+import { getDataByField, deleteData } from '../../utils/util';
+import GalleryItems from './GalleryItem/index';
 
 // type
 export interface Root {
@@ -22,7 +22,8 @@ export interface OwnProps {
 
 // styled-components
 const GalleryListWrapper = styled.div`
-  width: auto;
+  /* width를 지정하지 않으면 아이템 정렬이 망가져서 일단 px로 고정해놓음 */
+  width: calc(100vw - 20rem);
 `;
 
 const GalleryList = styled.div`
@@ -37,9 +38,31 @@ const GalleryListing = (): JSX.Element => {
   const array = window.location.pathname.split('/');
   const route = array[array.length - 1];
   const category = route === 'gallery' ? 'korean' : route;
-  // console.log(category);
 
   const [list, setList] = useState<Root[]>([]);
+  const [deleteModal, setDeleteModal] = useState<boolean>(false);
+  const [updateModal, setUpdateModal] = useState<boolean>(false);
+
+  const handleDeleteModal = () => {
+    setDeleteModal(!deleteModal);
+  };
+
+  const handleUpdateModal = () => {
+    setUpdateModal(!updateModal);
+  };
+
+  // 모달에서 사용할 삭제 버튼
+  const handleDelete = async (id: string, category: string) => {
+    const newList = list.filter(item => {
+      return item.id !== id;
+    });
+    setList(newList);
+
+    await deleteData(
+      `data-collection/best-restaurant-collection/${category}-food`,
+      id,
+    );
+  };
 
   const fetchData = async (category: string) => {
     const data = await getDataByField(
@@ -60,13 +83,20 @@ const GalleryListing = (): JSX.Element => {
         {list &&
           list.map((item: Root) => {
             const { id } = item;
-            const { restaurant, location, photo } = item as OwnProps;
+            const { restaurant, location, photo, category } = item as OwnProps;
             return (
               <GalleryItems
                 key={id}
+                id={id}
                 restaurant={restaurant}
                 location={location}
                 photo={photo}
+                category={category}
+                handleDelete={handleDelete}
+                deleteModal={deleteModal}
+                handleDeleteModal={handleDeleteModal}
+                updateModal={updateModal}
+                handleUpdateModal={handleUpdateModal}
               />
             );
           })}
