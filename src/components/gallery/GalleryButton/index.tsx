@@ -1,4 +1,4 @@
-import React, { SetStateAction } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import DeleteModal from '../Modal/DeleteModal';
 import UpdateModal from '../Modal/UpdateModal';
