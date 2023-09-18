@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import closeIcon from '../../../assets/close-icon.png';
-import { addImage, updateData, deleteImage } from '../../../utils/util';
+import { addImage, updateData } from '../../../utils/util';
 
 // type
 export interface Root {
@@ -156,8 +156,6 @@ const UpdateModal: React.FC<OwnProps> = ({
     const dataId = id;
 
     if (imgFile) {
-      deleteImage(photo);
-
       const imageURL = await addImage(imgFile as File);
       await updateData(collectionName, dataId, {
         category: form.category.value,
