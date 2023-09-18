@@ -14,7 +14,7 @@ export interface OwnProps {
   location: string;
   photo: string;
   category: string;
-  handleUpdateModal: () => void;
+  closeUpdateModal: () => void;
 }
 
 interface Props {
@@ -130,7 +130,7 @@ const UpdateModal: React.FC<OwnProps> = ({
   location,
   photo,
   category,
-  handleUpdateModal,
+  closeUpdateModal,
 }) => {
   const [imgPath, setImgPath] = useState(photo);
   const [imgFile, setImgFile] = useState<File>();
@@ -177,7 +177,7 @@ const UpdateModal: React.FC<OwnProps> = ({
   return (
     <ModalBackground
       onClick={() => {
-        handleUpdateModal();
+        closeUpdateModal();
       }}
     >
       <ModalWindow
@@ -188,7 +188,7 @@ const UpdateModal: React.FC<OwnProps> = ({
         <CloseIcon
           src={closeIcon}
           onClick={() => {
-            handleUpdateModal();
+            closeUpdateModal();
           }}
         />
         <ImageLabel src={imgPath}>

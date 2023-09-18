@@ -14,10 +14,12 @@ export interface OwnProps {
   photo: string;
   category: string;
   handleDelete: (id: string, category: string) => void;
-  deleteModal: boolean;
-  handleDeleteModal: () => void;
-  updateModal: boolean;
-  handleUpdateModal: () => void;
+  updateModalID: string | null;
+  openUpdateModal: (id: string) => void;
+  closeUpdateModal: () => void;
+  deleteModalID: string | null;
+  openDeleteModal: (id: string) => void;
+  closeDeleteModal: () => void;
 }
 
 // styled-components
@@ -103,10 +105,12 @@ const GalleryItems: React.FC<OwnProps> = ({
   photo,
   category,
   handleDelete,
-  deleteModal,
-  handleDeleteModal,
-  updateModal,
-  handleUpdateModal,
+  updateModalID,
+  openUpdateModal,
+  closeUpdateModal,
+  deleteModalID,
+  openDeleteModal,
+  closeDeleteModal,
 }) => {
   return (
     <ItemWrapper>
@@ -121,10 +125,12 @@ const GalleryItems: React.FC<OwnProps> = ({
           photo={photo}
           category={category}
           handleDelete={handleDelete}
-          deleteModal={deleteModal}
-          handleDeleteModal={handleDeleteModal}
-          updateModal={updateModal}
-          handleUpdateModal={handleUpdateModal}
+          updateModalID={updateModalID}
+          openUpdateModal={openUpdateModal}
+          closeUpdateModal={closeUpdateModal}
+          deleteModalID={deleteModalID}
+          openDeleteModal={openDeleteModal}
+          closeDeleteModal={closeDeleteModal}
         />
         <ContentWrapper>
           <Title>{restaurant}</Title>

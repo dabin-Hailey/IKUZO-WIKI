@@ -17,10 +17,12 @@ export interface OwnProps {
   photo: string;
   category: string;
   handleDelete: (id: string, category: string) => void;
-  deleteModal: boolean;
-  handleDeleteModal: () => void;
-  updateModal: boolean;
-  handleUpdateModal: () => void;
+  updateModalID: string | null;
+  openUpdateModal: (id: string) => void;
+  closeUpdateModal: () => void;
+  deleteModalID: string | null;
+  openDeleteModal: (id: string) => void;
+  closeDeleteModal: () => void;
 }
 
 const ButtonWrapper = styled.div`
@@ -54,16 +56,18 @@ const GalleryButton: React.FC<OwnProps> = ({
   photo,
   category,
   handleDelete,
-  deleteModal,
-  handleDeleteModal,
-  updateModal,
-  handleUpdateModal,
+  updateModalID,
+  openUpdateModal,
+  closeUpdateModal,
+  deleteModalID,
+  openDeleteModal,
+  closeDeleteModal,
 }) => {
   return (
     <ButtonWrapper>
       <Button
         onClick={() => {
-          handleUpdateModal();
+          return openUpdateModal(id);
         }}
       >
         <img
@@ -72,19 +76,19 @@ const GalleryButton: React.FC<OwnProps> = ({
         />
         변경
       </Button>
-      {updateModal && (
+      {updateModalID === id && (
         <UpdateModal
           id={id}
           restaurant={restaurant}
           location={location}
           photo={photo}
           category={category}
-          handleUpdateModal={handleUpdateModal}
+          closeUpdateModal={closeUpdateModal}
         />
       )}
       <Button
         onClick={() => {
-          handleDeleteModal();
+          return openDeleteModal(id);
         }}
       >
         <img
@@ -93,12 +97,12 @@ const GalleryButton: React.FC<OwnProps> = ({
         />
         삭제
       </Button>
-      {deleteModal && (
+      {deleteModalID === id && (
         <DeleteModal
           id={id}
           category={category}
           handleDelete={handleDelete}
-          handleDeleteModal={handleDeleteModal}
+          closeDeleteModal={closeDeleteModal}
         />
       )}
     </ButtonWrapper>

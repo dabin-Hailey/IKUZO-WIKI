@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 // type
@@ -10,7 +10,7 @@ export interface OwnProps {
   id: string;
   category: string;
   handleDelete: (id: string, category: string) => void;
-  handleDeleteModal: () => void;
+  closeDeleteModal: () => void;
 }
 
 // styled components
@@ -77,12 +77,12 @@ const DeleteModal: React.FC<OwnProps> = ({
   id,
   category,
   handleDelete,
-  handleDeleteModal,
+  closeDeleteModal,
 }) => {
   return (
     <ModalBackground
       onClick={() => {
-        handleDeleteModal();
+        closeDeleteModal();
       }}
     >
       <ModalWindow
@@ -94,7 +94,7 @@ const DeleteModal: React.FC<OwnProps> = ({
         <Content>
           <Button
             onClick={() => {
-              handleDeleteModal();
+              closeDeleteModal();
             }}
           >
             취소
