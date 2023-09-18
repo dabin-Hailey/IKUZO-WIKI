@@ -232,8 +232,16 @@ const Modal: React.FC<ModalProps> = ({
   };
 
   return (
-    <ModalWrapper>
-      <ModalContent>
+    <ModalWrapper
+      onClick={() => {
+        modalClose();
+      }}
+    >
+      <ModalContent
+        onClick={e => {
+          e.stopPropagation();
+        }}
+      >
         <ModalImageContainer />
         <StringLabel htmlFor="title">
           제목
