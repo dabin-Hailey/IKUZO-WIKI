@@ -4,6 +4,7 @@ import github from '../../../assets/github-logo.png';
 import fastCampus from '../../../assets/fastcampus.png';
 
 const FooterWrapper = styled.footer`
+  font-family: 'IBMPlexSansKR-Regular';
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,6 +26,7 @@ const FooterWrapper = styled.footer`
 `;
 
 const Heading = styled.h2`
+  font-family: 'BMDOHYEON';
   color: var(--color-primary);
   font-size: 1.3rem;
   margin-bottom: 1rem;

@@ -76,6 +76,7 @@ const HomeInner = styled.div`
 `;
 
 const HomeText = styled.div`
+  font-family: 'IBMPlexSansKR-Regular';
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -111,6 +112,7 @@ const HomeTextSubtitle = styled.div`
 `;
 
 const HomeTextTitle = styled.div`
+  font-family: 'SEBANG_Gothic_Bold';
   padding-bottom: 1rem;
   font-size: 2.6rem;
   font-weight: 700;
@@ -146,6 +148,7 @@ const HomeTextBtn = styled.div`
 `;
 
 const HomeTextBtnLeft = styled.button`
+  font-family: 'IBMPlexSansKR-Regular';
   padding: 0.6rem 1rem;
   border: 1px solid var(--color-primary);
   border-radius: 2rem;
@@ -172,6 +175,7 @@ const HomeTextBtnLeft = styled.button`
 `;
 
 const HomeTextBtnRight = styled.button`
+  font-family: 'BMDOHYEON';
   margin-left: 1rem;
   padding: 0.6rem 1rem;
   border: 1px solid var(--color-primary);

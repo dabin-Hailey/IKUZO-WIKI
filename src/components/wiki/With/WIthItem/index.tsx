@@ -29,7 +29,7 @@ const WithContainer = styled.div<{ $nowOnView: boolean }>`
   border-radius: 1rem;
   box-sizing: border-box;
 
-  font-size: 1.5rem;
+  font-size: 1rem;
   background-color: #fffef2;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;

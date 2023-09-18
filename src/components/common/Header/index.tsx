@@ -8,6 +8,7 @@ interface StyledHeaderProps {
 }
 
 const HeaderWrapper = styled.div<StyledHeaderProps>`
+  font-family: 'SBAggroB';
   position: fixed;
   top: 0;
   left: 0;

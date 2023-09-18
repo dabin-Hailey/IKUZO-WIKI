@@ -8,18 +8,18 @@ import sidebar from '../../../assets/sidebar.svg';
 
 const WikiWrapper = styled.div`
   display: flex;
-  justify-content: center;
   position: relative;
-  height: 100vh;
+  height: 100%;
+
+  margin-top: 7rem;
+  margin-left: 4rem;
 `;
 
 const SidebarWikiWrapper = styled.div`
-  position: relative;
-  top: 9rem;
-  left: 10rem;
-  width: 15rem;
-  height: 65%;
+  width: 12rem;
+  height: 30rem;
   padding: 2rem;
+
   background-color: var(--color-beige);
   border-radius: 1rem;
   color: var(--color-black);
@@ -88,14 +88,12 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 const ContentWrapper = styled.div`
+  flex: 1;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  left: -9rem;
+  justify-content: space-between;
+  gap: 20rem;
 
-  width: calc(100% - 30rem);
-  margin: 6.5rem 0 0 20rem;
+  margin-bottom: 4rem;
 `;
 
 const SidebarWiki = () => {

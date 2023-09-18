@@ -27,6 +27,7 @@ const Container = styled.div`
   align-items: center;
 
   width: 80%;
+  margin-left: 4rem;
 
   gap: 1rem;
 `;
@@ -37,7 +38,7 @@ const Title = styled.h1`
 
   width: 90%;
 
-  font-size: 4rem;
+  font-size: 2rem;
   font-weight: 700;
   line-height: 7rem;
   border-bottom: 0.2rem solid #ffa800;
@@ -152,7 +153,7 @@ const index: React.FC<Props> = ({ data }): JSX.Element => {
     <Container>
       <Title>
         <Highlight>
-          같이 먹을사람 <em className="non__highlight">구해요</em>
+          같이 먹을 사람 <em className="non__highlight">구해요</em>
         </Highlight>
         <EnrollButton
           type="button"

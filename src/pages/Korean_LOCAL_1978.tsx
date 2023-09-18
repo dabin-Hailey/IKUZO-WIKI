@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/common/Header';
-import GalleryListing from '../components/gallery/index';
+import GalleryListing from '../components/gallery';
 
 const Korean = (): JSX.Element => {
   return (

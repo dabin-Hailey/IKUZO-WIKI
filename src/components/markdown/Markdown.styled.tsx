@@ -3,8 +3,8 @@ import styled from 'styled-components';
 const MarkdownContainer = styled.div`
   width: 850px;
   height: 79vh;
-  margin-top: 40px;
   position: relative;
+  margin-left: 5rem;
 
   .markdown-header {
     display: flex;
@@ -35,7 +35,7 @@ const MarkdownContainer = styled.div`
 
   .viewer-wrapper {
     width: 790px;
-    height: 51.5vh;
+    height: 60vh;
     margin-top: 50px;
     padding: 20px 30px 40px;
 
