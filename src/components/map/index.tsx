@@ -138,7 +138,9 @@ ${
     }
 
     // 검색결과 항목들을 검색결과 목록 Element에 추가합니다
-    listEl.appendChild(fragment);
+    if (listEl) {
+      listEl.appendChild(fragment);
+    }
     if (menuEl) {
       menuEl.scrollTop = 0;
     }
@@ -154,9 +156,11 @@ ${
     let i: number;
 
     // 기존에 추가된 페이지번호를 삭제합니다
-    while (paginationEl!.hasChildNodes()) {
-      if (paginationEl!.lastChild) {
-        paginationEl!.removeChild(paginationEl!.lastChild);
+    if (paginationEl) {
+      while (paginationEl.hasChildNodes()) {
+        if (paginationEl.lastChild) {
+          paginationEl.removeChild(paginationEl.lastChild);
+        }
       }
     }
 
@@ -177,7 +181,9 @@ ${
 
       fragment.appendChild(el);
     }
-    paginationEl!.appendChild(fragment);
+    if (paginationEl) {
+      paginationEl.appendChild(fragment);
+    }
   }
 
   // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
