@@ -8,6 +8,8 @@ import sidebar from '../../../assets/sidebar.svg';
 
 const WikiWrapper = styled.div`
   display: flex;
+
+  width: 100%;
 `;
 
 const SidebarWikiWrapper = styled.div`
@@ -85,8 +87,12 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 const ContentWrapper = styled.div`
-  margin-left: 23rem;
-  margin-top: 7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: calc(100% - 20rem);
+  margin: 6.5rem 0 0 20rem;
 `;
 
 const SidebarWiki = () => {

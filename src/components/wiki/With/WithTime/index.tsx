@@ -37,7 +37,7 @@ const index: React.FC<Props> = ({ time, unLoadItem }): JSX.Element => {
 
   return (
     <WithTime $isRed={viewTime <= 0}>
-      {viewTime > 0 ? `${viewTime}남음` : '마감임박'}
+      {viewTime > 0 ? `${viewTime}분 남음` : '마감임박'}
     </WithTime>
   );
 };
