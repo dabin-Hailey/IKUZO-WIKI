@@ -11,6 +11,7 @@ import {
   onSnapshot,
   QuerySnapshot,
   orderBy,
+  Unsubscribe,
 } from 'firebase/firestore';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { db, storage } from './firebase.config';
@@ -146,20 +147,21 @@ export const updateDataByNumber = async (
 
 export const getDataBySnapshot = (
   collectionName: string,
-  callback: (data: any) => void,
-) => {
+  callback: (data: Notice[]) => void,
+): Unsubscribe => {
   const staleTime = Math.floor(new Date().getTime() / 1000) - 20;
   const q = query(
     collection(db, collectionName),
     where('time', '>', staleTime),
     orderBy('time', 'asc'),
   );
-  onSnapshot(q, (querySnapshot: QuerySnapshot) => {
+  const unscribe = onSnapshot(q, querySnapshot => {
     const docs = querySnapshot.docs.map(doc => {
       return { ...doc.data(), id: doc.id };
     });
     callback(docs);
   });
+  return unscribe;
 };
 
 export const getDataByTimestamp = async (

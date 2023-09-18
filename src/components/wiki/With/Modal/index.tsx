@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../../../../utils/firebase.config';
+import WikiModal from '../../../../assets/wiki-modal.png';
 
 interface ModalProps {
   isOpen: boolean;
@@ -16,39 +17,72 @@ interface ModalProps {
 }
 
 const ModalWrapper = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+
+  width: 100%;
+  height: 100%;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+
+  background-color: rgba(0, 0, 0, 0.5);
 `;
 
 const ModalContent = styled.div`
+  width: 60rem;
+  height: 80%;
+
+  border-radius: 2rem;
+  padding: 2rem;
   background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 `;
 
 const ModalInput = styled.input`
   width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
 `;
 
 const ModalTextarea = styled.textarea`
   width: 100%;
-  padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+`;
+
+const ModalImageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 30%;
+
+  background-image: url(${WikiModal});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+`;
+
+const StringLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 1rem;
+`;
+
+const ButtonLabel = styled.label`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 1rem;
 `;
 
 const setData = async (collectionName: string, props: any): Promise<void> => {
@@ -99,20 +133,8 @@ const Modal: React.FC<ModalProps> = ({
   return (
     <ModalWrapper>
       <ModalContent>
-        <label htmlFor="location">
-          위치:
-          <ModalInput
-            type="text"
-            id="location"
-            value={location}
-            onChange={e => {
-              setLocation(e.target.value);
-              onLocationChange(e);
-            }}
-          />
-        </label>
-
-        <label htmlFor="title">
+        <ModalImageContainer />
+        <StringLabel htmlFor="title">
           제목:
           <ModalInput
             type="text"
@@ -123,9 +145,9 @@ const Modal: React.FC<ModalProps> = ({
               onTitleChange(e);
             }}
           />
-        </label>
+        </StringLabel>
 
-        <label htmlFor="content">
+        <StringLabel htmlFor="content">
           내용:
           <ModalTextarea
             id="content"
@@ -135,9 +157,22 @@ const Modal: React.FC<ModalProps> = ({
               onContentsChange(e);
             }}
           />
-        </label>
+        </StringLabel>
 
-        <label htmlFor="recruitmentTime">
+        <StringLabel htmlFor="location">
+          위치:
+          <ModalInput
+            type="text"
+            id="location"
+            value={location}
+            onChange={e => {
+              setLocation(e.target.value);
+              onLocationChange(e);
+            }}
+          />
+        </StringLabel>
+
+        <ButtonLabel htmlFor="recruitmentTime">
           모집 시간:
           <button
             type="button"
@@ -163,9 +198,9 @@ const Modal: React.FC<ModalProps> = ({
           >
             30
           </button>
-        </label>
+        </ButtonLabel>
 
-        <label htmlFor="maxPeople">
+        <StringLabel htmlFor="maxPeople">
           최대 인원:
           <ModalInput
             type="number"
@@ -176,7 +211,7 @@ const Modal: React.FC<ModalProps> = ({
               onMaxPeopleChange(e);
             }}
           />
-        </label>
+        </StringLabel>
 
         <button
           type="button"

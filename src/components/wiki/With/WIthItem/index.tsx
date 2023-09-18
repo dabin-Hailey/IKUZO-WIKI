@@ -21,12 +21,15 @@ const WithContainer = styled.div<{ $nowOnView: boolean }>`
   justify-content: center;
   align-items: center;
 
-  width: 70%;
-  height: 10rem;
+  width: 100%;
 
   gap: 1rem;
 
-  margin: 0 auto;
+  padding: 3rem 0.5rem;
+  border-radius: 1rem;
+  box-sizing: border-box;
+
+  font-size: 1.5rem;
   background-color: #fffef2;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
@@ -34,6 +37,8 @@ const WithContainer = styled.div<{ $nowOnView: boolean }>`
 const WithWrapper = styled.div`
   display: flex;
   flex-direction: column;
+
+  gap: 1rem;
 
   width: 80%;
 `;
@@ -45,7 +50,7 @@ const WithTitle = styled.div`
   width: 100%;
   height: 3rem;
 
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   font-weight: 700;
 `;
 
@@ -64,9 +69,8 @@ const WithLocation = styled.div`
   justify-content: center;
   align-items: center;
 
-  with: 30%;
-
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 2rem;
+  font-size: 1.5rem;
   color: #000;
   background-color: #ffd337;
   border-radius: 0.5rem;
@@ -82,10 +86,7 @@ const WithBottomLeft = styled.div`
   display: flex;
   flex-direction: column;
 
-  width: 70%;
-  height: 100%;
-
-  box-sizing: border-box;
+  gap: 1rem;
 `;
 
 const WithItem = ({
