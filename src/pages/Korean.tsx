@@ -5,7 +5,7 @@ import GalleryListing from '../components/gallery/GalleryListing';
 const Korean = (): JSX.Element => {
   return (
     <>
-      <Header />
+      <Header transparent={false} />
       <GalleryListing />
     </>
   );

@@ -6,7 +6,7 @@ import Footer from '../components/common/Footer';
 const Gallery = (): JSX.Element => {
   return (
     <>
-      <Header />
+      <Header transparent={false} />
       <SidebarGallery />
       <Footer />
     </>

@@ -52,12 +52,21 @@ const HomeText = styled.div`
   align-items: flex-start;
   width: 70%;
   text-align: left;
+  word-break: keep-all;
 `;
 
 const HomeTextSubtitle = styled.div`
   padding-bottom: 0.7rem;
   font-size: 1.1rem;
   color: var(--color-primary);
+
+  @media screen and (max-width: 1200px) {
+    font-size: 0.9rem;
+  }
+
+  @media screen and (max-width: 950px) {
+    font-size: 0.6rem;
+  }
 `;
 
 const HomeTextTitle = styled.div`
@@ -67,11 +76,27 @@ const HomeTextTitle = styled.div`
   span {
     color: var(--color-primary);
   }
+
+  @media screen and (max-width: 1200px) {
+    font-size: 2rem;
+  }
+
+  @media screen and (max-width: 950px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const HomeTextDescription = styled.div`
   margin-bottom: 1rem;
   line-height: 1.4;
+
+  @media screen and (max-width: 1200px) {
+    font-size: 0.9rem;
+  }
+
+  @media screen and (max-width: 950px) {
+    font-size: 0.6rem;
+  }
 `;
 
 const HomeTextBtn = styled.div`
@@ -87,6 +112,16 @@ const HomeTextBtnLeft = styled.button`
   color: var(--color-black);
   font-weight: 700;
   transition: 0.5s;
+
+  @media screen and (max-width: 1200px) {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.7rem;
+  }
+
+  @media screen and (max-width: 950px) {
+    font-size: 0.6rem;
+    padding: 0.4rem 0.7rem;
+  }
 
   &:hover {
     /* Add hover styles here */
@@ -104,6 +139,16 @@ const HomeTextBtnRight = styled.button`
   color: var(--color-primary);
   font-weight: 700;
   transition: 0.5s;
+
+  @media screen and (max-width: 1200px) {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.7rem;
+  }
+
+  @media screen and (max-width: 950px) {
+    font-size: 0.6rem;
+    padding: 0.4rem 0.7rem;
+  }
 
   &:hover {
     /* Add hover styles here */
@@ -143,7 +188,7 @@ const Home = () => {
 
   return (
     <HomeWrapper className="home">
-      <Header />
+      <Header transparent />
       <HomeBackground className="home__background">
         <HomeBgImage
           className="home__bgImg"

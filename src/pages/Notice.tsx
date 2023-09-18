@@ -5,7 +5,7 @@ import Notice from '../components/wiki/Notice/Notice';
 const NoticePage = () => {
   return (
     <>
-      <Header />
+      <Header transparent={false} />
       <Notice />
     </>
   );

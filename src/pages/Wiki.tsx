@@ -7,7 +7,7 @@ import Footer from '../components/common/Footer';
 const Wiki = () => {
   return (
     <>
-      <Header />
+      <Header transparent={false} />
       <SidebarWiki />
       <Footer />
     </>

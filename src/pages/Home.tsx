@@ -7,7 +7,7 @@ import Home from '../components/home';
 const Wiki = () => {
   return (
     <>
-      <Header />
+      <Header transparent />
       <Home />
       <Footer />
     </>

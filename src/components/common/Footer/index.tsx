@@ -1,27 +1,72 @@
 import React from 'react';
-import './Footer.css';
+import styled from 'styled-components';
 import github from '../../../assets/github-logo.png';
 import fastCampus from '../../../assets/fastcampus.png';
 
+const FooterWrapper = styled.footer`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 18rem;
+  color: var(--color-white);
+  background-color: var(--color-black);
+  line-height: 1.4;
+
+  @media screen and (max-width: 1200px) {
+    height: 14rem;
+    font-size: 0.9rem;
+  }
+
+  @media screen and (max-width: 950px) {
+    height: 10rem;
+    font-size: 0.6rem;
+  }
+`;
+
+const Heading = styled.h2`
+  color: var(--color-primary);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+
+  @media screen and (max-width: 1200px) {
+    font-size: 1rem;
+  }
+
+  @media screen and (max-width: 950px) {
+    font-size: 0.9rem;
+  }
+`;
+
+const LogoWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+`;
+
+const LogoImage = styled.img`
+  width: 2rem;
+  margin-right: 1rem;
+`;
+
 const Footer = () => {
   return (
-    <footer>
+    <FooterWrapper>
       <div>
-        <h2>Developer</h2>
+        <Heading>Developer</Heading>
         <div className="company">
           패스트캠퍼스 프론트엔드 개발 1기 토이프로젝트
         </div>
         <div className="developer">
           참여자: 김민섭, 이승현, 한은지, 김다빈, 소유나
         </div>
-        <div className="logo">
+        <LogoWrapper>
           <a
             href="https://github.com/dabin-Hailey/IKUZO-WIKI"
             target="_blank"
             rel="noreferrer"
           >
-            <img
-              className="logo__github"
+            <LogoImage
               src={github}
               alt="github"
             />
@@ -31,15 +76,14 @@ const Footer = () => {
             target="_blank"
             rel="noreferrer"
           >
-            <img
-              className="logo__fastcampus"
+            <LogoImage
               src={fastCampus}
               alt="fastCampus"
             />
           </a>
-        </div>
+        </LogoWrapper>
       </div>
-    </footer>
+    </FooterWrapper>
   );
 };
 
