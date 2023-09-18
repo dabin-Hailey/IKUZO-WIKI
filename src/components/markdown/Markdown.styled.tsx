@@ -5,6 +5,7 @@ const MarkdownContainer = styled.div`
   height: 79vh;
   position: relative;
   margin-left: 5rem;
+  margin-top: 2rem;
 
   .markdown-header {
     display: flex;
@@ -15,7 +16,9 @@ const MarkdownContainer = styled.div`
   }
 
   .title {
-    font-size: 40px;
+    font-family: 'IBMPlexSansKR-Regular';
+    font-size: 2rem;
+    font-weight: 700;
   }
 
   .primary {
@@ -23,13 +26,15 @@ const MarkdownContainer = styled.div`
   }
 
   .markdown-button {
-    width: 200px;
-    height: 35px;
+    font-family: 'SBAggroB';
+    width: 5rem;
+    height: 2.5rem;
+    color: var(--color-black);
     background-color: var(--color-primary);
 
     border: none;
     border-radius: 30px;
-    box-shadow: 0 2px 4px #9c9c9c;
+    box-shadow: 0 2px 1px #9c9c9c;
     cursor: pointer;
   }
 

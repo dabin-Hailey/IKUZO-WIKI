@@ -15,7 +15,7 @@ const WithBtn = styled.button`
 
   padding: 0.5rem 1.5rem;
 
-  font-size: 2rem;
+  font-size: 1.5rem;
   background-color: #ffd337;
   border: none;
   border-radius: 3rem;
@@ -28,7 +28,7 @@ const WithBtn = styled.button`
 
   &:hover {
     background-color: ${props => {
-      return props.disabled ? '#393938' : '#ffda4f';
+      return props.disabled ? '#393939' : '#ffda4f';
     }};
   }
 `;

@@ -11,7 +11,7 @@ const WikiWrapper = styled.div`
   position: relative;
   height: 100%;
 
-  margin-top: 7rem;
+  margin-top: 8rem;
   margin-left: 4rem;
 `;
 
@@ -106,7 +106,7 @@ const SidebarWiki = () => {
             src={sidebar}
             alt="sidebar"
           />
-          <h2>Wiki</h2>
+          <h2>위키</h2>
         </div>
         <nav>
           <ul>

@@ -7,7 +7,7 @@ const Notice = () => {
   const wiki = '공지사항';
   const collection = 'notice-collection';
   const dataID = 'notice';
-  const [status, setStatus] = useState('수정하기');
+  const [status, setStatus] = useState('edit');
   const [html, setHtml] = useState('');
   const [markdown, setMarkdown] = useState('');
   const [loading, setLoading] = useState(true);
@@ -20,10 +20,10 @@ const Notice = () => {
   };
 
   const handleStatus = () => {
-    if (status === '수정하기') {
-      setStatus('저장하기');
+    if (status === 'edit') {
+      setStatus('save');
     } else {
-      setStatus('수정하기');
+      setStatus('edit');
     }
     setLoading(true);
     fetchData();
@@ -36,7 +36,7 @@ const Notice = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
-  if (status === '수정하기') {
+  if (status === 'edit') {
     return (
       <MarkdownViewer
         wiki={wiki}

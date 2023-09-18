@@ -33,6 +33,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.h1`
+  font-family: 'IBMPlexSansKR-Regular';
   display: flex;
   justify-content: space-between;
 
