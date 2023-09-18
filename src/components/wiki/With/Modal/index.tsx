@@ -33,8 +33,14 @@ const ModalWrapper = styled.div`
 `;
 
 const ModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
   width: 60rem;
   height: 80%;
+
+  gap: 2rem;
 
   border-radius: 2rem;
   padding: 2rem;
@@ -44,13 +50,17 @@ const ModalContent = styled.div`
 
 const ModalInput = styled.input`
   width: 100%;
+  height: 3rem;
+  font-size: 1.3rem;
   border: 1px solid #ccc;
   border-radius: 5px;
 `;
 
 const ModalTextarea = styled.textarea`
   width: 100%;
-  margin-bottom: 10px;
+  height: 7rem;
+
+  font-size: 1.3rem;
   border: 1px solid #ccc;
   border-radius: 5px;
 `;
@@ -62,6 +72,8 @@ const ModalImageContainer = styled.div`
 
   height: 30%;
 
+  border-radius: 1rem 1rem 0 0;
+
   background-image: url(${WikiModal});
   background-size: cover;
   background-position: center;
@@ -71,18 +83,78 @@ const ModalImageContainer = styled.div`
 const StringLabel = styled.label`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+
+  font-size: 1.5rem;
+  font-weight: 700;
+  gap: 1rem;
+`;
+
+const ButtonWrapper = styled.label`
+  display: flex;
+  justify-content: space-around;
   align-items: center;
+
+  width: 100%;
 
   gap: 1rem;
 `;
 
-const ButtonLabel = styled.label`
+const WithBtn = styled.div<{ $active?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
 
-  gap: 1rem;
+  width: 30%;
+
+  padding: 0.5rem 1.5rem;
+
+  font-size: 2rem;
+  font-weight: 400;
+  background-color: ${props => {
+    return props.$active ? '#FFC362' : '#ffd337';
+  }};
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #ffc362;
+  }
+`;
+
+const EnrollButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0.5rem 1.5rem;
+
+  font-size: 2rem;
+  background-color: #ffd337;
+  border: none;
+  border-radius: 3rem;
+
+  cursor: pointer;
+  &:hover {
+    background-color: #ffda4f;
+  }
+`;
+
+const ExitButton = styled.button`
+  position: absolute;
+  top: 3rem;
+  right: 3%;
+  width: 5rem;
+  height: 3rem;
+  font-size: 1.5rem;
+  background-color: #ffd337;
+  border: none;
+  border-radius: 3rem;
+  cursor: pointer;
+  &:hover {
+    background-color: #ffda4f;
+  }
+  z-index: 10;
 `;
 
 const setData = async (collectionName: string, props: any): Promise<void> => {
@@ -106,10 +178,18 @@ const Modal: React.FC<ModalProps> = ({
   const [location, setLocation] = useState('');
   const [title, setTitle] = useState('');
   const [contents, setContents] = useState('');
-  const [recruitmentTime, setRecruitmentTime] = useState(0);
-  const [maxPeople, setMaxPeople] = useState(0);
+  const [recruitmentTime, setRecruitmentTime] = useState(10);
+  const [active, setActive] = useState<boolean[]>([false, false, false]);
+  const [maxPeople, setMaxPeople] = useState(2);
+
+  const [isTitleValid, setIsTitleValid] = useState(false);
+  const [isContentValid, setIsContentValid] = useState(false);
+  const [isLocationValid, setIsLocationValid] = useState(false);
 
   const handleRegister = async () => {
+    if (!isTitleValid || !isContentValid || !isLocationValid) {
+      return;
+    }
     try {
       await setData('with-collection', {
         contents,
@@ -122,8 +202,29 @@ const Modal: React.FC<ModalProps> = ({
 
       onClose();
     } catch (error) {
-      console.error('Firestore 데이터 추가 중 오류 발생:', error);
+      console.error(error);
     }
+  };
+
+  const activeBtn = (props: number) => {
+    const updatedState = Array(3).fill(false);
+    updatedState[props - 1] = true;
+    setActive(updatedState);
+    setRecruitmentTime(props * 10);
+  };
+
+  const setMaxPeopleValue = (props: number) => {
+    let value = props;
+    if (Number.isNaN(value)) {
+      value = 1;
+    }
+
+    if (value <= 2) {
+      value = 2;
+    } else if (value >= 9) {
+      value = 9;
+    }
+    setMaxPeople(value);
   };
 
   const modalClose = () => {
@@ -135,97 +236,108 @@ const Modal: React.FC<ModalProps> = ({
       <ModalContent>
         <ModalImageContainer />
         <StringLabel htmlFor="title">
-          제목:
+          제목
           <ModalInput
             type="text"
             id="title"
             value={title}
+            required
             onChange={e => {
               setTitle(e.target.value);
               onTitleChange(e);
+              setIsTitleValid(e.target.value.length > 0);
             }}
+            placeholder={isTitleValid ? '' : '제목을 입력해주세요'}
           />
         </StringLabel>
 
         <StringLabel htmlFor="content">
-          내용:
+          내용
           <ModalTextarea
             id="content"
             value={contents}
+            required
+            placeholder={isContentValid ? '' : '내용을 입력해주세요'}
             onChange={e => {
               setContents(e.target.value);
               onContentsChange(e);
+              setIsContentValid(e.target.value.length > 0);
             }}
           />
         </StringLabel>
 
         <StringLabel htmlFor="location">
-          위치:
+          위치
           <ModalInput
             type="text"
             id="location"
+            required
+            placeholder={isLocationValid ? '' : '위치를 입력해주세요'}
             value={location}
             onChange={e => {
               setLocation(e.target.value);
               onLocationChange(e);
+              setIsLocationValid(e.target.value.length > 0);
             }}
           />
         </StringLabel>
 
-        <ButtonLabel htmlFor="recruitmentTime">
-          모집 시간:
-          <button
-            type="button"
-            onClick={() => {
-              setRecruitmentTime(10);
-            }}
-          >
-            10
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setRecruitmentTime(20);
-            }}
-          >
-            20
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setRecruitmentTime(30);
-            }}
-          >
-            30
-          </button>
-        </ButtonLabel>
+        <StringLabel htmlFor="recruitmentTime">
+          모집 시간 : {recruitmentTime}분
+          <ButtonWrapper>
+            <WithBtn
+              $active={active[0]}
+              onClick={() => {
+                activeBtn(1);
+              }}
+            >
+              10분
+            </WithBtn>
+            <WithBtn
+              $active={active[1]}
+              onClick={() => {
+                activeBtn(2);
+              }}
+            >
+              20분
+            </WithBtn>
+            <WithBtn
+              $active={active[2]}
+              onClick={() => {
+                activeBtn(3);
+              }}
+            >
+              30분
+            </WithBtn>
+          </ButtonWrapper>
+        </StringLabel>
 
         <StringLabel htmlFor="maxPeople">
-          최대 인원:
+          최대 인원
           <ModalInput
             type="number"
             id="maxPeople"
             value={maxPeople}
             onChange={e => {
-              setMaxPeople(Number(e.target.value));
+              setMaxPeopleValue(Number(e.target.value));
               onMaxPeopleChange(e);
             }}
           />
         </StringLabel>
 
-        <button
+        <EnrollButton
           type="button"
           onClick={handleRegister}
         >
           등록
-        </button>
+        </EnrollButton>
 
-        <button
+        <ExitButton
           type="button"
           onClick={modalClose}
         >
           닫기
-        </button>
+        </ExitButton>
       </ModalContent>
     </ModalWrapper>
   );
