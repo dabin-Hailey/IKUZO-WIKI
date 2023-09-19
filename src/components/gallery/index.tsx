@@ -25,17 +25,12 @@ export interface OwnProps {
 }
 
 // styled-components
-const GalleryListWrapper = styled.div`
-  /* width를 지정하지 않으면 아이템 정렬이 망가져서 일단 px로 고정해놓음 */
-  width: calc(100vw - 23rem);
-  /* width: 900px; */
-`;
 
 const GalleryList = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem 3%;
+  gap: 2rem 4%;
 `;
 
 // Component
@@ -87,32 +82,30 @@ const GalleryListing = ({ category }: State): JSX.Element => {
   }, []);
 
   return (
-    <GalleryListWrapper>
-      <GalleryList>
-        {list &&
-          list.map((item: Root) => {
-            const { id } = item;
-            const { restaurant, location, photo, category } = item as OwnProps;
-            return (
-              <GalleryItems
-                key={id}
-                id={id}
-                restaurant={restaurant}
-                location={location}
-                photo={photo}
-                category={category}
-                handleDelete={handleDelete}
-                updateModalID={updateModalID}
-                openUpdateModal={openUpdateModal}
-                closeUpdateModal={closeUpdateModal}
-                deleteModalID={deleteModalID}
-                openDeleteModal={openDeleteModal}
-                closeDeleteModal={closeDeleteModal}
-              />
-            );
-          })}
-      </GalleryList>
-    </GalleryListWrapper>
+    <GalleryList>
+      {list &&
+        list.map((item: Root) => {
+          const { id } = item;
+          const { restaurant, location, photo, category } = item as OwnProps;
+          return (
+            <GalleryItems
+              key={id}
+              id={id}
+              restaurant={restaurant}
+              location={location}
+              photo={photo}
+              category={category}
+              handleDelete={handleDelete}
+              updateModalID={updateModalID}
+              openUpdateModal={openUpdateModal}
+              closeUpdateModal={closeUpdateModal}
+              deleteModalID={deleteModalID}
+              openDeleteModal={openDeleteModal}
+              closeDeleteModal={closeDeleteModal}
+            />
+          );
+        })}
+    </GalleryList>
   );
 };
 

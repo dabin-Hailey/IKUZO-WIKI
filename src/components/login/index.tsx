@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useForm, SubmitHandler, set } from 'react-hook-form';
 import { useRecoilState, useSetRecoilState } from 'recoil';
@@ -62,11 +62,9 @@ const loginFunciton = async (
   callback2: (props: string) => void,
 ) => {
   try {
-    const user = await createUser(email, password);
     const { uid } = await signIn(email, password);
     callback(uid);
     callback2(from);
-    console.log(user);
   } catch (error) {
     callback2('/login');
   }
@@ -84,10 +82,10 @@ const LoginComponent = () => {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data, e) => {
+  const onSubmit: SubmitHandler<Inputs> = async (data, e) => {
     e?.preventDefault();
     const { email, password } = data;
-    loginFunciton(email, password, from, setAccessToken, navigate);
+    await loginFunciton(email, password, from, setAccessToken, navigate);
   };
 
   return (
