@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Header from '../components/common/Header';
 import { getDataBySnapshot, getDataByTimestamp, setData } from '../utils/util';
 import WithComponent from '../components/wiki/With';
 
@@ -22,7 +23,12 @@ const With = (): JSX.Element => {
     getDataBySnapshot('with-collection', setDatas);
   }, []);
 
-  return <WithComponent data={datas} />;
+  return (
+    <>
+      <Header />
+      <WithComponent data={datas} />
+    </>
+  );
 };
 
 export default With;
