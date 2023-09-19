@@ -300,18 +300,6 @@ const Modal: React.FC<ModalProps> = ({
 
         <StringLabel htmlFor="location">
           위치
-          {/* <ModalInput
-            type="text"
-            id="location"
-            required
-            placeholder={isLocationValid ? '' : '위치를 입력해주세요'}
-            value={location}
-            onChange={e => {
-              setLocation(e.target.value);
-              onLocationChange(e);
-              setIsLocationValid(e.target.value.length > 0);
-            }}
-          /> */}
           <StringLabel htmlFor="location">선택한 장소: {location}</StringLabel>
           <MapComponent onPlaceSelect={handlePlaceSelection} />
         </StringLabel>

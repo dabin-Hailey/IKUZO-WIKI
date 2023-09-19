@@ -230,8 +230,6 @@ const MapComponent = ({ onPlaceSelect }: MapComponentProps) => {
     document.head.appendChild(script);
     script.addEventListener('load', onLoadKakaoMap);
 
-    // searchPlaces();
-
     return () => {
       script.removeEventListener('load', onLoadKakaoMap);
     };
