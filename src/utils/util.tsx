@@ -13,8 +13,13 @@ import {
   orderBy,
   Unsubscribe,
 } from 'firebase/firestore';
+import {
+  User,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-import { db, storage } from './firebase.config';
+import { db, storage, auth } from './firebase.config';
 
 interface Notice {
   id: string;
@@ -179,4 +184,26 @@ export const getDataByTimestamp = async (
     return { ...doc.data(), id: doc.id };
   });
   return docs;
+};
+
+export const createUser = async (email: string, password: string) => {
+  const userCredential = await createUserWithEmailAndPassword(
+    auth,
+    email,
+    password,
+  );
+  return userCredential.user;
+};
+
+export const signIn = async (email: string, password: string) => {
+  const userCredential = await signInWithEmailAndPassword(
+    auth,
+    email,
+    password,
+  );
+  return userCredential.user;
+};
+
+export const signOut = async () => {
+  await auth.signOut();
 };
