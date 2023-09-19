@@ -10,7 +10,7 @@ const FooterWrapper = styled.footer`
   align-items: center;
   text-align: center;
   height: 18rem;
-  color: var(--color-white);
+  color: #939393;
   background-color: var(--color-black);
   line-height: 1.4;
 
@@ -27,7 +27,7 @@ const FooterWrapper = styled.footer`
 
 const Heading = styled.h2`
   font-family: 'BMDOHYEON';
-  color: var(--color-primary);
+  color: var(--color-btn);
   font-size: 1.3rem;
   margin-bottom: 1rem;
 
