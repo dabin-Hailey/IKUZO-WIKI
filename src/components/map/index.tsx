@@ -20,7 +20,10 @@ const MapComponent = () => {
       alert('검색어를 입력해주세요!');
       return false;
     }
-    places.keywordSearch(keyword, placesSearchCB);
+    if (places) {
+      places.keywordSearch(keyword, placesSearchCB);
+    }
+
     return true;
   };
 
@@ -78,7 +81,9 @@ const MapComponent = () => {
     listEl?.appendChild(fragment);
     menuEl.scrollTop = 0;
 
-    map.setBounds(bounds);
+    if (map) {
+      map.setBounds(bounds);
+    }
   };
 
   function getListItem(index: any, places: any) {
@@ -213,7 +218,7 @@ const MapComponent = () => {
     document.head.appendChild(script);
     script.addEventListener('load', onLoadKakaoMap);
 
-    searchPlaces();
+    // searchPlaces();
 
     return () => {
       script.removeEventListener('load', onLoadKakaoMap);
