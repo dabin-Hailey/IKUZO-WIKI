@@ -17,50 +17,39 @@ interface ModalProps {
 }
 
 const ModalWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  width: 100%;
-  height: 100%;
-
-  position: relative;
-  top: 0;
-  left: 0;
   z-index: 3;
-
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
 const ModalContent = styled.div`
-  display: flex;
-  flex-direction: column;
-
   position: relative;
   width: 60rem;
   height: 80%;
+  max-height: 80%;
+  overflow-x: hidden;
 
-  gap: 2rem;
-
-  border-radius: 2rem;
-  padding: 2rem;
-  background-color: #fff;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 1.5rem;
+  background-color: var(--color-white);
 `;
 
 const ModalInput = styled.input`
-  width: 100%;
-  height: 3rem;
-  font-size: 1.3rem;
+  height: 4rem;
   border: 1px solid #ccc;
   border-radius: 5px;
 `;
 
 const ModalTextarea = styled.textarea`
-  width: 100%;
   height: 7rem;
 
-  font-size: 1.3rem;
   border: 1px solid #ccc;
   border-radius: 5px;
 `;
@@ -84,7 +73,10 @@ const StringLabel = styled.label`
   display: flex;
   flex-direction: column;
 
-  font-size: 1.5rem;
+  margin: 2rem 8rem 0;
+
+  color: #525252;
+  font-size: 1.3rem;
   font-weight: 700;
   gap: 1rem;
 `;
@@ -104,21 +96,21 @@ const WithBtn = styled.div<{ $active?: boolean }>`
   justify-content: center;
   align-items: center;
 
-  width: 30%;
+  width: 20%;
 
-  padding: 0.5rem 1.5rem;
+  padding: 0.4rem 1.5rem;
 
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 400;
   background-color: ${props => {
-    return props.$active ? '#FFC362' : '#ffd337';
+    return props.$active ? '#fdeaa3' : '#ffd337';
   }};
   border: none;
   border-radius: 1rem;
   cursor: pointer;
 
   &:hover {
-    background-color: #ffc362;
+    background-color: #fdeaa3;
   }
 `;
 
