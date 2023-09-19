@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import closeIcon from '../../../assets/close-icon.png';
-import { addImage, updateData } from '../../../utils/util';
+import { addImage, updateData, deleteData } from '../../../utils/util';
 
 // type
 export interface Root {
@@ -14,7 +14,7 @@ export interface OwnProps {
   location: string;
   photo: string;
   category: string;
-  handleUpdateModal: () => void;
+  closeUpdateModal: () => void;
 }
 
 interface Props {
@@ -130,7 +130,7 @@ const UpdateModal: React.FC<OwnProps> = ({
   location,
   photo,
   category,
-  handleUpdateModal,
+  closeUpdateModal,
 }) => {
   const [imgPath, setImgPath] = useState(photo);
   const [imgFile, setImgFile] = useState<File>();
@@ -155,29 +155,54 @@ const UpdateModal: React.FC<OwnProps> = ({
     const collectionName = `data-collection/best-restaurant-collection/${form.category.value}-food`;
     const dataId = id;
 
-    if (imgFile) {
-      const imageURL = await addImage(imgFile as File);
-      await updateData(collectionName, dataId, {
-        category: form.category.value,
-        location: form.location.value,
-        photo: imageURL,
-        restaurant: form.restaurant.value,
-      });
+    if (form.category.value === category) {
+      if (imgFile) {
+        const imageURL = await addImage(imgFile as File);
+        await updateData(collectionName, dataId, {
+          category: form.category.value,
+          location: form.location.value,
+          photo: imageURL,
+          restaurant: form.restaurant.value,
+        });
+      } else {
+        await updateData(collectionName, dataId, {
+          category: form.category.value,
+          location: form.location.value,
+          photo,
+          restaurant: form.restaurant.value,
+        });
+      }
     } else {
-      await updateData(collectionName, dataId, {
-        category: form.category.value,
-        location: form.location.value,
-        photo,
-        restaurant: form.restaurant.value,
-      });
+      deleteData(
+        `data-collection/best-restaurant-collection/${category}-food`,
+        dataId,
+      );
+
+      if (imgFile) {
+        const imageURL = await addImage(imgFile as File);
+        await updateData(collectionName, dataId, {
+          category: form.category.value,
+          location: form.location.value,
+          photo: imageURL,
+          restaurant: form.restaurant.value,
+        });
+      } else {
+        await updateData(collectionName, dataId, {
+          category: form.category.value,
+          location: form.location.value,
+          photo,
+          restaurant: form.restaurant.value,
+        });
+      }
     }
+
     window.location.replace('/gallery');
   };
 
   return (
     <ModalBackground
       onClick={() => {
-        handleUpdateModal();
+        closeUpdateModal();
       }}
     >
       <ModalWindow
@@ -188,7 +213,7 @@ const UpdateModal: React.FC<OwnProps> = ({
         <CloseIcon
           src={closeIcon}
           onClick={() => {
-            handleUpdateModal();
+            closeUpdateModal();
           }}
         />
         <ImageLabel src={imgPath}>

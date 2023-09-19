@@ -3,6 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Wiki from './pages/Wiki';
 import Gallery from './pages/Gallery';
+
+import Map from './pages/Map';
 import Login from './pages/Login';
 
 const App = () => {
@@ -23,6 +25,10 @@ const App = () => {
       <Route
         path="/login/"
         element={<Login />}
+      />
+      <Route
+        path="/map/*"
+        element={<Map />}
       />
     </Routes>
   );
