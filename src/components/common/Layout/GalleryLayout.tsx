@@ -17,10 +17,7 @@ const Gallery = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  gap: 20rem;
+  width: calc(100vw - 20rem);
 `;
 
 const GalleryLayout = () => {
