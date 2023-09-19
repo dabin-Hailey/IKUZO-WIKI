@@ -8,7 +8,6 @@ const Wiki = () => {
   return (
     <>
       <Header transparent={false} />
-      <SidebarWiki />
       <Footer />
     </>
   );
