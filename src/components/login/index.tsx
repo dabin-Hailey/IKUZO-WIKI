@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useForm, SubmitHandler, set } from 'react-hook-form';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { createUser, signIn } from '../../utils/util';
 import { authState } from '../../recoil/authRecoil';
 
@@ -57,23 +57,26 @@ const SubmitInput = styled.button`
 const loginFunciton = async (
   email: string,
   password: string,
+  from: string,
   callback: (props: any) => void,
   callback2: (props: string) => void,
 ) => {
   try {
+    const user = await createUser(email, password);
     const { uid } = await signIn(email, password);
     callback(uid);
-    callback2('/');
+    callback2(from);
+    console.log(user);
   } catch (error) {
     callback2('/login');
   }
 };
 
 const LoginComponent = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [accessToken, setAccessToken] = useRecoilState(authState);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.redirectedFrom?.pathname || '/';
 
   const {
     register,
@@ -84,10 +87,7 @@ const LoginComponent = () => {
   const onSubmit: SubmitHandler<Inputs> = (data, e) => {
     e?.preventDefault();
     const { email, password } = data;
-    setEmail(email);
-    setPassword(password);
-
-    loginFunciton(email, password, setAccessToken, navigate);
+    loginFunciton(email, password, from, setAccessToken, navigate);
   };
 
   return (

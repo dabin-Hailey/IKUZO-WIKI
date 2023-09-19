@@ -1,10 +1,9 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import SidebarGallery from '../SidebarGallery';
 import HeaderComponent from '../Header';
 import Footer from '../Footer';
-import GalleryListing from '../../gallery';
+import ProtectedRoute from '../../../utils/ProtectedRoute';
 
 const GalleryWrapper = styled.div`
   display: flex;
@@ -22,7 +21,7 @@ const GalleryLayout = () => {
       <GalleryWrapper>
         <SidebarGallery />
         <ContentWrapper>
-          <Outlet />
+          <ProtectedRoute />
         </ContentWrapper>
       </GalleryWrapper>
       <Footer />
