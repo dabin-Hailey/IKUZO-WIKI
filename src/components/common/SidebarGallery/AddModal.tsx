@@ -103,7 +103,7 @@ const InputField = styled.input`
   border-radius: 5px;
 `;
 
-const Location = styled.div`
+const TextField = styled.div`
   display: flex;
   align-items: center;
 
@@ -134,6 +134,7 @@ const ModalRight = styled.div`
 
 const AddModal = ({ onChange }: { onChange: () => void }) => {
   const [location, setLocation] = useState('');
+  const [restaurant, setRestaurant] = useState('');
   const [imgPath, setImgPath] = useState('');
   const [imgFile, setImgFile] = useState<File>();
   const imgRef = useRef<HTMLInputElement>(null);
@@ -151,8 +152,12 @@ const AddModal = ({ onChange }: { onChange: () => void }) => {
     }
   };
 
-  const handleLocation = (location: string) => {
-    setLocation(location);
+  const handleAddress = (address: string) => {
+    setLocation(address);
+  };
+
+  const handlePlace = (place: string) => {
+    setRestaurant(place);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -165,7 +170,7 @@ const AddModal = ({ onChange }: { onChange: () => void }) => {
         category: form.category.value,
         location,
         photo: imageURL,
-        restaurant: form.restaurant.value,
+        restaurant,
       });
       window.location.replace('/gallery');
     }
@@ -235,17 +240,20 @@ const AddModal = ({ onChange }: { onChange: () => void }) => {
             </InputContainer>
             <InputContainer>
               <InputTitle>맛집 이름</InputTitle>
-              <InputField name="restaurant" />
+              <TextField>{restaurant}</TextField>
             </InputContainer>
             <InputContainer>
               <InputTitle>맛집 위치</InputTitle>
-              <Location>{location}</Location>
+              <TextField>{location}</TextField>
             </InputContainer>
             <SubmitButton type="submit">맛집 등록</SubmitButton>
           </FormContainer>
         </ModalLeft>
         <ModalRight>
-          <MapComponent onPlaceSelect={handleLocation}></MapComponent>
+          <MapComponent
+            onAddressSelect={handleAddress}
+            onPlaceSelect={handlePlace}
+          ></MapComponent>
         </ModalRight>
       </ModalWindow>
     </ModalBackground>

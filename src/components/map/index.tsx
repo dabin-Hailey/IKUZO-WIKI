@@ -6,10 +6,14 @@ declare const window: typeof globalThis & {
 };
 
 interface MapComponentProps {
-  onPlaceSelect: (address: string) => void;
+  onAddressSelect: (address: string) => void;
+  onPlaceSelect?: (place: string) => void;
 }
 
-const MapComponent = ({ onPlaceSelect }: MapComponentProps) => {
+const MapComponent = ({
+  onAddressSelect,
+  onPlaceSelect,
+}: MapComponentProps) => {
   const [search, setSearch] = useState('');
 
   let markers: any = [];
@@ -17,8 +21,11 @@ const MapComponent = ({ onPlaceSelect }: MapComponentProps) => {
   let places: any;
   let infoWindow: any;
 
-  const handlePlaceClick = (place: string) => {
-    onPlaceSelect(place);
+  const handlePlaceClick = (place: string, address: string) => {
+    onAddressSelect(address);
+    if (onPlaceSelect) {
+      onPlaceSelect(place);
+    }
   };
 
   const searchPlaces = () => {
@@ -115,7 +122,8 @@ const MapComponent = ({ onPlaceSelect }: MapComponentProps) => {
     el.className = 'item';
 
     el.addEventListener('click', () => {
-      handlePlaceClick(places.address_name);
+      console.log(places.place_name);
+      handlePlaceClick(places.place_name, places.address_name);
     });
 
     return el;
