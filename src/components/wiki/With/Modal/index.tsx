@@ -37,15 +37,25 @@ const ModalContent = styled.div`
   height: 80%;
   max-height: 80%;
   overflow-x: hidden;
+  padding-bottom: 15rem;
+  box-sizing: border-box;
 
   border-radius: 1.5rem;
   background-color: var(--color-white);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const ModalInput = styled.input`
   height: 4rem;
   border: 1px solid #ccc;
   border-radius: 5px;
+
+  #maxpeople {
+    font-size: 3rem;
+  }
 `;
 
 const ModalTextarea = styled.textarea`
@@ -60,7 +70,7 @@ const ModalImageContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  height: 30%;
+  height: 40%;
 
   border-radius: 1rem 1rem 0 0;
 
@@ -74,12 +84,19 @@ const StringLabel = styled.label`
   display: flex;
   flex-direction: column;
 
-  margin: 2rem 8rem 0;
+  margin: 4rem 10rem 0;
 
   color: #525252;
   font-size: 1.3rem;
   font-weight: 700;
   gap: 1rem;
+`;
+
+const StringLabelInfo = styled.label`
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #747474;
 `;
 
 const ButtonWrapper = styled.label`
@@ -99,29 +116,32 @@ const WithBtn = styled.div<{ $active?: boolean }>`
 
   width: 20%;
 
-  padding: 0.4rem 1.5rem;
+  padding: 0.6rem 1.5rem;
 
   font-size: 1.5rem;
   font-weight: 400;
   background-color: ${props => {
-    return props.$active ? '#fdeaa3' : '#ffd337';
+    return props.$active ? '#ffa800' : '#ffd337';
   }};
   border: none;
   border-radius: 1rem;
   cursor: pointer;
+  transition: 0.2s;
 
   &:hover {
-    background-color: #fdeaa3;
+    background-color: #ffe071;
   }
 `;
 
 const EnrollButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
+  font-family: 'IBMPlexSansKR-Regular';
+  position: absolute;
+  bottom: -53rem;
+  right: 9rem;
+  left: 9rem;
   padding: 0.5rem 1.5rem;
 
+  color: var(--color-white);
   font-size: 2rem;
   background-color: #ffd337;
   border: none;
@@ -134,16 +154,20 @@ const EnrollButton = styled.button`
 `;
 
 const ExitButton = styled.button`
+  font-family: 'IBMPlexSansKR-Regular';
   position: absolute;
   top: 3rem;
-  right: 3%;
+  right: 3rem;
   width: 5rem;
   height: 3rem;
+
+  color: var(--color-white);
   font-size: 1.5rem;
   background-color: #ffd337;
   border: none;
   border-radius: 3rem;
   cursor: pointer;
+
   &:hover {
     background-color: #ffda4f;
   }
@@ -259,8 +283,9 @@ const Modal: React.FC<ModalProps> = ({
         }}
       >
         <ModalImageContainer />
+
         <StringLabel htmlFor="title">
-          제목
+          📌 제목
           <ModalInput
             type="text"
             id="title"
@@ -276,7 +301,7 @@ const Modal: React.FC<ModalProps> = ({
         </StringLabel>
 
         <StringLabel htmlFor="content">
-          내용
+          📌 내용
           <ModalTextarea
             id="content"
             value={contents}
@@ -291,13 +316,15 @@ const Modal: React.FC<ModalProps> = ({
         </StringLabel>
 
         <StringLabel htmlFor="location">
-          위치
-          <StringLabel htmlFor="location">선택한 장소: {location}</StringLabel>
+          📌 위치
+          <StringLabelInfo htmlFor="location">
+            📍 선택한 장소: {location}
+          </StringLabelInfo>
           <MapComponent onPlaceSelect={handlePlaceSelection} />
         </StringLabel>
 
         <StringLabel htmlFor="recruitmentTime">
-          모집 시간 : {recruitmentTime}분
+          📌 모집 시간 : {recruitmentTime}분
           <ButtonWrapper>
             <WithBtn
               $active={active[0]}
@@ -327,7 +354,7 @@ const Modal: React.FC<ModalProps> = ({
         </StringLabel>
 
         <StringLabel htmlFor="maxPeople">
-          최대 인원
+          📌 모집 인원
           <ModalInput
             type="number"
             id="maxPeople"
@@ -343,7 +370,7 @@ const Modal: React.FC<ModalProps> = ({
           type="button"
           onClick={handleRegister}
         >
-          등록
+          등록하기
         </EnrollButton>
 
         <ExitButton
