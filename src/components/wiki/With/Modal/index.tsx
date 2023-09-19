@@ -53,13 +53,12 @@ const ModalInput = styled.input`
   border: 1px solid #ccc;
   border-radius: 5px;
 
-  #maxpeople {
-    font-size: 3rem;
-  }
+  font-size: 1.3rem;
 `;
 
 const ModalTextarea = styled.textarea`
   height: 7rem;
+  font-size: 1.3rem;
 
   border: 1px solid #ccc;
   border-radius: 5px;
