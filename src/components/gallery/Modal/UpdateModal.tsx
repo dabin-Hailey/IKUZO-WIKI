@@ -15,6 +15,7 @@ export interface OwnProps {
   location: string;
   photo: string;
   category: string;
+  initialValue: string;
   closeUpdateModal: () => void;
 }
 
@@ -142,6 +143,7 @@ const UpdateModal: React.FC<OwnProps> = ({
   location,
   photo,
   category,
+  initialValue,
   closeUpdateModal,
 }) => {
   const [newLocation, setNewLocation] = useState('');
@@ -308,6 +310,7 @@ const UpdateModal: React.FC<OwnProps> = ({
           <MapComponent
             onAddressSelect={handleAddress}
             onPlaceSelect={handlePlace}
+            initialValue={initialValue}
           ></MapComponent>
         </ModalRight>
       </ModalWindow>

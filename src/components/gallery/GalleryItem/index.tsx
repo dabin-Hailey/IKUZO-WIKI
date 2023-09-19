@@ -20,6 +20,7 @@ export interface OwnProps {
   deleteModalID: string | null;
   openDeleteModal: (id: string) => void;
   closeDeleteModal: () => void;
+  initialValue: string;
 }
 
 // styled-components
@@ -111,6 +112,7 @@ const GalleryItems: React.FC<OwnProps> = ({
   deleteModalID,
   openDeleteModal,
   closeDeleteModal,
+  initialValue,
 }) => {
   return (
     <ItemWrapper>
@@ -131,6 +133,7 @@ const GalleryItems: React.FC<OwnProps> = ({
           deleteModalID={deleteModalID}
           openDeleteModal={openDeleteModal}
           closeDeleteModal={closeDeleteModal}
+          initialValue={initialValue}
         />
         <ContentWrapper>
           <Title>{restaurant}</Title>

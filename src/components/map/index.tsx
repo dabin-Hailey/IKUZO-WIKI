@@ -8,11 +8,13 @@ declare const window: typeof globalThis & {
 interface MapComponentProps {
   onAddressSelect: (address: string) => void;
   onPlaceSelect?: (place: string) => void;
+  initialValue?: string;
 }
 
 const MapComponent = ({
   onAddressSelect,
   onPlaceSelect,
+  initialValue,
 }: MapComponentProps) => {
   const [search, setSearch] = useState('');
 
@@ -230,6 +232,9 @@ const MapComponent = ({
           searchPlaces();
         });
       });
+      if (initialValue) {
+        searchPlaces();
+      }
     };
 
     const script = document.createElement('script');
@@ -261,7 +266,7 @@ const MapComponent = ({
               type="text"
               id="keyword"
               size={15}
-              value={search}
+              value={initialValue}
               onChange={handleChange}
             />
             <button type="submit">검색하기</button>

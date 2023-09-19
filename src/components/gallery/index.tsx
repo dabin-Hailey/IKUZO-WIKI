@@ -22,6 +22,7 @@ export interface OwnProps {
   location: string;
   photo: string;
   category: string;
+  initialValue: string;
 }
 
 // styled-components
@@ -93,6 +94,7 @@ const GalleryListing = ({ category }: State): JSX.Element => {
           list.map((item: Root) => {
             const { id } = item;
             const { restaurant, location, photo, category } = item as OwnProps;
+            const initialValue = restaurant;
             return (
               <GalleryItems
                 key={id}
@@ -108,6 +110,7 @@ const GalleryListing = ({ category }: State): JSX.Element => {
                 deleteModalID={deleteModalID}
                 openDeleteModal={openDeleteModal}
                 closeDeleteModal={closeDeleteModal}
+                initialValue={initialValue}
               />
             );
           })}
