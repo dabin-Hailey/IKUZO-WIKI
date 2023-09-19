@@ -4,14 +4,7 @@ import SidebarGallery from '../components/common/SidebarGallery';
 import Footer from '../components/common/Footer';
 
 const Gallery = (): JSX.Element => {
-  return (
-    <>
-      <Header transparent={false} />
-      <SidebarGallery />
-
-      <Footer />
-    </>
-  );
+  return <div>갤러리리</div>;
 };
 
 export default Gallery;
