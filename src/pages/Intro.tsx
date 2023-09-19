@@ -5,7 +5,7 @@ import Intro from '../components/wiki/Intro/Intro';
 const IntroPage = () => {
   return (
     <>
-      <Header />
+      <Header transparent={false} />
       <Intro />
     </>
   );

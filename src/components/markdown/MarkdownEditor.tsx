@@ -48,7 +48,7 @@ const MarkdownEditor = ({
         <Editor
           ref={editorRef}
           initialValue={content}
-          previewStyle="vertical"
+          previewStyle="tab"
           height="600px"
           initialEditType="markdown"
           useCommandShortcut

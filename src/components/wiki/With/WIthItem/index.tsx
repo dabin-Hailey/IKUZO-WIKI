@@ -29,9 +29,8 @@ const WithContainer = styled.div<{ $nowOnView: boolean }>`
   border-radius: 1rem;
   box-sizing: border-box;
 
-  font-size: 1.5rem;
   background-color: #fffef2;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2);
 `;
 
 const WithWrapper = styled.div`
@@ -49,9 +48,9 @@ const WithTitle = styled.div`
 
   width: 100%;
   height: 3rem;
+  margin-left: 1rem;
 
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 2rem;
 `;
 
 const WithTop = styled.div`
@@ -69,11 +68,11 @@ const WithLocation = styled.div`
   justify-content: center;
   align-items: center;
 
-  padding: 0.5rem 2rem;
-  font-size: 1.5rem;
-  color: #000;
-  background-color: #ffd337;
-  border-radius: 0.5rem;
+  padding: 0.6rem 2.5rem;
+  font-size: 1.2rem;
+  color: #424242;
+  background-color: #ffe894;
+  border-radius: 1rem;
 `;
 
 const WithBottom = styled.div`
@@ -87,6 +86,11 @@ const WithBottomLeft = styled.div`
   flex-direction: column;
 
   gap: 1rem;
+
+  p {
+    margin-left: 1rem;
+    color: #5d5d5d;
+  }
 `;
 
 const WithItem = ({
