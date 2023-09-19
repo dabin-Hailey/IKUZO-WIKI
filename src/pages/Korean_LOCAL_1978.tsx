@@ -1,14 +1,14 @@
 import React from 'react';
 import Header from '../components/common/Header';
-import Notice from '../components/wiki/Notice/Notice';
+import GalleryListing from '../components/gallery';
 
-const NoticePage = () => {
+const Korean = (): JSX.Element => {
   return (
     <>
       <Header transparent={false} />
-      <Notice />
+      <GalleryListing />
     </>
   );
 };
 
-export default NoticePage;
+export default Korean;

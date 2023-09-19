@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const WithTime = styled.p<{ $isRed: boolean }>`
-  font-size: 1.3rem;
+  font-size: 1.2em;
   font-weight: 700;
   color: ${({ $isRed }) => {
     return $isRed ? '#ff0000' : '#ffd337';
