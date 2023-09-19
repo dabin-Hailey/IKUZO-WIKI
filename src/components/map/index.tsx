@@ -5,13 +5,21 @@ declare const window: typeof globalThis & {
   kakao: any;
 };
 
-const MapComponent = () => {
+interface MapComponentProps {
+  onPlaceSelect: (address: string) => void;
+}
+
+const MapComponent = ({ onPlaceSelect }: MapComponentProps) => {
   const [search, setSearch] = useState('');
 
   let markers: any = [];
   let map: any;
   let places: any;
   let infoWindow: any;
+
+  const handlePlaceClick = (place: string) => {
+    onPlaceSelect(place);
+  };
 
   const searchPlaces = () => {
     const keyword = (document.getElementById('keyword') as HTMLInputElement)
@@ -105,6 +113,10 @@ const MapComponent = () => {
 
     el.innerHTML = itemStr;
     el.className = 'item';
+
+    el.addEventListener('click', () => {
+      handlePlaceClick(places.address_name);
+    });
 
     return el;
   }

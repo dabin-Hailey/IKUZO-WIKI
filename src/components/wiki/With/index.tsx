@@ -110,10 +110,10 @@ const index: React.FC<Props> = ({ data }): JSX.Element => {
     setIsModalOpen(false);
   };
 
-  const handleLocationChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleLocationChange = (props: string) => {
     setModalData({
       ...modalData,
-      restaurantLocation: event.target.value,
+      restaurantLocation: props,
     });
   };
 
