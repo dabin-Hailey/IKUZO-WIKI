@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../../../../utils/firebase.config';
 import WikiModal from '../../../../assets/wiki-modal.png';
+import MapComponent from '../../../map';
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onLocationChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onLocationChange: (props: string) => void;
   onTitleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onContentsChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
   onRecruitmentTimeChange: (
@@ -165,8 +166,6 @@ const Modal: React.FC<ModalProps> = ({
   onRecruitmentTimeChange,
   onMaxPeopleChange,
 }) => {
-  if (!isOpen) return null;
-
   const [location, setLocation] = useState('');
   const [title, setTitle] = useState('');
   const [contents, setContents] = useState('');
@@ -178,8 +177,17 @@ const Modal: React.FC<ModalProps> = ({
   const [isContentValid, setIsContentValid] = useState(false);
   const [isLocationValid, setIsLocationValid] = useState(false);
 
+  const handlePlaceSelection = (address: string) => {
+    console.log(address);
+    setLocation(address);
+    onLocationChange(address);
+    setIsLocationValid(address.length > 0);
+  };
+
   const handleRegister = async () => {
     if (!isTitleValid || !isContentValid || !isLocationValid) {
+      console.log(isTitleValid, isContentValid, isLocationValid);
+      console.log('invalid');
       return;
     }
     try {
@@ -222,6 +230,22 @@ const Modal: React.FC<ModalProps> = ({
   const modalClose = () => {
     onClose();
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      setLocation('');
+      setTitle('');
+      setContents('');
+      setRecruitmentTime(10);
+      setActive([false, false, false]);
+      setMaxPeople(2);
+      setIsTitleValid(false);
+      setIsContentValid(false);
+      setIsLocationValid(false);
+    }
+  }, [isOpen]);
+
+  if (!isOpen) return null;
 
   return (
     <ModalWrapper
@@ -268,7 +292,7 @@ const Modal: React.FC<ModalProps> = ({
 
         <StringLabel htmlFor="location">
           위치
-          <ModalInput
+          {/* <ModalInput
             type="text"
             id="location"
             required
@@ -279,7 +303,9 @@ const Modal: React.FC<ModalProps> = ({
               onLocationChange(e);
               setIsLocationValid(e.target.value.length > 0);
             }}
-          />
+          /> */}
+          <StringLabel htmlFor="location">선택한 장소: {location}</StringLabel>
+          <MapComponent onPlaceSelect={handlePlaceSelection} />
         </StringLabel>
 
         <StringLabel htmlFor="recruitmentTime">
