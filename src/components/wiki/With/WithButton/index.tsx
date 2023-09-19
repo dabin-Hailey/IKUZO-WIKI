@@ -38,11 +38,16 @@ const ButtonContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 2rem;
 
   gap: 1rem;
 
   font-size: 1rem;
   font-weight: 700;
+
+  em {
+    color: #525252;
+  }
 `;
 
 const WithButton: React.FC<Props> = ({ id, joined, people }) => {

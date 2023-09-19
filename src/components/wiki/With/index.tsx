@@ -27,7 +27,7 @@ const Container = styled.div`
   align-items: center;
 
   width: 80%;
-  margin-left: 4rem;
+  min-height: 70vh;
 
   gap: 1rem;
 `;
@@ -42,7 +42,7 @@ const Title = styled.h1`
   font-size: 2rem;
   font-weight: 700;
   line-height: 7rem;
-  border-bottom: 0.2rem solid #ffa800;
+  border-bottom: 0.2rem solid var(--color-orange);
 
   .non__highlight {
     color: black;
@@ -50,24 +50,27 @@ const Title = styled.h1`
 `;
 
 const Highlight = styled.em`
-  color: #ffa800;
+  color: var(--color-orange);
 `;
 
 const EnrollButton = styled.button`
-  font-size: 2rem;
-  font-weight: 700;
+  font-family: 'SBAggroB';
+  font-size: 0.8rem;
   color: white;
 
   margin: auto 0;
-  padding: 1rem 2rem;
+  padding: 0.8rem 1.2rem;
   white-space: nowrap;
   border-radius: 1rem;
   border: none;
-  background-color: #ffa800;
+  background-color: var(--color-primary);
   cursor: pointer;
+  transform: translateY(1px);
+  transition: 0.2s;
 
   &:hover {
-    background-color: #ff9b00;
+    transform: translateY(3px);
+    background-color: var(--color-btn);
   }
 `;
 

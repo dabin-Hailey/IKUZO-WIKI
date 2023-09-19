@@ -41,11 +41,12 @@
 /* color */
 :root {
   --color-primary: #ffd850;
-  --color-orange: #f09136;
+  --color-orange: #ffa800;
   --color-black: #393939;
   --color-beige: #fff5d2;
-  --color-white: #ffffff;
+  --color-white: #fff;
   --color-lightgray: #f2f2f2;
+  --color-btn: #fac918;
 }
 
 #root {

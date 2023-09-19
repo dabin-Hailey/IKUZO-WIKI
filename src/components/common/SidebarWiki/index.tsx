@@ -6,13 +6,14 @@ import IntroPage from '../../../pages/Intro';
 import With from '../../../pages/With';
 import sidebar from '../../../assets/sidebar.svg';
 
+const Wiki = styled.div`
+  width: 90%;
+  margin: 8rem auto 0;
+`;
+
 const WikiWrapper = styled.div`
   display: flex;
-  position: relative;
   height: 100%;
-
-  margin-top: 8rem;
-  margin-left: 4rem;
 `;
 
 const SidebarWikiWrapper = styled.div`
@@ -23,7 +24,7 @@ const SidebarWikiWrapper = styled.div`
   background-color: var(--color-beige);
   border-radius: 1rem;
   color: var(--color-black);
-  box-shadow: 0 0.2rem 0.4rem 0 #c3c3c3;
+  box-shadow: 0 0.2rem 0.2rem 0 #c3c3c3;
 
   .sidebar__wiki--header {
     display: flex;
@@ -90,7 +91,7 @@ const StyledNavLink = styled(NavLink)`
 const ContentWrapper = styled.div`
   flex: 1;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: 20rem;
 
   margin-bottom: 4rem;
@@ -98,53 +99,55 @@ const ContentWrapper = styled.div`
 
 const SidebarWiki = () => {
   return (
-    <WikiWrapper>
-      <SidebarWikiWrapper>
-        <div className="sidebar__wiki--header">
-          <img
-            className="sidebar__wiki--icon"
-            src={sidebar}
-            alt="sidebar"
-          />
-          <h2>위키</h2>
-        </div>
-        <nav>
-          <ul>
-            <li>
-              <StyledNavLink to="/wiki/notice">공지사항</StyledNavLink>
-            </li>
-            <li>
-              <StyledNavLink to="/wiki/intro">소개</StyledNavLink>
-            </li>
-            <li>
-              <StyledNavLink to="/wiki/with">
-                같이 먹을 사람 구해요
-              </StyledNavLink>
-            </li>
-          </ul>
-        </nav>
-      </SidebarWikiWrapper>
-      <ContentWrapper>
-        <Routes>
-          <Route
-            path="notice"
-            element={<NoticePage />}
-          />
-          <Route
-            path="intro"
-            element={<IntroPage />}
-          />
-          <Route
-            path="with"
-            element={<With />}
-          />
-          <Route
-            path="/"
-            element={<NoticePage />}
-          />
-        </Routes>
-      </ContentWrapper>
-    </WikiWrapper>
+    <Wiki>
+      <WikiWrapper>
+        <SidebarWikiWrapper>
+          <div className="sidebar__wiki--header">
+            <img
+              className="sidebar__wiki--icon"
+              src={sidebar}
+              alt="sidebar"
+            />
+            <h2>위키</h2>
+          </div>
+          <nav>
+            <ul>
+              <li>
+                <StyledNavLink to="/wiki/notice">공지사항</StyledNavLink>
+              </li>
+              <li>
+                <StyledNavLink to="/wiki/intro">소개</StyledNavLink>
+              </li>
+              <li>
+                <StyledNavLink to="/wiki/with">
+                  같이 먹을 사람 구해요
+                </StyledNavLink>
+              </li>
+            </ul>
+          </nav>
+        </SidebarWikiWrapper>
+        <ContentWrapper>
+          <Routes>
+            <Route
+              path="notice"
+              element={<NoticePage />}
+            />
+            <Route
+              path="intro"
+              element={<IntroPage />}
+            />
+            <Route
+              path="with"
+              element={<With />}
+            />
+            <Route
+              path="/"
+              element={<NoticePage />}
+            />
+          </Routes>
+        </ContentWrapper>
+      </WikiWrapper>
+    </Wiki>
   );
 };
 

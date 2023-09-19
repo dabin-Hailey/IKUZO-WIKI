@@ -29,13 +29,20 @@ const MarkdownContainer = styled.div`
     font-family: 'SBAggroB';
     width: 5rem;
     height: 2.5rem;
-    color: var(--color-black);
     background-color: var(--color-primary);
+    color: var(--color-white);
 
     border: none;
     border-radius: 30px;
-    box-shadow: 0 2px 1px #9c9c9c;
     cursor: pointer;
+
+    transform: translateY(1px);
+    transition: 0.2s;
+
+    &:hover {
+      transform: translateY(3px);
+      background-color: var(--color-btn);
+    }
   }
 
   .viewer-wrapper {
