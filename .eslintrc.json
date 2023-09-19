@@ -23,10 +23,12 @@
         "labelAttributes": ["htmlFor"]
       }
     ],
-    "react/jsx-props-no-spreading": "off", //꼭 삭제하기
+    "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/no-loop-func": "off",
     "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-shadow": "off",
     "react/self-closing-comp": "off",
+    "react/jsx-props-no-spreading": "off",
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
   }
 }
