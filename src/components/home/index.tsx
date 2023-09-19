@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Carousel } from 'react-responsive-carousel';
+import { getDataByField } from '../../utils/util';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Header from '../common/Header';
 import bcImg from '../../assets/Home-bcimage.jpg';
@@ -10,6 +11,12 @@ import bcImgXSmall from '../../assets/Home-bcimage-Xsmall.jpg';
 import slide1 from '../../assets/slide_1.jpg';
 import slide2 from '../../assets/slide_2.jpg';
 import slide3 from '../../assets/slide_3.jpg';
+
+export interface Root {
+  id?: string;
+  photo?: string;
+  category?: string;
+}
 
 const HomeWrapper = styled.div`
   position: relative;
@@ -236,6 +243,21 @@ const HomeSwiperFrame = styled.div`
   z-index: 1;
 `;
 
+const StyledCarouselContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+`;
+
+const CarouselImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute; /* 컨테이너 내에서 위치 조정을 위해 */
+  top: 0;
+  left: 0;
+`;
+
 const Home = () => {
   const handleJoinClick = () => {
     window.location.href = '/wiki/with';
@@ -244,6 +266,40 @@ const Home = () => {
   const handleMoreClick = () => {
     window.location.href = '/gallery';
   };
+
+  const [list, setList] = useState<Root[]>([]);
+
+  const fetchData = async (category: string) => {
+    const data: Root[] = await getDataByField(
+      `data-collection/best-restaurant-collection/${category}-food`,
+      'category',
+      category,
+    );
+    setList(prevList => {
+      return [...prevList, ...data];
+    });
+  };
+
+  useEffect(() => {
+    fetchData('korean');
+    fetchData('japanese');
+    fetchData('western');
+  }, []);
+
+  const getRandomImage = (category: string) => {
+    const filteredList = list.filter(item => {
+      return item.category === category;
+    });
+    if (filteredList.length > 0) {
+      const randomIndex = Math.floor(Math.random() * filteredList.length);
+      return filteredList[randomIndex].photo;
+    }
+    return '';
+  };
+
+  const koreanRandomImage = getRandomImage('korean');
+  const japaneseRandomImage = getRandomImage('japanese');
+  const westernRandomImage = getRandomImage('western');
 
   return (
     <HomeWrapper className="home">
@@ -265,7 +321,7 @@ const Home = () => {
             2023 <span>가을 맛집 탐방 </span> 정모
           </HomeTextTitle>
           <HomeTextDescription className="homeText__description">
-            2023년 9월 11일일 강남 페스트캠퍼스에서 진행된 가을 야유회로 모든
+            2023년 9월 11일일 강남 패스트캠퍼스에서 진행된 가을 야유회로 모든
             팀원들이 만나는 만남의 장이 열렸다. 해당 만남의 장에서 많은 팀들은
             자유롭게 주제를 정하고 기획을 하였으며 신나게 놀았다.
           </HomeTextDescription>
@@ -286,87 +342,101 @@ const Home = () => {
         </HomeText>
         <HomeSwiper className="homeSwiper">
           <HomeSwiperFrame className="homeSwiper__frame" />
-          <Carousel
-            showThumbs={false}
-            autoPlay={true as boolean}
-            interval={2000}
-            infiniteLoop={true as boolean}
-            renderArrowPrev={(onClickHandler, hasPrev) => {
-              if (hasPrev) {
-                return (
-                  <button
-                    type="button"
-                    onClick={onClickHandler}
-                    title="<"
-                    style={{
-                      width: '2rem',
-                      height: '2rem',
-                      position: 'absolute',
-                      top: '50%',
-                      left: '0.2rem',
-                      zIndex: 2,
-                      transform: 'translateY(-50%)',
-                      background: 'transparent',
-                      border: '1px solid white',
-                      borderRadius: '50%',
-                      color: 'white',
-                      backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                    }}
-                  >
-                    &lt;
-                  </button>
-                );
-              }
-              return null;
-            }}
-            renderArrowNext={(onClickHandler, hasNext) => {
-              if (hasNext) {
-                return (
-                  <button
-                    type="button"
-                    onClick={onClickHandler}
-                    title=">"
-                    style={{
-                      width: '2rem',
-                      height: '2rem',
-                      position: 'absolute',
-                      top: '50%',
-                      right: '.2rem',
-                      zIndex: 2,
-                      transform: 'translateY(-50%)',
-                      background: 'transparent',
-                      border: '1px solid white',
-                      borderRadius: '50%',
-                      color: 'white',
-                      backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                    }}
-                  >
-                    &gt;
-                  </button>
-                );
-              }
-              return null;
-            }}
-          >
-            <div>
-              <img
-                src={slide1}
-                alt="Slide 1"
-              />
-            </div>
-            <div>
-              <img
-                src={slide2}
-                alt="Slide 2"
-              />
-            </div>
-            <div>
-              <img
-                src={slide3}
-                alt="Slide 3"
-              />
-            </div>
-          </Carousel>
+          <StyledCarouselContainer>
+            <Carousel
+              showThumbs={false}
+              autoPlay={true as boolean}
+              interval={2000}
+              infiniteLoop={true as boolean}
+              renderArrowPrev={(onClickHandler, hasPrev) => {
+                if (hasPrev) {
+                  return (
+                    <button
+                      type="button"
+                      onClick={onClickHandler}
+                      title="<"
+                      style={{
+                        width: '2rem',
+                        height: '2rem',
+                        position: 'absolute',
+                        top: '50%',
+                        left: '0.2rem',
+                        zIndex: 2,
+                        transform: 'translateY(-50%)',
+                        background: 'transparent',
+                        border: '1px solid white',
+                        borderRadius: '50%',
+                        color: 'white',
+                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                      }}
+                    >
+                      &lt;
+                    </button>
+                  );
+                }
+                return null;
+              }}
+              renderArrowNext={(onClickHandler, hasNext) => {
+                if (hasNext) {
+                  return (
+                    <button
+                      type="button"
+                      onClick={onClickHandler}
+                      title=">"
+                      style={{
+                        width: '2rem',
+                        height: '2rem',
+                        position: 'absolute',
+                        top: '50%',
+                        right: '.2rem',
+                        zIndex: 2,
+                        transform: 'translateY(-50%)',
+                        background: 'transparent',
+                        border: '1px solid white',
+                        borderRadius: '50%',
+                        color: 'white',
+                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                      }}
+                    >
+                      &gt;
+                    </button>
+                  );
+                }
+                return null;
+              }}
+            >
+              <div>
+                {koreanRandomImage && (
+                  <div>
+                    <img
+                      src={koreanRandomImage}
+                      alt="Korean Food"
+                    />
+                  </div>
+                )}
+              </div>
+              <div>
+                {japaneseRandomImage && (
+                  <div>
+                    <CarouselImage
+                      src={japaneseRandomImage}
+                      alt="Japanese Food"
+                    />
+                  </div>
+                )}
+              </div>
+              <div>
+                {westernRandomImage && (
+                  <div>
+                    <CarouselImage
+                      src={westernRandomImage}
+                      alt="Western Food"
+                    />
+                  </div>
+                )}
+              </div>
+            </Carousel>
+          </StyledCarouselContainer>
         </HomeSwiper>
       </HomeInner>
     </HomeWrapper>
