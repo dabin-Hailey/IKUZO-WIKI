@@ -93,16 +93,6 @@ const SortContainer = styled.div`
   font-size: 15px;
 `;
 
-const InputField = styled.input`
-  width: 240px;
-  height: 27px;
-
-  outline: none;
-  border: none;
-  border-bottom: 1px solid #c1c1c1;
-  border-radius: 5px;
-`;
-
 const TextField = styled.div`
   display: flex;
   align-items: center;
