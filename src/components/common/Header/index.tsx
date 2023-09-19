@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import headerIconSvg from '../../../assets/headerIcon.svg';
+import headerIconSvg from '../../../assets/logo.png';
 
 interface StyledHeaderProps {
   transparent: boolean;

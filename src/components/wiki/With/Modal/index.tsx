@@ -18,50 +18,48 @@ interface ModalProps {
 }
 
 const ModalWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  width: 100%;
-  height: 100%;
-
-  position: relative;
-  top: 0;
-  left: 0;
   z-index: 3;
-
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
 const ModalContent = styled.div`
-  display: flex;
-  flex-direction: column;
-
   position: relative;
   width: 60rem;
   height: 80%;
+  max-height: 80%;
+  overflow-x: hidden;
+  padding-bottom: 15rem;
+  box-sizing: border-box;
 
-  gap: 2rem;
+  border-radius: 1.5rem;
+  background-color: var(--color-white);
 
-  border-radius: 2rem;
-  padding: 2rem;
-  background-color: #fff;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const ModalInput = styled.input`
-  width: 100%;
-  height: 3rem;
-  font-size: 1.3rem;
+  height: 4rem;
   border: 1px solid #ccc;
   border-radius: 5px;
+
+  font-size: 1.3rem;
 `;
 
 const ModalTextarea = styled.textarea`
-  width: 100%;
   height: 7rem;
-
   font-size: 1.3rem;
+
   border: 1px solid #ccc;
   border-radius: 5px;
 `;
@@ -71,7 +69,7 @@ const ModalImageContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  height: 30%;
+  height: 40%;
 
   border-radius: 1rem 1rem 0 0;
 
@@ -85,9 +83,19 @@ const StringLabel = styled.label`
   display: flex;
   flex-direction: column;
 
-  font-size: 1.5rem;
+  margin: 4rem 10rem 0;
+
+  color: #525252;
+  font-size: 1.3rem;
   font-weight: 700;
   gap: 1rem;
+`;
+
+const StringLabelInfo = styled.label`
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #747474;
 `;
 
 const ButtonWrapper = styled.label`
@@ -105,31 +113,34 @@ const WithBtn = styled.div<{ $active?: boolean }>`
   justify-content: center;
   align-items: center;
 
-  width: 30%;
+  width: 20%;
 
-  padding: 0.5rem 1.5rem;
+  padding: 0.6rem 1.5rem;
 
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 400;
   background-color: ${props => {
-    return props.$active ? '#FFC362' : '#ffd337';
+    return props.$active ? '#ffa800' : '#ffd337';
   }};
   border: none;
   border-radius: 1rem;
   cursor: pointer;
+  transition: 0.2s;
 
   &:hover {
-    background-color: #ffc362;
+    background-color: #ffe071;
   }
 `;
 
 const EnrollButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
+  font-family: 'IBMPlexSansKR-Regular';
+  position: absolute;
+  bottom: -53rem;
+  right: 9rem;
+  left: 9rem;
   padding: 0.5rem 1.5rem;
 
+  color: var(--color-white);
   font-size: 2rem;
   background-color: #ffd337;
   border: none;
@@ -142,16 +153,20 @@ const EnrollButton = styled.button`
 `;
 
 const ExitButton = styled.button`
+  font-family: 'IBMPlexSansKR-Regular';
   position: absolute;
   top: 3rem;
-  right: 3%;
+  right: 3rem;
   width: 5rem;
   height: 3rem;
+
+  color: var(--color-white);
   font-size: 1.5rem;
   background-color: #ffd337;
   border: none;
   border-radius: 3rem;
   cursor: pointer;
+
   &:hover {
     background-color: #ffda4f;
   }
@@ -267,8 +282,9 @@ const Modal: React.FC<ModalProps> = ({
         }}
       >
         <ModalImageContainer />
+
         <StringLabel htmlFor="title">
-          제목
+          📌 제목
           <ModalInput
             type="text"
             id="title"
@@ -284,7 +300,7 @@ const Modal: React.FC<ModalProps> = ({
         </StringLabel>
 
         <StringLabel htmlFor="content">
-          내용
+          📌 내용
           <ModalTextarea
             id="content"
             value={contents}
@@ -299,13 +315,15 @@ const Modal: React.FC<ModalProps> = ({
         </StringLabel>
 
         <StringLabel htmlFor="location">
-          위치
-          <StringLabel htmlFor="location">선택한 장소: {location}</StringLabel>
-          <MapComponent onAddressSelect={handlePlaceSelection} />
+          📌 위치
+          <StringLabelInfo htmlFor="location">
+            📍 선택한 장소: {location}
+          </StringLabelInfo>
+          <MapComponent onPlaceSelect={handlePlaceSelection} />
         </StringLabel>
 
         <StringLabel htmlFor="recruitmentTime">
-          모집 시간 : {recruitmentTime}분
+          📌 모집 시간 : {recruitmentTime}분
           <ButtonWrapper>
             <WithBtn
               $active={active[0]}
@@ -335,7 +353,7 @@ const Modal: React.FC<ModalProps> = ({
         </StringLabel>
 
         <StringLabel htmlFor="maxPeople">
-          최대 인원
+          📌 모집 인원
           <ModalInput
             type="number"
             id="maxPeople"
@@ -351,7 +369,7 @@ const Modal: React.FC<ModalProps> = ({
           type="button"
           onClick={handleRegister}
         >
-          등록
+          등록하기
         </EnrollButton>
 
         <ExitButton
