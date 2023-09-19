@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Wiki from './pages/Wiki';
 import Gallery from './pages/Gallery';
+import Map from './pages/Map';
 
 const App = () => {
   return (
@@ -18,6 +19,10 @@ const App = () => {
       <Route
         path="/gallery/*"
         element={<Gallery />}
+      />
+      <Route
+        path="/map/*"
+        element={<Map />}
       />
     </Routes>
   );

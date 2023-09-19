@@ -1,24 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
-import ReplaceIconSvg from '../../assets/galleryReplaceIcon.svg';
-import DeleteIconSvg from '../../assets/galleryDeleteIcon.svg';
+import GalleryButton from '../GalleryButton/index';
 
 // type
+export interface Root {
+  id: string;
+}
+
 export interface OwnProps {
+  id: string;
   restaurant: string;
   location: string;
   photo: string;
+  category: string;
+  handleDelete: (id: string, category: string) => void;
+  updateModalID: string | null;
+  openUpdateModal: (id: string) => void;
+  closeUpdateModal: () => void;
+  deleteModalID: string | null;
+  openDeleteModal: (id: string) => void;
+  closeDeleteModal: () => void;
 }
 
 // styled-components
-
-// image div
 const Item = styled.div`
   width: 15rem;
   height: 15rem;
 `;
 
-// img
 const ItemImage = styled.img`
   width: 100%;
   height: 100%;
@@ -27,7 +36,6 @@ const ItemImage = styled.img`
   transition: all 0.3s;
 `;
 
-// text div
 const ItemHover = styled.div`
   display: flex;
   flex-direction: column;
@@ -45,7 +53,6 @@ const ItemHover = styled.div`
   visibility: hidden;
 `;
 
-// container
 const ItemWrapper = styled.div`
   --length: 15rem;
   width: var(--length);
@@ -66,30 +73,6 @@ const ItemWrapper = styled.div`
   &:hover ${ItemImage} {
     transform: scale(1.1);
   }
-`;
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  gap: 0.3rem;
-
-  position: absolute;
-  top: 0;
-  right: 0;
-
-  margin: 0.5rem;
-`;
-
-const Button = styled.button`
-  vertical-align: middle;
-
-  font-size: 0.5rem;
-  font-weight: 700;
-  border: none;
-  border-radius: 1rem;
-  outline: none;
-  background-color: var(--color-primary);
-  cursor: pointer;
-  padding: 0.2rem 0.5rem;
 `;
 
 const ContentWrapper = styled.div`
@@ -115,29 +98,40 @@ const Content = styled.p`
 `;
 
 // Component
-const GalleryItems = ({ restaurant, location, photo }: OwnProps) => {
+const GalleryItems: React.FC<OwnProps> = ({
+  id,
+  restaurant,
+  location,
+  photo,
+  category,
+  handleDelete,
+  updateModalID,
+  openUpdateModal,
+  closeUpdateModal,
+  deleteModalID,
+  openDeleteModal,
+  closeDeleteModal,
+}) => {
   return (
     <ItemWrapper>
       <Item>
         <ItemImage src={photo} />
       </Item>
       <ItemHover>
-        <ButtonWrapper>
-          <Button>
-            <img
-              src={ReplaceIconSvg}
-              alt="ReplaceIcon"
-            />
-            변경
-          </Button>
-          <Button>
-            <img
-              src={DeleteIconSvg}
-              alt="DeleteIcon"
-            />
-            삭제
-          </Button>
-        </ButtonWrapper>
+        <GalleryButton
+          id={id}
+          restaurant={restaurant}
+          location={location}
+          photo={photo}
+          category={category}
+          handleDelete={handleDelete}
+          updateModalID={updateModalID}
+          openUpdateModal={openUpdateModal}
+          closeUpdateModal={closeUpdateModal}
+          deleteModalID={deleteModalID}
+          openDeleteModal={openDeleteModal}
+          closeDeleteModal={closeDeleteModal}
+        />
         <ContentWrapper>
           <Title>{restaurant}</Title>
           <Content>{location}</Content>

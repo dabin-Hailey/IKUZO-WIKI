@@ -1,10 +1,5 @@
 import React from 'react';
-import GalleryListing from '../components/gallery/GalleryListing';
-
-// type
-export interface Root {
-  id: string;
-}
+import GalleryListing from '../components/gallery/index';
 
 const Western = (): JSX.Element => {
   return <GalleryListing />;

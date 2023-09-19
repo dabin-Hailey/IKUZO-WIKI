@@ -26,21 +26,64 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
-  width: 200%;
+  width: 80%;
 
   gap: 1rem;
-
-  background-color: #ddeef8;
 `;
 
 const Title = styled.h1`
-  font-size: 3rem;
+  display: flex;
+  justify-content: space-between;
+
+  width: 90%;
+
+  font-size: 4rem;
   font-weight: 700;
-  color: #000;
+  line-height: 7rem;
+  border-bottom: 0.2rem solid #ffa800;
+
+  .non__highlight {
+    color: black;
+  }
 `;
 
 const Highlight = styled.em`
   color: #ffa800;
+`;
+
+const EnrollButton = styled.button`
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+
+  margin: auto 0;
+  padding: 1rem 2rem;
+  white-space: nowrap;
+  border-radius: 1rem;
+  border: none;
+  background-color: #ffa800;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #ff9b00;
+  }
+`;
+
+const ItemContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 90%;
+
+  gap: 2rem;
+`;
+
+const ItemWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
 `;
 
 const index: React.FC<Props> = ({ data }): JSX.Element => {
@@ -108,24 +151,26 @@ const index: React.FC<Props> = ({ data }): JSX.Element => {
   return (
     <Container>
       <Title>
-        <Highlight>같이 먹을사람</Highlight> 구해요
-        <button
+        <Highlight>
+          같이 먹을사람 <em className="non__highlight">구해요</em>
+        </Highlight>
+        <EnrollButton
           type="button"
           onClick={() => {
             openModal();
           }}
         >
           Open Modal
-        </button>{' '}
+        </EnrollButton>{' '}
       </Title>
-      <div style={{ width: '100%' }}>
+      <ItemContainer>
         {data &&
           data.map((item: Root) => {
             const { id } = item;
             const { title, joined, contents, location, people, time } =
               item as WithProp;
             return (
-              <div key={id}>
+              <ItemWrapper key={id}>
                 <WithItem
                   id={id}
                   title={title}
@@ -135,10 +180,10 @@ const index: React.FC<Props> = ({ data }): JSX.Element => {
                   time={time}
                   joined={joined}
                 />
-              </div>
+              </ItemWrapper>
             );
           })}
-      </div>
+      </ItemContainer>
       <Modal
         isOpen={isModalOpen}
         onClose={closeModal}

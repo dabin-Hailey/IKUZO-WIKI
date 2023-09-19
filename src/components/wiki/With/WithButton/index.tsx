@@ -13,10 +13,9 @@ const WithBtn = styled.button`
   justify-content: center;
   align-items: center;
 
-  width: 6rem;
-  height: 3rem;
+  padding: 0.5rem 1.5rem;
 
-  font-size: 1.5rem;
+  font-size: 2rem;
   background-color: #ffd337;
   border: none;
   border-radius: 3rem;
@@ -34,6 +33,18 @@ const WithBtn = styled.button`
   }
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 1rem;
+
+  font-size: 1rem;
+  font-weight: 700;
+`;
+
 const WithButton: React.FC<Props> = ({ id, joined, people }) => {
   const onClick = async () => {
     await updateDataByNumber('with-collection', id, 'joined');
@@ -42,13 +53,16 @@ const WithButton: React.FC<Props> = ({ id, joined, people }) => {
   const isFull = joined === people;
 
   return (
-    <WithBtn
-      type="button"
-      onClick={onClick}
-      disabled={isFull}
-    >
-      {joined} / {people}
-    </WithBtn>
+    <ButtonContainer>
+      <em>같이 먹을래요?</em>
+      <WithBtn
+        type="button"
+        onClick={onClick}
+        disabled={isFull}
+      >
+        {joined} / {people}
+      </WithBtn>
+    </ButtonContainer>
   );
 };
 
