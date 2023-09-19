@@ -5,7 +5,6 @@ import Korean from './pages/Korean';
 import Chinese from './pages/Chinese';
 import Japanese from './pages/Japanese';
 import Western from './pages/Western';
-import Map from './pages/Map';
 import Login from './pages/Login';
 import NoticePage from './pages/Notice';
 import IntroPage from './pages/Intro';
@@ -72,10 +71,6 @@ const App = () => {
       <Route
         path="/login/"
         element={<Login />}
-      />
-      <Route
-        path="/map/*"
-        element={<Map />}
       />
     </Routes>
   );
