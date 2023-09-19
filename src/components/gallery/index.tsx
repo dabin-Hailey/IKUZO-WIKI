@@ -12,6 +12,10 @@ export type Props = {
   list: Root[];
 };
 
+type State = {
+  category: string;
+};
+
 export interface OwnProps {
   id: string;
   restaurant: string;
@@ -33,11 +37,7 @@ const GalleryList = styled.div`
 `;
 
 // Component
-const GalleryListing = (): JSX.Element => {
-  const array = window.location.pathname.split('/');
-  const route = array[array.length - 1];
-  const category = route === 'gallery' ? 'korean' : route;
-
+const GalleryListing = ({ category }: State): JSX.Element => {
   const [list, setList] = useState<Root[]>([]);
   const [updateModalID, setUpdateModalID] = useState<string | null>(null);
   const [deleteModalID, setDeleteModalID] = useState<string | null>(null);

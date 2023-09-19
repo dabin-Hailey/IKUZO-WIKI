@@ -2,7 +2,8 @@ import React from 'react';
 import GalleryListing from '../components/gallery/index';
 
 const Western = (): JSX.Element => {
-  return <GalleryListing />;
+  const category = 'western';
+  return <GalleryListing category={category} />;
 };
 
 export default Western;

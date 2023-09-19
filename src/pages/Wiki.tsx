@@ -5,13 +5,7 @@ import SidebarWiki from '../components/common/SidebarWiki';
 import Footer from '../components/common/Footer';
 
 const Wiki = () => {
-  return (
-    <>
-      <Header transparent={false} />
-      <SidebarWiki />
-      <Footer />
-    </>
-  );
+  return <div>위키위키</div>;
 };
 
 export default Wiki;

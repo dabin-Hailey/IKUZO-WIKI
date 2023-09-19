@@ -1,25 +1,10 @@
 import React, { useState } from 'react';
-import { Route, Routes, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import AddModal from './AddModal';
-import Korean from '../../../pages/Korean';
-import Chinese from '../../../pages/Chinese';
-import Japanese from '../../../pages/Japanese';
-import Western from '../../../pages/Western';
 import sidebar from '../../../assets/sidebar.svg';
 
-const GalleryWrapper = styled.div`
-  width: 90%;
-  margin: 8rem auto 2rem;
-`;
-
-const Gallery = styled.div`
-  display: flex;
-  gap: 3rem;
-  height: 100%;
-`;
-
-const GallerySidebar = styled.div`
+const SidebarWikiWrapper = styled.div`
   width: 12rem;
   height: 30rem;
   padding: 2rem;
@@ -91,15 +76,6 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-const ContentWrapper = styled.div`
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  gap: 20rem;
-
-  margin-bottom: 4rem;
-`;
-
 const AddButton = styled.button`
   width: 190px;
   height: 35px;
@@ -118,62 +94,34 @@ const SidebarGallery = () => {
   };
 
   return (
-    <GalleryWrapper>
-      <Gallery>
-        <GallerySidebar>
-          <div className="sidebar__wiki--header">
-            <img
-              className="sidebar__wiki--icon"
-              src={sidebar}
-              alt="sidebar"
-            />
-            <h2>맛집 추천</h2>
-          </div>
-          <nav>
-            <ul>
-              <li>
-                <StyledNavLink to="/gallery/korean">한식</StyledNavLink>
-              </li>
-              <li>
-                <StyledNavLink to="/gallery/chinese">중식</StyledNavLink>
-              </li>
-              <li>
-                <StyledNavLink to="/gallery/japanese">일식</StyledNavLink>
-              </li>
-              <li>
-                <StyledNavLink to="/gallery/western">양식</StyledNavLink>
-              </li>
-            </ul>
-          </nav>
-          <AddButton onClick={handleModal}>맛집 추가하기</AddButton>
-          {modal === true ? <AddModal onChange={handleModal} /> : null}
-        </GallerySidebar>
-        <ContentWrapper>
-          <Routes>
-            <Route
-              path="korean"
-              element={<Korean />}
-            />
-            <Route
-              path="chinese"
-              element={<Chinese />}
-            />
-            <Route
-              path="japanese"
-              element={<Japanese />}
-            />
-            <Route
-              path="western"
-              element={<Western />}
-            />
-            <Route
-              path="/"
-              element={<Korean />}
-            />
-          </Routes>
-        </ContentWrapper>
-      </Gallery>
-    </GalleryWrapper>
+    <SidebarWikiWrapper>
+      <div className="sidebar__wiki--header">
+        <img
+          className="sidebar__wiki--icon"
+          src={sidebar}
+          alt="sidebar"
+        />
+        <h2>맛집 추천</h2>
+      </div>
+      <nav>
+        <ul>
+          <li>
+            <StyledNavLink to="/gallery/korean">한식</StyledNavLink>
+          </li>
+          <li>
+            <StyledNavLink to="/gallery/chinese">중식</StyledNavLink>
+          </li>
+          <li>
+            <StyledNavLink to="/gallery/japanese">일식</StyledNavLink>
+          </li>
+          <li>
+            <StyledNavLink to="/gallery/western">양식</StyledNavLink>
+          </li>
+        </ul>
+      </nav>
+      <AddButton onClick={handleModal}>맛집 추가하기</AddButton>
+      {modal === true ? <AddModal onChange={handleModal} /> : null}
+    </SidebarWikiWrapper>
   );
 };
 
