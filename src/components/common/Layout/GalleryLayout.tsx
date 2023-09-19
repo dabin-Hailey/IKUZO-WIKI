@@ -4,15 +4,20 @@ import styled from 'styled-components';
 import SidebarGallery from '../SidebarGallery';
 import HeaderComponent from '../Header';
 import Footer from '../Footer';
-import GalleryListing from '../../gallery';
 
 const GalleryWrapper = styled.div`
+  width: 90%;
+  margin: 8rem auto 2rem;
+`;
+
+const Gallery = styled.div`
   display: flex;
+  gap: 3rem;
+  height: 100%;
 `;
 
 const ContentWrapper = styled.div`
-  margin-left: 23rem;
-  margin-top: 7rem;
+  width: calc(100vw - 20rem);
 `;
 
 const GalleryLayout = () => {
@@ -20,10 +25,12 @@ const GalleryLayout = () => {
     <>
       <HeaderComponent transparent={false} />
       <GalleryWrapper>
-        <SidebarGallery />
-        <ContentWrapper>
-          <Outlet />
-        </ContentWrapper>
+        <Gallery>
+          <SidebarGallery />
+          <ContentWrapper>
+            <Outlet />
+          </ContentWrapper>
+        </Gallery>
       </GalleryWrapper>
       <Footer />
     </>
