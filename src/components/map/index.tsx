@@ -6,10 +6,16 @@ declare const window: typeof globalThis & {
 };
 
 interface MapComponentProps {
-  onPlaceSelect: (address: string) => void;
+  onAddressSelect: (address: string) => void;
+  onPlaceSelect?: (place: string) => void;
+  initialValue?: string;
 }
 
-const MapComponent = ({ onPlaceSelect }: MapComponentProps) => {
+const MapComponent = ({
+  onAddressSelect,
+  onPlaceSelect,
+  initialValue,
+}: MapComponentProps) => {
   const [search, setSearch] = useState('');
 
   let markers: any = [];
@@ -17,8 +23,11 @@ const MapComponent = ({ onPlaceSelect }: MapComponentProps) => {
   let places: any;
   let infoWindow: any;
 
-  const handlePlaceClick = (place: string) => {
-    onPlaceSelect(place);
+  const handlePlaceClick = (place: string, address: string) => {
+    onAddressSelect(address);
+    if (onPlaceSelect) {
+      onPlaceSelect(place);
+    }
   };
 
   const searchPlaces = () => {
@@ -115,7 +124,8 @@ const MapComponent = ({ onPlaceSelect }: MapComponentProps) => {
     el.className = 'item';
 
     el.addEventListener('click', () => {
-      handlePlaceClick(places.address_name);
+      console.log(places.place_name);
+      handlePlaceClick(places.place_name, places.address_name);
     });
 
     return el;
@@ -222,6 +232,9 @@ const MapComponent = ({ onPlaceSelect }: MapComponentProps) => {
           searchPlaces();
         });
       });
+      if (initialValue) {
+        searchPlaces();
+      }
     };
 
     const script = document.createElement('script');
@@ -242,7 +255,6 @@ const MapComponent = ({ onPlaceSelect }: MapComponentProps) => {
   return (
     <S.MapContainer>
       <S.Map id="map"></S.Map>
-
       <S.MenuContainer id="menu-container">
         <S.Option>
           <form
@@ -253,7 +265,7 @@ const MapComponent = ({ onPlaceSelect }: MapComponentProps) => {
               type="text"
               id="keyword"
               size={15}
-              value={search}
+              value={initialValue}
               onChange={handleChange}
             />
             <button type="submit">검색하기</button>

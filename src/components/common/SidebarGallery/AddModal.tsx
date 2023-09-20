@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
+import MapComponent from '../../map';
 import addImg from '../../../assets/add-image.png';
 import closeIcon from '../../../assets/close-icon.png';
 import { addImage, setGalleryData } from '../../../utils/util';
@@ -18,13 +19,11 @@ const ModalBackground = styled.div`
 `;
 
 const ModalWindow = styled.div`
-  width: 330px;
-  height: 550px;
+  width: 1000px;
+  height: 570px;
   background-color: var(--color-white);
 
   display: flex;
-  flex-direction: column;
-
   border-radius: 20px;
   overflow: hidden;
 
@@ -42,12 +41,18 @@ const CloseIcon = styled.img`
   top: 13px;
   right: 13px;
   cursor: pointer;
+  z-index: 2;
+`;
+
+const ModalLeft = styled.div`
+  width: 330px;
+  height: 550px;
 `;
 
 const ImageLabel = styled.label<Props>`
   display: block;
   width: 100%;
-  height: 160px;
+  height: 210px;
 
   background: url(${props => {
       return props.src || addImg;
@@ -62,7 +67,7 @@ const InputFile = styled.input`
 
 const FormContainer = styled.form`
   width: 250px;
-  height: 330px;
+  height: 280px;
   margin: 40px;
 
   display: flex;
@@ -84,22 +89,24 @@ const InputTitle = styled.div`
 const SortContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  margin: 15px 0;
   font-size: 15px;
 `;
 
-const InputField = styled.input`
+const TextField = styled.div`
+  display: flex;
+  align-items: center;
+
   width: 240px;
   height: 27px;
-
-  outline: none;
-  border: 1px solid #c1c1c1;
-  border-radius: 5px;
+  font-size: 16px;
+  border-bottom: 1px solid #c1c1c1;
 `;
 
 const SubmitButton = styled.button`
   width: 200px;
   height: 45px;
-  margin-top: 40px;
+  margin-top: 30px;
   background-color: var(--color-primary);
 
   border: none;
@@ -110,7 +117,14 @@ const SubmitButton = styled.button`
   cursor: pointer;
 `;
 
+const ModalRight = styled.div`
+  width: 700px;
+  height: 900px;
+`;
+
 const AddModal = ({ onChange }: { onChange: () => void }) => {
+  const [location, setLocation] = useState('');
+  const [restaurant, setRestaurant] = useState('');
   const [imgPath, setImgPath] = useState('');
   const [imgFile, setImgFile] = useState<File>();
   const imgRef = useRef<HTMLInputElement>(null);
@@ -128,6 +142,14 @@ const AddModal = ({ onChange }: { onChange: () => void }) => {
     }
   };
 
+  const handleAddress = (address: string) => {
+    setLocation(address);
+  };
+
+  const handlePlace = (place: string) => {
+    setRestaurant(place);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
@@ -136,9 +158,9 @@ const AddModal = ({ onChange }: { onChange: () => void }) => {
 
       await setGalleryData(`${form.category.value}`, {
         category: form.category.value,
-        location: form.location.value,
+        location,
         photo: imageURL,
-        restaurant: form.restaurant.value,
+        restaurant,
       });
       window.location.replace('/gallery');
     }
@@ -155,66 +177,74 @@ const AddModal = ({ onChange }: { onChange: () => void }) => {
           src={closeIcon}
           onClick={onChange}
         />
-        <ImageLabel src={imgPath}>
-          <InputFile
-            type="file"
-            accept=".png, .jpeg .jpg"
-            onChange={previewImage}
-            ref={imgRef}
-          />
-        </ImageLabel>
-        <FormContainer onSubmit={handleSubmit}>
-          <InputContainer>
-            <InputTitle>맛집 종류</InputTitle>
-            <SortContainer>
-              <label htmlFor="korean">
-                <input
-                  type="radio"
-                  id="korean"
-                  name="category"
-                  value="korean"
-                />
-                한식
-              </label>
-              <label htmlFor="chinese">
-                <input
-                  type="radio"
-                  id="chinese"
-                  name="category"
-                  value="chinese"
-                />
-                중식
-              </label>
-              <label htmlFor="japanese">
-                <input
-                  type="radio"
-                  id="japanese"
-                  name="category"
-                  value="japanese"
-                />
-                일식
-              </label>
-              <label htmlFor="western">
-                <input
-                  type="radio"
-                  id="western"
-                  name="category"
-                  value="western"
-                />
-                양식
-              </label>
-            </SortContainer>
-          </InputContainer>
-          <InputContainer>
-            <InputTitle>맛집 이름</InputTitle>
-            <InputField name="restaurant" />
-          </InputContainer>
-          <InputContainer>
-            <InputTitle>맛집 위치</InputTitle>
-            <InputField name="location" />
-          </InputContainer>
-          <SubmitButton type="submit">맛집 등록</SubmitButton>
-        </FormContainer>
+        <ModalLeft>
+          <ImageLabel src={imgPath}>
+            <InputFile
+              type="file"
+              accept=".png, .jpeg .jpg"
+              onChange={previewImage}
+              ref={imgRef}
+            />
+          </ImageLabel>
+          <FormContainer onSubmit={handleSubmit}>
+            <InputContainer>
+              <InputTitle>맛집 종류</InputTitle>
+              <SortContainer>
+                <label htmlFor="korean">
+                  <input
+                    type="radio"
+                    id="korean"
+                    name="category"
+                    value="korean"
+                  />
+                  한식
+                </label>
+                <label htmlFor="chinese">
+                  <input
+                    type="radio"
+                    id="chinese"
+                    name="category"
+                    value="chinese"
+                  />
+                  중식
+                </label>
+                <label htmlFor="japanese">
+                  <input
+                    type="radio"
+                    id="japanese"
+                    name="category"
+                    value="japanese"
+                  />
+                  일식
+                </label>
+                <label htmlFor="western">
+                  <input
+                    type="radio"
+                    id="western"
+                    name="category"
+                    value="western"
+                  />
+                  양식
+                </label>
+              </SortContainer>
+            </InputContainer>
+            <InputContainer>
+              <InputTitle>맛집 이름</InputTitle>
+              <TextField>{restaurant}</TextField>
+            </InputContainer>
+            <InputContainer>
+              <InputTitle>맛집 위치</InputTitle>
+              <TextField>{location}</TextField>
+            </InputContainer>
+            <SubmitButton type="submit">맛집 등록</SubmitButton>
+          </FormContainer>
+        </ModalLeft>
+        <ModalRight>
+          <MapComponent
+            onAddressSelect={handleAddress}
+            onPlaceSelect={handlePlace}
+          ></MapComponent>
+        </ModalRight>
       </ModalWindow>
     </ModalBackground>
   );

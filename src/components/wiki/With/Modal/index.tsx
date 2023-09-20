@@ -319,7 +319,7 @@ const Modal: React.FC<ModalProps> = ({
           <StringLabelInfo htmlFor="location">
             📍 선택한 장소: {location}
           </StringLabelInfo>
-          <MapComponent onPlaceSelect={handlePlaceSelection} />
+          <MapComponent onAddressSelect={handlePlaceSelection} />
         </StringLabel>
 
         <StringLabel htmlFor="recruitmentTime">

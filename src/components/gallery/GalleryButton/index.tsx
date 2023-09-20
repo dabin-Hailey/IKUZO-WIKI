@@ -16,6 +16,7 @@ export interface OwnProps {
   location: string;
   photo: string;
   category: string;
+  initialValue: string;
   handleDelete: (id: string, category: string) => void;
   updateModalID: string | null;
   openUpdateModal: (id: string) => void;
@@ -62,6 +63,7 @@ const GalleryButton: React.FC<OwnProps> = ({
   deleteModalID,
   openDeleteModal,
   closeDeleteModal,
+  initialValue,
 }) => {
   return (
     <ButtonWrapper>
@@ -84,6 +86,7 @@ const GalleryButton: React.FC<OwnProps> = ({
           photo={photo}
           category={category}
           closeUpdateModal={closeUpdateModal}
+          initialValue={initialValue}
         />
       )}
       <Button
