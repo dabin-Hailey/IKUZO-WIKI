@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import warning from '../../../assets/warning.png';
 
 // type
 export interface Root {
@@ -8,6 +9,7 @@ export interface Root {
 
 export interface OwnProps {
   id: string;
+  restaurant: string;
   category: string;
   handleDelete: (id: string, category: string) => void;
   closeDeleteModal: () => void;
@@ -25,44 +27,68 @@ const ModalBackground = styled.div`
 `;
 
 const ModalWindow = styled.div`
-  width: 400px;
+  width: 420px;
   height: 250px;
-  background-color: var(--color-beige);
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 3rem;
-  border-radius: 20px;
-  overflow: hidden;
+  gap: 1rem;
+
   position: absolute;
   top: 50%;
   left: 50%;
+
+  background-color: var(--color-white);
+  border-radius: 20px;
+  overflow: hidden;
   transform: translate(-50%, -50%);
 `;
 
-const Title = styled.h1`
-  width: 80%;
-  font-size: 1.8rem;
-  font-weight: 700;
-  text-align: center;
+const Header = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
 `;
 
-const Content = styled.div`
+const WarningIcon = styled.img`
+  width: 50px;
+`;
+
+const Title = styled.h1`
+  font-size: 1.7rem;
+  font-weight: 700;
+  text-align: center;
+  color: #ee404c;
+`;
+
+const Text = styled.div`
+  font-size: 1rem;
+  line-height: 1.5;
+
+  & > span {
+    color: #ee404c;
+  }
+`;
+
+const ButtonWrapper = styled.div`
   width: 80%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  margin-top: 1rem;
 `;
 
 const Button = styled.button`
-  width: 100px;
+  width: 90px;
   padding: auto 0.8rem;
   background-color: var(--color-primary);
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: var(--color-black);
   border: 2px solid var(--color-primary);
-  border-radius: 20px;
+  border-radius: 4px;
   box-sizing: border-box;
   transition: all 0.2s linear;
 
@@ -75,6 +101,7 @@ const Button = styled.button`
 
 const DeleteModal: React.FC<OwnProps> = ({
   id,
+  restaurant,
   category,
   handleDelete,
   closeDeleteModal,
@@ -90,8 +117,15 @@ const DeleteModal: React.FC<OwnProps> = ({
           e.stopPropagation();
         }}
       >
-        <Title>정말 삭제하시겠습니까?</Title>
-        <Content>
+        <Header>
+          <WarningIcon src={warning} />
+          <Title>정말 삭제하시겠습니까?</Title>
+        </Header>
+        <Text>
+          선택하신 맛집은 <span>{restaurant}</span> 입니다. <br />
+          삭제한 맛집은 복구 불가능합니다.
+        </Text>
+        <ButtonWrapper>
           <Button
             onClick={() => {
               closeDeleteModal();
@@ -106,7 +140,7 @@ const DeleteModal: React.FC<OwnProps> = ({
           >
             삭제
           </Button>
-        </Content>
+        </ButtonWrapper>
       </ModalWindow>
     </ModalBackground>
   );

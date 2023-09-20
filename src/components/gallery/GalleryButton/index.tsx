@@ -103,6 +103,7 @@ const GalleryButton: React.FC<OwnProps> = ({
       {deleteModalID === id && (
         <DeleteModal
           id={id}
+          restaurant={restaurant}
           category={category}
           handleDelete={handleDelete}
           closeDeleteModal={closeDeleteModal}
