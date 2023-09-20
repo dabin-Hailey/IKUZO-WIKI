@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { getDataByField, deleteData } from '../../utils/util';
 import GalleryItems from './GalleryItem/index';
+import PaginationComponent from './Pagination';
 
 // type
 export interface Root {
@@ -39,6 +40,7 @@ const GalleryListing = ({ category }: State): JSX.Element => {
   const [list, setList] = useState<Root[]>([]);
   const [updateModalID, setUpdateModalID] = useState<string | null>(null);
   const [deleteModalID, setDeleteModalID] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const openUpdateModal = (id: string) => {
     setUpdateModalID(id);
@@ -80,12 +82,21 @@ const GalleryListing = ({ category }: State): JSX.Element => {
 
   useEffect(() => {
     fetchData(category);
-  }, []);
+  }, [category]);
+
+  const itemsPerPage = 6;
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = list.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handlePageChange = (PageNumber: number) => {
+    setCurrentPage(PageNumber);
+  };
 
   return (
-    <GalleryList>
-      {list &&
-        list.map((item: Root) => {
+    <div>
+      <GalleryList>
+        {currentItems.map((item: Root) => {
           const { id } = item;
           const { restaurant, location, photo, category } = item as OwnProps;
           const initialValue = restaurant;
@@ -108,7 +119,15 @@ const GalleryListing = ({ category }: State): JSX.Element => {
             />
           );
         })}
-    </GalleryList>
+      </GalleryList>
+
+      <PaginationComponent
+        activePage={currentPage}
+        totalItems={list.length}
+        itemsPerPage={itemsPerPage}
+        handlePageChange={handlePageChange}
+      />
+    </div>
   );
 };
 
