@@ -184,16 +184,16 @@ const UpdateModal: React.FC<OwnProps> = ({
         const imageURL = await addImage(imgFile as File);
         await updateData(collectionName, dataId, {
           category: form.category.value,
-          location: form.location.value,
+          location: newLocation,
           photo: imageURL,
-          restaurant: form.restaurant.value,
+          restaurant: newRestaurant,
         });
       } else {
         await updateData(collectionName, dataId, {
           category: form.category.value,
-          location: form.location.value,
+          location: newLocation,
           photo,
-          restaurant: form.restaurant.value,
+          restaurant: newRestaurant,
         });
       }
     } else {
@@ -206,16 +206,16 @@ const UpdateModal: React.FC<OwnProps> = ({
         const imageURL = await addImage(imgFile as File);
         await updateData(collectionName, dataId, {
           category: form.category.value,
-          location: form.location.value,
+          location: newLocation,
           photo: imageURL,
-          restaurant: form.restaurant.value,
+          restaurant: newRestaurant,
         });
       } else {
         await updateData(collectionName, dataId, {
           category: form.category.value,
-          location: form.location.value,
+          location: newLocation,
           photo,
-          restaurant: form.restaurant.value,
+          restaurant: newRestaurant,
         });
       }
     }
