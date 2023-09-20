@@ -1,11 +1,14 @@
 import React from 'react';
+import StyledHeader from '../components/common/Header';
 import LoginComponent from '../components/login';
+import Footer from '../components/common/Footer';
 
 const Login = () => {
   return (
     <>
-      <h1>로그인</h1>
+      <StyledHeader transparent={false} />
       <LoginComponent />
+      <Footer />
     </>
   );
 };
