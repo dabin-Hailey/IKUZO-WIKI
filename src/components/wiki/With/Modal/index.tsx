@@ -19,7 +19,7 @@ interface ModalProps {
 
 const ModalWrapper = styled.div`
   position: fixed;
-  top: 0;
+  top: 5rem;
   left: 0;
   right: 0;
   bottom: 0;
@@ -134,11 +134,11 @@ const WithBtn = styled.div<{ $active?: boolean }>`
 
 const EnrollButton = styled.button`
   font-family: 'IBMPlexSansKR-Regular';
-  position: absolute;
-  bottom: -53rem;
-  right: 9rem;
-  left: 9rem;
-  padding: 0.5rem 1.5rem;
+  position: relative;
+  top: 3rem;
+  left: 21rem;
+
+  padding: 0.5rem 5rem;
 
   color: var(--color-white);
   font-size: 2rem;

@@ -146,8 +146,8 @@ const UpdateModal: React.FC<OwnProps> = ({
   initialValue,
   closeUpdateModal,
 }) => {
-  const [newLocation, setNewLocation] = useState('');
-  const [newRestaurant, setNewRestaurant] = useState('');
+  const [newLocation, setNewLocation] = useState(location);
+  const [newRestaurant, setNewRestaurant] = useState(restaurant);
   const [imgPath, setImgPath] = useState(photo);
   const [imgFile, setImgFile] = useState<File>();
   const imgRef = useRef<HTMLInputElement>(null);
@@ -297,11 +297,11 @@ const UpdateModal: React.FC<OwnProps> = ({
             </InputContainer>
             <InputContainer>
               <InputTitle>맛집 이름</InputTitle>
-              <TextField>{restaurant}</TextField>
+              <TextField>{newRestaurant}</TextField>
             </InputContainer>
             <InputContainer>
               <InputTitle>맛집 위치</InputTitle>
-              <TextField>{location}</TextField>
+              <TextField>{newLocation}</TextField>
             </InputContainer>
             <SubmitButton type="submit">맛집 등록</SubmitButton>
           </FormContainer>
