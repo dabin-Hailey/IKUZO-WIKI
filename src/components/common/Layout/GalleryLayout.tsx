@@ -1,6 +1,6 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
+import { Outlet } from 'react-router-dom';
 import SidebarGallery from '../SidebarGallery';
 import HeaderComponent from '../Header';
 import Footer from '../Footer';

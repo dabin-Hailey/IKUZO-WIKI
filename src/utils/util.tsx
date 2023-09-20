@@ -204,6 +204,15 @@ export const signIn = async (email: string, password: string) => {
   return userCredential.user;
 };
 
+export const onAuthStateChanged = (
+  callback: (user: User | null) => void,
+): Unsubscribe => {
+  const unscribe = auth.onAuthStateChanged(user => {
+    callback(user);
+  });
+  return unscribe;
+};
+
 export const signOut = async () => {
   await auth.signOut();
 };
