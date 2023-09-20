@@ -148,6 +148,7 @@ const UpdateModal: React.FC<OwnProps> = ({
 }) => {
   const [newLocation, setNewLocation] = useState(location);
   const [newRestaurant, setNewRestaurant] = useState(restaurant);
+  const [isSubmitting, setIsSubMitting] = useState(false);
   const [imgPath, setImgPath] = useState(photo);
   const [imgFile, setImgFile] = useState<File>();
   const imgRef = useRef<HTMLInputElement>(null);
@@ -175,6 +176,14 @@ const UpdateModal: React.FC<OwnProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (isSubmitting) {
+      alert('등록 중입니다!');
+      return;
+    }
+
+    setIsSubMitting(true);
+
     const form = e.target as HTMLFormElement;
     const collectionName = `data-collection/best-restaurant-collection/${form.category.value}-food`;
     const dataId = id;
@@ -220,6 +229,7 @@ const UpdateModal: React.FC<OwnProps> = ({
       }
     }
 
+    setIsSubMitting(false);
     window.location.replace('/gallery');
   };
 
