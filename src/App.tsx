@@ -11,6 +11,8 @@ import IntroPage from './pages/Intro';
 import With from './pages/With';
 import GalleryLayout from './components/common/Layout/GalleryLayout';
 import WikiLayout from './components/common/Layout/WikiLayout';
+import Register from './pages/Register';
+import ChooseId from './pages/ChooseId';
 
 const App = () => {
   return (
@@ -69,8 +71,16 @@ const App = () => {
         />
       </Route>
       <Route
+        path="/register/"
+        element={<Register />}
+      />
+      <Route
         path="/login/"
         element={<Login />}
+      />
+      <Route
+        path="/choose/"
+        element={<ChooseId />}
       />
     </Routes>
   );

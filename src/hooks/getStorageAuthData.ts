@@ -1,25 +1,45 @@
 import React from 'react';
+import { useRecoilValue } from 'recoil';
+import { isLoginSelector } from '../recoil/authRecoil';
 
-const getLocalData = (): Boolean => {
-  const isLocalStorage = localStorage.getItem('accessToken');
-  if (!isLocalStorage) {
+const isLenghtValid = (isLocalStorage: number) => {
+  if (isLocalStorage === 0) {
     return false;
   }
-  const obj = JSON.parse(isLocalStorage);
-  if (Date.now() > obj.expiry) {
-    localStorage.removeItem('accessToken');
-    return false;
-  }
-
   return true;
 };
 
-const getSessionData = (): Boolean => {
-  const isSessionStorage = sessionStorage.getItem('invalidToken');
-  if (!isSessionStorage) {
-    return false;
+const findLocalStorageKey = (storageLength: number) => {
+  for (let i = 0; i < storageLength; i += 1) {
+    const key = localStorage.key(i);
+    if (key) {
+      const value = localStorage.getItem(key);
+      const { expire } = JSON.parse(value as string);
+      if (expire < Date.now()) {
+        localStorage.removeItem(key);
+      }
+    }
   }
-  return true;
+  if (storageLength > 0) {
+    return true;
+  }
+  return false;
+};
+
+const getLocalData = () => {
+  const isLocalStorage = localStorage.length;
+  if (isLenghtValid(isLocalStorage)) {
+    return findLocalStorageKey(isLocalStorage);
+  }
+  return false;
+};
+
+const getSessionData = () => {
+  const value = useRecoilValue(isLoginSelector);
+  if (value) {
+    return true;
+  }
+  return false;
 };
 
 export { getLocalData, getSessionData };

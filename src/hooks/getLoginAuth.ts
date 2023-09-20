@@ -1,5 +1,5 @@
 import React from 'react';
-import { getLocalData, getSessionData } from './getStorageAuthData';
+import { getSessionData } from './getStorageAuthData';
 
 const getLoginAuth = () => {
   const isAuth = getSessionData(); // ture

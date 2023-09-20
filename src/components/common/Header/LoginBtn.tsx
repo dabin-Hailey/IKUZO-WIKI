@@ -33,8 +33,7 @@ const LoginButton = () => {
   const handleLogin: ReactEventHandler<HTMLAnchorElement> = e => {
     e.preventDefault();
     if (getLocalData()) {
-      loginDataAlreadyRetrived();
-      navigate('/');
+      navigate('/choose');
     } else {
       navigate('/login');
     }
