@@ -16,6 +16,7 @@ const ModalBackground = styled.div`
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.6);
+  z-index: 9;
 `;
 
 const ModalWindow = styled.div`
