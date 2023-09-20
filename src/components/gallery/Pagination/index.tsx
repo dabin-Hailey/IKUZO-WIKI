@@ -1,5 +1,44 @@
 import React from 'react';
+import styled from 'styled-components';
 import ReactPaginate from 'react-js-pagination';
+
+const MyPaginate = styled.div`
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+    border-radius: 50%;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+  }
+
+  & .pagination {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 40px;
+    list-style-type: none;
+
+    li.active a {
+      background-color: var(--color-primary);
+      color: black;
+    }
+
+    li.disabled a {
+      color: lightgray;
+    }
+
+    li.disable,
+    li.disabled a {
+      cursor: default;
+    }
+  }
+`;
 
 interface PaginationProps {
   itemsPerPage: number;
@@ -15,8 +54,14 @@ const PaginationComponent: React.FC<PaginationProps> = ({
   handlePageChange,
 }) => {
   return (
-    <div className="pagination">
+    //   <MyPaginate
+    //   pageCount={20}
+    //   onPageChange={this.handlePageClick}
+    //   forcePage={currentPage}
+    // />
+    <MyPaginate>
       <ReactPaginate
+        // className="pagination"
         activePage={activePage}
         itemsCountPerPage={itemsPerPage}
         totalItemsCount={totalItems}
@@ -25,7 +70,9 @@ const PaginationComponent: React.FC<PaginationProps> = ({
         itemClass="page-item"
         linkClass="page-link"
       />
-    </div>
+    </MyPaginate>
+
+    // </MyPaginate>
   );
 };
 

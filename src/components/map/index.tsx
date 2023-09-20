@@ -69,8 +69,8 @@ const MapComponent = ({
         places[i].y,
         places[i].x,
       );
-      const marker = addMarker(placePosition, i);
-      const itemEl = getListItem(i, places[i]);
+      const marker = addMarker(placePosition, i, places[i]);
+      const itemEl = getListItem(placePosition, i, places[i]);
 
       bounds.extend(placePosition);
 
@@ -83,13 +83,13 @@ const MapComponent = ({
           infoWindow.close();
         });
 
-        itemEl.onmouseover = () => {
-          displayInfowindow(marker, title);
-        };
+        // itemEl.onmouseover = () => {
+        //   displayInfowindow(marker, title);
+        // };
 
-        itemEl.onmouseout = () => {
-          infoWindow.close();
-        };
+        // itemEl.onmouseout = () => {
+        //   infoWindow.close();
+        // };
       })(marker, places[i].place_name);
 
       fragment.appendChild(itemEl);
@@ -103,7 +103,7 @@ const MapComponent = ({
     }
   };
 
-  function getListItem(index: any, places: any) {
+  function getListItem(position: any, index: any, places: any) {
     const el = document.createElement('li');
     let itemStr =
       `<span class="markerbg marker_${index + 1}"></span>` +
@@ -126,12 +126,14 @@ const MapComponent = ({
     el.addEventListener('click', () => {
       console.log(places.place_name);
       handlePlaceClick(places.place_name, places.address_name);
+      map.setCenter(position);
+      map.setLevel(5);
     });
 
     return el;
   }
 
-  function addMarker(position: any, idx: any) {
+  function addMarker(position: any, idx: any, place: any) {
     const imageSrc =
       'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png';
     const imageSize = new window.kakao.maps.Size(36, 37);
@@ -150,6 +152,12 @@ const MapComponent = ({
     const marker = new window.kakao.maps.Marker({
       position,
       image: markerImage,
+    });
+
+    window.kakao.maps.event.addListener(marker, 'click', () => {
+      handlePlaceClick(place.place_name, place.address_name);
+      map.setCenter(position);
+      map.setLevel(5);
     });
 
     marker.setMap(map);

@@ -1,15 +1,35 @@
 import { atom, selector } from 'recoil';
+import { recoilPersist } from 'recoil-persist';
 
-const authState = atom({
-  key: 'authState',
+const { persistAtom } = recoilPersist({
+  storage: sessionStorage,
+});
+
+const emailState = atom({
+  key: 'emailState',
   default: undefined,
+
+  effects_UNSTABLE: [persistAtom],
+});
+
+const uidState = atom({
+  key: 'uidState',
+  default: undefined,
+
+  effects_UNSTABLE: [persistAtom],
 });
 
 const isLoginSelector = selector({
   key: 'isLoginSelector',
-  get: ({ get }: any) => {
-    return !!get(authState);
+  get: ({ get }) => {
+    const uid = get(uidState);
+    const email = get(emailState);
+
+    if (uid && email) {
+      return true;
+    }
+    return false;
   },
 });
 
-export { authState, isLoginSelector };
+export { emailState, uidState, isLoginSelector };

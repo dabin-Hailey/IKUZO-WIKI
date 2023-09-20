@@ -17,6 +17,7 @@ const LoginButtons = styled(NavLink)`
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
   cursor: pointer;
+  text-decoration-line: none;
 `;
 
 const handleLogout: ReactEventHandler<HTMLAnchorElement> = e => {
@@ -32,8 +33,7 @@ const LoginButton = () => {
   const handleLogin: ReactEventHandler<HTMLAnchorElement> = e => {
     e.preventDefault();
     if (getLocalData()) {
-      loginDataAlreadyRetrived();
-      navigate('/');
+      navigate('/choose');
     } else {
       navigate('/login');
     }

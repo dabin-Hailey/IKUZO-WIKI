@@ -128,6 +128,7 @@ const AddModal = ({ onChange }: { onChange: () => void }) => {
   const [restaurant, setRestaurant] = useState('');
   const [imgPath, setImgPath] = useState('');
   const [imgFile, setImgFile] = useState<File>();
+  const [isSubmitting, setIsSubMitting] = useState(false);
   const imgRef = useRef<HTMLInputElement>(null);
 
   const previewImage = () => {
@@ -153,6 +154,14 @@ const AddModal = ({ onChange }: { onChange: () => void }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (isSubmitting) {
+      alert('등록 중입니다!');
+      return;
+    }
+
+    setIsSubMitting(true);
+
     const form = e.target as HTMLFormElement;
     if (imgFile) {
       const imageURL = await addImage(imgFile as File);
@@ -163,6 +172,8 @@ const AddModal = ({ onChange }: { onChange: () => void }) => {
         photo: imageURL,
         restaurant,
       });
+
+      setIsSubMitting(false);
       window.location.replace('/gallery');
     }
   };

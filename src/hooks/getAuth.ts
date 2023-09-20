@@ -1,4 +1,5 @@
-import { signIn } from '../utils/util';
+import { signIn, createUser } from '../utils/util';
+import { isLoginSelector } from '../recoil/authRecoil';
 
 interface LoginData {
   value: string;
@@ -10,25 +11,27 @@ const loginFunciton = async (
   password: string,
   from: string,
   callback: (props: any) => void,
-  callback2: (props: string) => void,
+  callback2: (props: any) => void,
+  callback3: (props: string) => void,
 ) => {
   try {
     const { uid } = await signIn(email, password);
-    callback(uid);
-    callback2(from);
+    callback(email);
+    callback2(uid);
+    callback3(from);
     const obj = {
+      enrollEmail: email,
       value: uid,
       expire: Date.now() + 1000 * 60 * 60 * 24 * 7,
     };
-    sessionStorage.setItem('invalidToken', uid);
-    localStorage.setItem('accessToken', JSON.stringify(obj));
+    localStorage.setItem(`access-${email}`, JSON.stringify(obj));
   } catch (error) {
     callback2('/login');
   }
 };
 
 const logoutFunction = () => {
-  sessionStorage.removeItem('invalidToken');
+  sessionStorage.clear();
 };
 
 const loginDataAlreadyRetrived = (): void => {
@@ -39,4 +42,32 @@ const loginDataAlreadyRetrived = (): void => {
   }
 };
 
-export { loginFunciton, logoutFunction, loginDataAlreadyRetrived };
+const registerFunction = async (
+  email: string,
+  password: string,
+  callback: (props: any) => void,
+  callback2: (props: any) => void,
+  callback3: (props: string) => void,
+) => {
+  try {
+    const { uid } = await createUser(email, password);
+    callback(email);
+    callback2(uid);
+    callback3('/');
+    const obj = {
+      enrollEmail: email,
+      value: uid,
+      expire: Date.now() + 1000 * 60 * 60 * 24 * 7,
+    };
+    localStorage.setItem(`access-${email}`, JSON.stringify(obj));
+  } catch (error) {
+    callback2('/register');
+  }
+};
+
+export {
+  loginFunciton,
+  logoutFunction,
+  registerFunction,
+  loginDataAlreadyRetrived,
+};
