@@ -255,7 +255,6 @@ const MapComponent = ({
   return (
     <S.MapContainer>
       <S.Map id="map"></S.Map>
-
       <S.MenuContainer id="menu-container">
         <S.Option>
           <form
