@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import getLoginAuth from '../../../../hooks/getLoginAuth';
 import { updateDataByNumber } from '../../../../utils/util';
 
 type Props = {
@@ -51,7 +52,13 @@ const ButtonContainer = styled.div`
 `;
 
 const WithButton: React.FC<Props> = ({ id, joined, people }) => {
+  const isLogin = getLoginAuth();
+
   const onClick = async () => {
+    if (!isLogin) {
+      alert('로그인이 필요합니다.');
+      return;
+    }
     await updateDataByNumber('with-collection', id, 'joined');
   };
 

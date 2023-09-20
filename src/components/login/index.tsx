@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useForm, SubmitHandler, set } from 'react-hook-form';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { createUser, signIn } from '../../utils/util';
 import { authState } from '../../recoil/authRecoil';
+import { loginFunciton } from '../../hooks/getAuth';
 
 type Inputs = {
   email: string;
@@ -54,24 +55,8 @@ const SubmitInput = styled.button`
   }
 `;
 
-const loginFunciton = async (
-  email: string,
-  password: string,
-  from: string,
-  callback: (props: any) => void,
-  callback2: (props: string) => void,
-) => {
-  try {
-    const { uid } = await signIn(email, password);
-    callback(uid);
-    callback2(from);
-  } catch (error) {
-    callback2('/login');
-  }
-};
-
 const LoginComponent = () => {
-  const [accessToken, setAccessToken] = useRecoilState(authState);
+  const setAccessToken = useSetRecoilState(authState);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.redirectedFrom?.pathname || '/';
@@ -109,14 +94,6 @@ const LoginComponent = () => {
         />
         <p>{errors.password?.message}</p>
         <SubmitInput type="submit">제출</SubmitInput>
-        <button
-          type="button"
-          onClick={() => {
-            return console.log(accessToken);
-          }}
-        >
-          토큰확인
-        </button>
       </Form>
     </InputWrapper>
   );

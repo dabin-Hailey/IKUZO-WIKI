@@ -1,10 +1,9 @@
 import React from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { isLoginSelector } from '../recoil/authRecoil';
+import getLoginAuth from '../hooks/getLoginAuth';
 
 const ProtectedRoute = () => {
-  const isLogin = useRecoilValue(isLoginSelector);
+  const isLogin = getLoginAuth();
   const currentLocation = useLocation();
 
   return isLogin ? (

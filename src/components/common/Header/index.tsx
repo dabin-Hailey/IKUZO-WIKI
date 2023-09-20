@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import headerIconSvg from '../../../assets/logo.png';
+import LoginButton from './LoginBtn';
 
 interface StyledHeaderProps {
   transparent: boolean;
@@ -69,6 +70,16 @@ const RightList = styled.ul`
   margin: 0;
 `;
 
+const MyPageButton = styled.button`
+  font-size: 1rem;
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+`;
+
 const StyledHeader: React.FC<StyledHeaderProps> = ({ transparent }) => {
   const handleGoToHome = () => {
     window.location.href = '/';
@@ -116,10 +127,7 @@ const StyledHeader: React.FC<StyledHeaderProps> = ({ transparent }) => {
             </NavItem>
           </RightItem>
         </RightList>
-        {/* Mypage보기 버튼 주석처리
-        <MyPageButton className="btn btn-primary" type="button">
-          MYPAGE보기
-        </MyPageButton> */}
+        <LoginButton />
       </RightWrapper>
     </HeaderWrapper>
   );
