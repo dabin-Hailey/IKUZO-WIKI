@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useForm, SubmitHandler, set } from 'react-hook-form';
 import { useSetRecoilState } from 'recoil';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, NavLink } from 'react-router-dom';
 import { createUser, signIn } from '../../utils/util';
 import { emailState, uidState } from '../../recoil/authRecoil';
 import { loginFunciton } from '../../hooks/getAuth';
@@ -68,16 +68,6 @@ const FormImg = styled.div`
   }
 `;
 
-const Input = styled.input`
-  width: 100%;
-  height: 3rem;
-  margin-top: 2rem;
-
-  font-size: 1.3rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-`;
-
 const SubmitInput = styled.button`
   font-family: 'IBMPlexSansKR-Regular';
   padding: 0.5rem 1.5rem;
@@ -90,6 +80,28 @@ const SubmitInput = styled.button`
   background-color: var(--color-beige);
   transition: 0.1s;
   box-shadow: 0 3px 0 0 #ffae44;
+
+  &:active {
+    color: #000;
+    box-shadow: 0 0 0 0 #ffae44;
+    transform: translateY(3px);
+  }
+`;
+
+const RegisterLink = styled(NavLink)`
+  font-family: 'IBMPlexSansKR-Regular';
+  padding: 0.8rem 1.5rem;
+  margin-top: 2rem;
+
+  border: none;
+  border-radius: 1rem;
+
+  font-size: 1.3rem;
+  background-color: var(--color-beige);
+  transition: 0.1s;
+  box-shadow: 0 3px 0 0 #ffae44;
+  text-decoration: none;
+  color: #000;
 
   &:active {
     color: #000;
@@ -139,6 +151,15 @@ const LastStyledInput = styled.input`
   }
 `;
 
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 50%;
+  gap: 1rem;
+`;
+
 const LoginComponent = () => {
   const setEmail = useSetRecoilState(emailState);
   const setUid = useSetRecoilState(uidState);
@@ -185,7 +206,10 @@ const LoginComponent = () => {
           type="password"
         />
         <p>{errors.password?.message}</p>
-        <SubmitInput type="submit">제출</SubmitInput>
+        <ButtonWrapper>
+          <SubmitInput type="submit">제출</SubmitInput>
+          <RegisterLink to="/register">회원가입</RegisterLink>
+        </ButtonWrapper>
       </Form>
     </InputWrapper>
   );
