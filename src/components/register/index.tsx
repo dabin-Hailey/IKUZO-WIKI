@@ -3,9 +3,8 @@ import styled from 'styled-components';
 import { useForm, SubmitHandler, set } from 'react-hook-form';
 import { useSetRecoilState } from 'recoil';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { createUser, signIn } from '../../utils/util';
 import { emailState, uidState } from '../../recoil/authRecoil';
-import { loginFunciton } from '../../hooks/getAuth';
+import { loginFunciton, registerFunction } from '../../hooks/getAuth';
 
 type Inputs = {
   email: string;
@@ -55,7 +54,7 @@ const SubmitInput = styled.button`
   }
 `;
 
-const LoginComponent = () => {
+const Register = () => {
   const setEmail = useSetRecoilState(emailState);
   const setUid = useSetRecoilState(uidState);
   const navigate = useNavigate();
@@ -71,18 +70,21 @@ const LoginComponent = () => {
   const onSubmit: SubmitHandler<Inputs> = async (data, e) => {
     e?.preventDefault();
     const { email, password } = data;
-    await loginFunciton(email, password, from, setEmail, setUid, navigate);
+    await registerFunction(email, password, setEmail, setUid, navigate);
   };
 
   return (
     <InputWrapper>
       <Form onSubmit={handleSubmit(onSubmit)}>
+        <p>이메일을 입력하세요</p>
+        <p>{errors.email?.message}</p>
         <Input
           {...register('email', { required: '이메일을 입력하세요' })}
           placeholder="Write your email"
           type="email"
         />
-        <p>{errors.email?.message}</p>
+        <p>패스워드를 입력하세요</p>
+        <p>{errors.password?.message}</p>
         <Input
           {...register('password', {
             required: '패스워드를 입력하세요',
@@ -93,11 +95,10 @@ const LoginComponent = () => {
           })}
           type="password"
         />
-        <p>{errors.password?.message}</p>
-        <SubmitInput type="submit">제출</SubmitInput>
+        <SubmitInput type="submit">회원 가입</SubmitInput>
       </Form>
     </InputWrapper>
   );
 };
 
-export default LoginComponent;
+export default Register;
