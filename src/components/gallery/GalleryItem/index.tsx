@@ -76,7 +76,7 @@ const ItemWrapper = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  width: 100%;
+  width: 14rem;
 
   position: absolute;
   bottom: 0;
@@ -95,6 +95,8 @@ const Content = styled.p`
   font-size: 0.9rem;
   color: #d0d0d0;
   margin-bottom: 0.5rem;
+  white-space: pre-line;
+  line-height: 1.3;
 `;
 
 // Component

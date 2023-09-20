@@ -32,7 +32,7 @@ const GalleryList = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem 4%;
+  gap: 2rem 3%;
 `;
 
 // Component

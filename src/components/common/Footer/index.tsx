@@ -13,6 +13,7 @@ const FooterWrapper = styled.footer`
   color: #939393;
   background-color: var(--color-black);
   line-height: 1.4;
+  margin-top: 2rem;
 
   @media screen and (max-width: 1200px) {
     height: 14rem;
