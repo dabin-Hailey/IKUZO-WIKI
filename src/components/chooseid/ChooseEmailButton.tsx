@@ -39,7 +39,7 @@ const ChooseEmailButton = ({ id }: ChooseEmailButtonProps) => {
 
   return (
     <ChooseEmailButtons onClick={handleLogin}>
-      {enrollEmail}로 접속하기
+      {enrollEmail}로 접속하기!!
     </ChooseEmailButtons>
   );
 };
