@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import SkeletonElement from './index';
+import SkeletonElement from './Skeleton';
 
 const SkeletonWrapper = styled.div`
   position: relative;
