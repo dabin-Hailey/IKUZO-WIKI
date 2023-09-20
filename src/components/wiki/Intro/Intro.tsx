@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MarkdownViewer from '../../markdown/MarkdownViewer';
 import MarkdownEditor from '../../markdown/MarkdownEditor';
 import { getData } from '../../../utils/util';
+import SkeletonMarkdown from '../../skeleton/SkeletonMarkdown';
 
 const Intro = () => {
   const wiki = '소개';
@@ -34,7 +35,7 @@ const Intro = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <SkeletonMarkdown />;
   }
   if (status === 'edit') {
     return (
