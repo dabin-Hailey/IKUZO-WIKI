@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import SkeletonElement from './index';
-import ShimmerElement from './Shimmer';
 
 const SkeletonWrapper = styled.div`
   position: relative;
@@ -30,7 +29,6 @@ const SkeletonMarkdown = () => {
         </div>
         <SkeletonElement type="viewer" />
       </MarkdownSkeleton>
-      <ShimmerElement />
     </SkeletonWrapper>
   );
 };
