@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Outlet } from 'react-router-dom';
 import SidebarGallery from '../SidebarGallery';
 import HeaderComponent from '../Header';
 import Footer from '../Footer';
-import ProtectedRoute from '../../../utils/ProtectedRoute';
 
 const GalleryWrapper = styled.div`
   width: 90%;
@@ -28,7 +28,7 @@ const GalleryLayout = () => {
         <Gallery>
           <SidebarGallery />
           <ContentWrapper>
-            <ProtectedRoute />
+            <Outlet />
           </ContentWrapper>
         </Gallery>
       </GalleryWrapper>

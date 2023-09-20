@@ -1,13 +1,10 @@
 import React from 'react';
-import { useRecoilValue } from 'recoil';
-import { isLoginSelector } from '../recoil/authRecoil';
-import getLocalData from './getLocalData';
+import { getLocalData, getSessionData } from './getStorageAuthData';
 
 const getLoginAuth = () => {
-  const isLogin = useRecoilValue(isLoginSelector);
-  const isAuth = getLocalData(); // ture
+  const isAuth = getSessionData(); // ture
 
-  if (isLogin || isAuth) {
+  if (isAuth) {
     return true;
   }
 

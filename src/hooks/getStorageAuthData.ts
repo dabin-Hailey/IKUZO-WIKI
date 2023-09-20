@@ -14,4 +14,12 @@ const getLocalData = (): Boolean => {
   return true;
 };
 
-export default getLocalData;
+const getSessionData = (): Boolean => {
+  const isSessionStorage = sessionStorage.getItem('invalidToken');
+  if (!isSessionStorage) {
+    return false;
+  }
+  return true;
+};
+
+export { getLocalData, getSessionData };
