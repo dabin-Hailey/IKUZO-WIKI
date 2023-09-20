@@ -233,7 +233,11 @@ const MapComponent = ({
         });
       });
       if (initialValue) {
-        searchPlaces();
+        setSearch(initialValue);
+        console.log(search);
+        setTimeout(() => {
+          searchPlaces();
+        }, 100);
       }
     };
 
@@ -265,7 +269,7 @@ const MapComponent = ({
               type="text"
               id="keyword"
               size={15}
-              value={initialValue}
+              value={search}
               onChange={handleChange}
             />
             <button type="submit">검색하기</button>
@@ -277,6 +281,11 @@ const MapComponent = ({
       </S.MenuContainer>
     </S.MapContainer>
   );
+};
+
+MapComponent.defaultProps = {
+  onPlaceSelect: undefined,
+  initialValue: '',
 };
 
 export default MapComponent;

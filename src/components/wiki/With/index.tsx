@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import WithItem from './WIthItem';
 import Modal from './Modal';
+import getLoginAuth from '../../../hooks/getLoginAuth';
 
 export interface Root {
   id: string;
@@ -92,6 +93,7 @@ const ItemWrapper = styled.div`
 `;
 
 const index: React.FC<Props> = ({ data }): JSX.Element => {
+  const isLogin = getLoginAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [modalData, setModalData] = useState({
@@ -103,6 +105,10 @@ const index: React.FC<Props> = ({ data }): JSX.Element => {
   });
 
   const openModal = () => {
+    if (!isLogin) {
+      alert('로그인이 필요합니다.');
+      return;
+    }
     setIsModalOpen(true);
   };
 
