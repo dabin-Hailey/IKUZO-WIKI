@@ -22,7 +22,7 @@ const MarkdownViewer = ({
     <S.MarkdownContainer>
       <S.MarkdownHeader>
         <S.Title>
-          <S.Primary>IKUZO</S.Primary> {wiki}
+          <S.Primary>SWAL</S.Primary> {wiki}
         </S.Title>
         <S.MarkdownButton
           type="button"

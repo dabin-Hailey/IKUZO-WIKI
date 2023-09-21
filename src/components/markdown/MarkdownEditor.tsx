@@ -34,7 +34,7 @@ const MarkdownEditor = ({
     <S.MarkdownContainer>
       <S.MarkdownHeader>
         <S.Title>
-          <S.Primary className="primary">IKUZO</S.Primary> {wiki}
+          <S.Primary className="primary">SWAL</S.Primary> {wiki}
         </S.Title>
         <S.MarkdownButton
           className="markdown-button"

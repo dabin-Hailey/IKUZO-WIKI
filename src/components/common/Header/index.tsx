@@ -100,7 +100,7 @@ const StyledHeader: React.FC<StyledHeaderProps> = ({ transparent }) => {
             src={headerIconSvg}
             alt="headerIcon"
           />
-          <LeftTitle onClick={handleGoToHome}>IKUZO</LeftTitle>
+          <LeftTitle onClick={handleGoToHome}>SWAL</LeftTitle>
         </LeftWrapper>
         <RightWrapper>
           <RightList>
