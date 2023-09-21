@@ -13,6 +13,21 @@ const countState = atom({
   effects_UNSTABLE: [persistAtom],
 });
 
+const countIdState = atom({
+  key: 'countIdState',
+  default: undefined,
+
+  effects_UNSTABLE: [persistAtom],
+});
+
+const countIdSelector = selector({
+  key: 'countIdSelector',
+  get: ({ get }) => {
+    const countId = get(countIdState);
+    return countId;
+  },
+});
+
 const isCountSelector = selector({
   key: 'isCountSelector',
   get: ({ get }) => {
@@ -21,4 +36,4 @@ const isCountSelector = selector({
   },
 });
 
-export { countState, isCountSelector };
+export { countState, countIdState, isCountSelector, countIdSelector };

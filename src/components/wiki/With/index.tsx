@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useRecoilValue } from 'recoil';
 import WithItem from './WIthItem';
 import Modal from './Modal';
 import getLoginAuth from '../../../hooks/getLoginAuth';
+import { isCountSelector } from '../../../recoil/countRecoil';
 
 export interface Root {
   id: string;
@@ -94,6 +96,7 @@ const ItemWrapper = styled.div`
 
 const index: React.FC<Props> = ({ data }): JSX.Element => {
   const isLogin = getLoginAuth();
+  const isCount = useRecoilValue(isCountSelector);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [modalData, setModalData] = useState({
@@ -104,9 +107,14 @@ const index: React.FC<Props> = ({ data }): JSX.Element => {
     maxPeople: 0,
   });
 
-  const openModal = () => {
+  const openModal = (e: React.MouseEvent) => {
+    e.preventDefault();
     if (!isLogin) {
       alert('로그인이 필요합니다.');
+      return;
+    }
+    if (isCount) {
+      alert('이미 신청한 같이먹기 약속이 있습니다.');
       return;
     }
     setIsModalOpen(true);
@@ -167,9 +175,7 @@ const index: React.FC<Props> = ({ data }): JSX.Element => {
         </Highlight>
         <EnrollButton
           type="button"
-          onClick={() => {
-            openModal();
-          }}
+          onClick={openModal}
         >
           Open Modal
         </EnrollButton>{' '}

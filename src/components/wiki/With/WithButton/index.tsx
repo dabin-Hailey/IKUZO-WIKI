@@ -1,9 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import getLoginAuth from '../../../../hooks/getLoginAuth';
 import { updateDataByNumber } from '../../../../utils/util';
-import { isCountSelector, countState } from '../../../../recoil/countRecoil';
+import {
+  isCountSelector,
+  countState,
+  countIdState,
+} from '../../../../recoil/countRecoil';
 
 type Props = {
   id: string;
@@ -53,14 +57,11 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const Notice = () => {
-  return <div>경고경고</div>;
-};
-
 const WithButton: React.FC<Props> = ({ id, joined, people }) => {
   const isLogin = getLoginAuth();
   const isCount = useRecoilValue(isCountSelector);
   const [value, setValue] = useRecoilState(countState);
+  const setValueId = useSetRecoilState(countIdState);
 
   const onClick = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
@@ -70,11 +71,10 @@ const WithButton: React.FC<Props> = ({ id, joined, people }) => {
     }
     if (isCount) {
       alert('이미 참여하셨습니다.');
-      console.log('이미 참여하셨습니다.');
-
       return;
     }
     setValue(value + 1);
+    setValueId(id);
     await updateDataByNumber('with-collection', id, 'joined');
   };
 
