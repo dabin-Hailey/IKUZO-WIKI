@@ -74,7 +74,7 @@ const ItemWrapper = styled.div`
     transform: scale(1.1);
   }
 
-  @media screen and (min-width: 1450px) {
+  @media screen and (min-width: 1600px) {
     --length: 17rem;
   }
 `;
@@ -90,17 +90,32 @@ const ContentWrapper = styled.div`
 `;
 
 const Title = styled.h1`
+  width: 11.7rem;
+  line-height: 1.3;
   font-size: 1.8rem;
   color: var(--color-white);
   margin-bottom: 0.8rem;
+
+  @media screen and (min-width: 1600px) {
+    --length: 17rem;
+    width: 14.6rem;
+    font-size: 2.3rem;
+  }
 `;
 
 const Content = styled.p`
+  width: 11.7rem;
   font-size: 0.9rem;
   color: #d0d0d0;
   margin-bottom: 0.5rem;
   white-space: pre-line;
   line-height: 1.3;
+
+  @media screen and (min-width: 1600px) {
+    --length: 17rem;
+    width: 14.6rem;
+    font-size: 1.2rem;
+  }
 `;
 
 // Component

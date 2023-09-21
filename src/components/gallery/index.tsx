@@ -36,7 +36,7 @@ const GalleryList = styled.div`
   width: 1030px;
   margin-top: 20px;
 
-  @media screen and (min-width: 1450px) {
+  @media screen and (min-width: 1600px) {
     width: 1200px;
   }
 `;
