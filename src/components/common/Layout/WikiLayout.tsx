@@ -6,23 +6,27 @@ import HeaderComponent from '../Header';
 import Footer from '../Footer';
 
 const WikiWrapper = styled.div`
-  width: 90%;
-  margin: 8rem auto 2rem;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  padding: 0 5%;
 `;
 
 const Wiki = styled.div`
+  box-sizing: border-box;
   display: flex;
-  gap: 3rem;
+  justify-content: space-between;
+  gap: 50px;
+  max-width: 1500px;
+  min-width: 1300px;
   height: 100%;
-`;
+  margin: auto;
+  padding: 8rem 0;
 
-const ContentWrapper = styled.div`
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  gap: 20rem;
-
-  margin-bottom: 4rem;
+  @media screen and (min-width: 1500px) {
+    justify-content: space-evenly;
+    gap: 90px;
+  }
 `;
 
 const WikiLayout = () => {
@@ -32,9 +36,7 @@ const WikiLayout = () => {
       <WikiWrapper>
         <Wiki>
           <SidebarWiki />
-          <ContentWrapper>
-            <Outlet />
-          </ContentWrapper>
+          <Outlet />
         </Wiki>
       </WikiWrapper>
       <Footer />
