@@ -25,8 +25,8 @@ export interface OwnProps {
 
 // styled-components
 const Item = styled.div`
-  width: 15rem;
-  height: 15rem;
+  width: var(--length);
+  height: var(--length);
 `;
 
 const ItemImage = styled.img`
@@ -55,7 +55,7 @@ const ItemHover = styled.div`
 `;
 
 const ItemWrapper = styled.div`
-  --length: 15rem;
+  --length: 14rem;
   width: var(--length);
   height: var(--length);
 
@@ -72,6 +72,10 @@ const ItemWrapper = styled.div`
 
   &:hover ${ItemImage} {
     transform: scale(1.1);
+  }
+
+  @media screen and (min-width: 1450px) {
+    --length: 17rem;
   }
 `;
 

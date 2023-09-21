@@ -29,10 +29,16 @@ export interface OwnProps {
 
 // styled-components
 const GalleryList = styled.div`
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 2rem 3%;
+
+  width: 1030px;
+  margin-top: 20px;
+
+  @media screen and (min-width: 1450px) {
+    width: 1200px;
+  }
 `;
 
 // Component
@@ -85,10 +91,10 @@ const GalleryListing = ({ category }: State): JSX.Element => {
   useEffect(() => {
     setTimeout(() => {
       fetchData(category);
-    }, 3000);
+    }, 1000);
   }, []);
 
-  const itemsPerPage = 6;
+  const itemsPerPage = 8;
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = list.slice(indexOfFirstItem, indexOfLastItem);
@@ -127,7 +133,6 @@ const GalleryListing = ({ category }: State): JSX.Element => {
           );
         })}
       </GalleryList>
-
       <PaginationComponent
         activePage={currentPage}
         totalItems={list.length}
