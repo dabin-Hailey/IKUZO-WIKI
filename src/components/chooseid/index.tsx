@@ -81,7 +81,7 @@ const index = () => {
 
   return (
     <>
-      <StyledHeader transparent={false} />
+      <StyledHeader transparent="false" />
       <PageContainer>
         <PageWrapper>
           {ids &&

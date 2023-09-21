@@ -6,7 +6,7 @@ import Footer from '../components/common/Footer';
 const Register = () => {
   return (
     <>
-      <StyledHeader transparent={false} />
+      <StyledHeader transparent="false" />
       <RegisterComponent />
       <Footer />
     </>
