@@ -4,35 +4,39 @@ import styled from 'styled-components';
 import sidebar from '../../../assets/sidebar.svg';
 
 const SidebarWikiWrapper = styled.div`
+  position: relative;
   width: 12rem;
+  min-height: 20rem;
   height: 30rem;
   padding: 2rem;
 
   background-color: var(--color-beige);
   border-radius: 1rem;
-  color: var(--color-black);
   box-shadow: 0 0.2rem 0.2rem 0 #c3c3c3;
+
+  color: var(--color-black);
+  white-space: nowrap;
+  overflow: visible;
 
   .sidebar__wiki--header {
     display: flex;
+    gap: 0.5rem;
     justify-content: flex-start;
     align-items: center;
     margin-bottom: 1.2rem;
 
     .sidebar__wiki--icon {
       width: 2rem;
-      color: #ffa800;
-    }
-
-    a {
-      text-decoration: none;
-      color: var(--color-black);
     }
 
     h2 {
-      margin-left: 0.5rem;
       font-size: 1.2rem;
     }
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--color-black);
   }
 
   ul {
@@ -41,17 +45,6 @@ const SidebarWikiWrapper = styled.div`
 
   li {
     margin-bottom: 0.7rem;
-  }
-
-  .sidebar__wiki--items.active {
-    font-weight: bold;
-    color: #ffa800;
-  }
-
-  .sidebar__wiki--items:hover {
-    background-color: #fff0b8;
-    box-shadow: inset 0 0.1rem 0.1rem 0 #f6e6ac;
-    padding: 0.8rem 1.5rem;
   }
 `;
 
@@ -70,8 +63,11 @@ const StyledNavLink = styled(NavLink)`
   }
 
   &.active {
-    font-weight: bold;
+    font-weight: 700;
     color: #ffa800;
+    text-decoration: none;
+    background-color: #fff0b8;
+    box-shadow: inset 0 0.1rem 0.1rem 0 #f6e6ac;
   }
 `;
 

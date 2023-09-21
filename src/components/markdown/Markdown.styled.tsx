@@ -3,9 +3,6 @@ import styled from 'styled-components';
 const MarkdownContainer = styled.div`
   width: 850px;
   height: 79vh;
-  /* position: relative; */
-  /* margin-left: 5rem; */
-  /* margin-top: 2rem; */
 
   .markdown-header {
     display: flex;

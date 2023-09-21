@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MarkdownViewer from '../../markdown/MarkdownViewer';
 import MarkdownEditor from '../../markdown/MarkdownEditor';
 import { getData } from '../../../utils/util';
+import SkeletonMarkdown from '../../skeleton/SkeletonMarkdown';
 
 const Notice = () => {
   const wiki = '공지사항';
@@ -30,11 +31,13 @@ const Notice = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    setTimeout(() => {
+      fetchData();
+    }, 1000);
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <SkeletonMarkdown />;
   }
   if (status === 'edit') {
     return (

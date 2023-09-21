@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { getDataByField, deleteData } from '../../utils/util';
 import GalleryItems from './GalleryItem/index';
 import PaginationComponent from './Pagination';
+import SkeletonGallery from '../skeleton/SkeletonGallery';
 
 // type
 export interface Root {
@@ -27,12 +28,11 @@ export interface OwnProps {
 }
 
 // styled-components
-
 const GalleryList = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem 4%;
+  gap: 2rem 3%;
 `;
 
 // Component
@@ -41,6 +41,7 @@ const GalleryListing = ({ category }: State): JSX.Element => {
   const [updateModalID, setUpdateModalID] = useState<string | null>(null);
   const [deleteModalID, setDeleteModalID] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const openUpdateModal = (id: string) => {
     setUpdateModalID(id);
@@ -78,11 +79,14 @@ const GalleryListing = ({ category }: State): JSX.Element => {
       category,
     );
     setList(data);
+    setLoading(false);
   };
 
   useEffect(() => {
-    fetchData(category);
-  }, [category]);
+    setTimeout(() => {
+      fetchData(category);
+    }, 3000);
+  }, []);
 
   const itemsPerPage = 6;
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -93,6 +97,9 @@ const GalleryListing = ({ category }: State): JSX.Element => {
     setCurrentPage(PageNumber);
   };
 
+  if (loading) {
+    return <SkeletonGallery />;
+  }
   return (
     <div>
       <GalleryList>

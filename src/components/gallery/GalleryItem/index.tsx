@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import GalleryButton from '../GalleryButton/index';
 
@@ -64,7 +64,6 @@ const ItemWrapper = styled.div`
   border-radius: 1rem;
   box-shadow: 2px 3px 5px 0 gray;
   box-sizing: border-box;
-  /* margin: 1rem; */
   overflow: hidden;
 
   &:hover ${ItemHover} {
@@ -77,7 +76,7 @@ const ItemWrapper = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  width: 100%;
+  width: 14rem;
 
   position: absolute;
   bottom: 0;
@@ -96,6 +95,8 @@ const Content = styled.p`
   font-size: 0.9rem;
   color: #d0d0d0;
   margin-bottom: 0.5rem;
+  white-space: pre-line;
+  line-height: 1.3;
 `;
 
 // Component
@@ -117,7 +118,10 @@ const GalleryItems: React.FC<OwnProps> = ({
   return (
     <ItemWrapper>
       <Item>
-        <ItemImage src={photo} />
+        <ItemImage
+          src={photo}
+          alt={restaurant}
+        />
       </Item>
       <ItemHover>
         <GalleryButton

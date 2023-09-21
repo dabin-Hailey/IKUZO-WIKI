@@ -5,13 +5,14 @@ import SidebarWiki from '../SidebarWiki';
 import HeaderComponent from '../Header';
 import Footer from '../Footer';
 
-const Wiki = styled.div`
+const WikiWrapper = styled.div`
   width: 90%;
-  margin: 8rem auto 0;
+  margin: 8rem auto 2rem;
 `;
 
-const WikiWrapper = styled.div`
+const Wiki = styled.div`
   display: flex;
+  gap: 3rem;
   height: 100%;
 `;
 
@@ -28,14 +29,14 @@ const WikiLayout = () => {
   return (
     <>
       <HeaderComponent transparent={false} />
-      <Wiki>
-        <WikiWrapper>
+      <WikiWrapper>
+        <Wiki>
           <SidebarWiki />
           <ContentWrapper>
             <Outlet />
           </ContentWrapper>
-        </WikiWrapper>
-      </Wiki>
+        </Wiki>
+      </WikiWrapper>
       <Footer />
     </>
   );

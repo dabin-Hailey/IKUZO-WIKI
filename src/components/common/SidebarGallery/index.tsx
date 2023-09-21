@@ -6,9 +6,9 @@ import sidebar from '../../../assets/sidebar.svg';
 
 const GallerySidebar = styled.div`
   position: relative;
-  width: 12rem;
+  width: 13.7rem;
   min-height: 20rem;
-  height: 100%;
+  height: 75vh;
   padding: 2rem;
 
   background-color: var(--color-beige);
@@ -84,7 +84,6 @@ const AddButton = styled.button`
   border-radius: 30px;
   box-shadow: 0 2px 4px #9c9c9c;
   cursor: pointer;
-  /* transition: 0.5s; */
 
   &:hover {
     font-weight: 700;
