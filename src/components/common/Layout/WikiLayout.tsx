@@ -28,7 +28,7 @@ const ContentWrapper = styled.div`
 const WikiLayout = () => {
   return (
     <>
-      <HeaderComponent transparent={false} />
+      <HeaderComponent transparent="false" />
       <WikiWrapper>
         <Wiki>
           <SidebarWiki />

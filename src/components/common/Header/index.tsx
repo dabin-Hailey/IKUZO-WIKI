@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import headerIconSvg from '../../../assets/logo.png';
 import LoginButton from './LoginBtn';
 
 interface StyledHeaderProps {
-  transparent: boolean;
+  transparent: string;
 }
 
 const HeaderWrapper = styled.div<StyledHeaderProps>`
@@ -21,7 +21,7 @@ const HeaderWrapper = styled.div<StyledHeaderProps>`
   color: #ffd850;
   font-weight: 700;
   background-color: ${props => {
-    return props.transparent ? 'rgba(57, 57, 57, 0.5)' : '#393939';
+    return props.transparent === 'true' ? 'rgba(57, 57, 57, 0.5)' : '#393939';
   }};
   padding: 0 10%;
   z-index: 9;
@@ -81,8 +81,9 @@ const MyPageButton = styled.button`
 `;
 
 const StyledHeader: React.FC<StyledHeaderProps> = ({ transparent }) => {
+  const navigate = useNavigate();
   const handleGoToHome = () => {
-    window.location.href = '/';
+    navigate('/');
   };
 
   return (

@@ -261,8 +261,7 @@ const MapComponent = ({
     };
 
     const script = document.createElement('script');
-    script.src =
-      '//dapi.kakao.com/v2/maps/sdk.js?appkey=9b030ce60bbd0b34fbe467f46bd084a8&libraries=services&autoload=false';
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAO_API_ID}&libraries=services&autoload=false`;
     document.head.appendChild(script);
     script.addEventListener('load', onLoadKakaoMap);
 
