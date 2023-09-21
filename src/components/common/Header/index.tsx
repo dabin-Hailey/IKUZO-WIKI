@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import headerIconSvg from '../../../assets/logo.png';
 import LoginButton from './LoginBtn';
 
@@ -81,8 +81,9 @@ const MyPageButton = styled.button`
 `;
 
 const StyledHeader: React.FC<StyledHeaderProps> = ({ transparent }) => {
+  const navigate = useNavigate();
   const handleGoToHome = () => {
-    window.location.href = '/';
+    navigate('/');
   };
 
   return (
