@@ -87,7 +87,7 @@ export const addImage = async (image: File) => {
 
 export const setData = async (
   collectionName: string,
-  props: any,
+  props: Omit<Notice, 'id'>,
 ): Promise<void> => {
   const date = new Date();
   const dataId = `${collectionName}-${date.getTime()}`;
@@ -97,7 +97,7 @@ export const setData = async (
 
 export const setGalleryData = async (
   collectionName: string,
-  props: any,
+  props: Omit<Notice, 'id'>,
 ): Promise<void> => {
   const date = new Date();
   const dataId = `food${date.getTime()}`;
@@ -115,7 +115,7 @@ export const setGalleryData = async (
 export const updateData = async (
   collectionName: string,
   dataId: string,
-  props: any,
+  props: Omit<Notice, 'id'>,
 ): Promise<void> => {
   await setDoc(doc(db, collectionName, dataId), props);
 };

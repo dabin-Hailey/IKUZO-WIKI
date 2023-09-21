@@ -23,31 +23,33 @@ IKUZO를 사용하기 위해서는 먼저 회원 가입을 해야 합니다. 회
 
 ### 📌 IKUZO의 비지니스 / 프로덕트 문제
 
-IKUZO의 비전 : 맛집에서 밥은 다같이 맛있게 먹어야 한다.
+**IKUZO의 비전** : 맛집에서 밥은 다같이 맛있게 먹어야 한다.
 
-IKUZO의 비지니스 요구사항
+**IKUZO의 비지니스 요구사항**
 
 1. 맛집 공유의 편리함
 2. 밥약을 빠르게 잡을 수 있는 신속함
 
-IKUZO의 타겟
+**IKUZO의 타겟**
 
 1. 맛집 정보를 나누고 싶은 공유 Lover
 2. 밥약을 잡아서 같이 밥을 먹고 싶은 혼밥 Hater
 
-IKUZO의 프로덕트 구현
+**IKUZO의 프로덕트 구현**
 
-1. 맛집 정보를 나누고 싶은 공유 Lover
+1. **맛집 정보를 나누고 싶은 공유 Lover**
 
 - 카테고리에 맞는 맛집 공유
 - 모든 정보를 기입하지 않고 지도 검색으로 간단하게 맛집을 추가할 수 있는 기능
 
-2. 밥약을 잡아서 같이 밥을 먹고 싶은 혼밥 Hater
+2. **밥약을 잡아서 같이 밥을 먹고 싶은 혼밥 Hater**
 
 - 30분 이내에서 유효한 밥약을 참여할 수 있는 기능
 - 모든 정보를 기입하지 않고 지도 검색으로 간단하게 밥약을 추가할 수 있는 기능
 
 ### 📌 IKUZO의 유저플로우
+
+<img src="https://firebasestorage.googleapis.com/v0/b/fc-wiki-allocation.appspot.com/o/readme%2FUserflow.png?alt=media&token=787126a6-d95d-4b94-b5fd-3c66dae87c07">
 
 ### 📌 IKUZO의 아키텍쳐
 
