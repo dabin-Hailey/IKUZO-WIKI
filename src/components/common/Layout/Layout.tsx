@@ -32,7 +32,7 @@ const Layout = styled.div`
 const LayoutComponent = () => {
   return (
     <>
-      <HeaderComponent transparent={false} />
+      <HeaderComponent transparent="false" />
       <LayoutContainer>
         <Layout>
           <SidebarGallery />

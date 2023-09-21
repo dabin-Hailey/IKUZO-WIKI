@@ -276,7 +276,7 @@ const Home = () => {
 
   return (
     <HomeWrapper className="home">
-      <Header transparent />
+      <Header transparent="true" />
       <HomeBackground className="home__background">
         <HomeBgImageCover className="home__bgImg--cover" />
       </HomeBackground>

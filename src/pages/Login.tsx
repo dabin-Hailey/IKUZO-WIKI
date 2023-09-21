@@ -6,7 +6,7 @@ import Footer from '../components/common/Footer';
 const Login = () => {
   return (
     <>
-      <StyledHeader transparent={false} />
+      <StyledHeader transparent="false" />
       <LoginComponent />
       <Footer />
     </>
