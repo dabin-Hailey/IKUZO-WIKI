@@ -1,9 +1,14 @@
 import React from 'react';
+import Home from '../components/home';
+import Footer from '../components/common/Footer';
 
-import Header from '../components/common/Header';
-
-const HomePage = () => {
-  return <Header />;
+const Wiki = () => {
+  return (
+    <>
+      <Home />
+      <Footer />
+    </>
+  );
 };
 
-export default HomePage;
+export default Wiki;
