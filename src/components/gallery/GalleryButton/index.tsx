@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import swal from 'sweetalert';
+import { useRecoilValue } from 'recoil';
+import { isLoginSelector } from '../../../recoil/authRecoil';
 import DeleteModal from '../Modal/DeleteModal';
 import UpdateModal from '../Modal/UpdateModal';
 import UpdateIconSvg from '../../../assets/UpdateIcon.svg';
@@ -65,10 +68,18 @@ const GalleryButton: React.FC<OwnProps> = ({
   closeDeleteModal,
   initialValue,
 }) => {
+  const isLogin = useRecoilValue(isLoginSelector);
   return (
     <ButtonWrapper>
       <Button
         onClick={() => {
+          if (!isLogin) {
+            return swal({
+              title: '로그인이 필요합니다.',
+              text: '로그인 좋은 말로 할 때 하세요~! 🤬',
+              icon: 'warning',
+            });
+          }
           return openUpdateModal(id);
         }}
       >
@@ -91,6 +102,13 @@ const GalleryButton: React.FC<OwnProps> = ({
       )}
       <Button
         onClick={() => {
+          if (!isLogin) {
+            return swal({
+              title: '로그인이 필요합니다.',
+              text: '로그인 좋은 말로 할 때 하세요~! 🤬',
+              icon: 'warning',
+            });
+          }
           return openDeleteModal(id);
         }}
       >

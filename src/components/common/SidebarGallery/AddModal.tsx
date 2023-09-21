@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
+import swal from 'sweetalert';
 import MapComponent from '../../map';
 import addImg from '../../../assets/add-image.png';
 import closeIcon from '../../../assets/close-icon.png';
@@ -156,7 +157,7 @@ const AddModal = ({ onChange }: { onChange: () => void }) => {
     e.preventDefault();
 
     if (isSubmitting) {
-      alert('등록 중입니다!');
+      swal('잠시만 기다려주세요!', '이미지 업로드 중입니다.', 'warning');
       return;
     }
 

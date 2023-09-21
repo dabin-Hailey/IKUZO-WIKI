@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import swal from 'sweetalert';
 import { useRecoilValue } from 'recoil';
 import WithItem from './WIthItem';
 import Modal from './Modal';
@@ -110,11 +111,19 @@ const index: React.FC<Props> = ({ data }): JSX.Element => {
   const openModal = (e: React.MouseEvent) => {
     e.preventDefault();
     if (!isLogin) {
-      alert('로그인이 필요합니다.');
+      swal({
+        title: '로그인이 필요합니다.',
+        text: '로그인 좋은 말로 할 때 하세요~! 🤬',
+        icon: 'warning',
+      });
       return;
     }
     if (isCount) {
-      alert('이미 신청한 같이먹기 약속이 있습니다.');
+      swal({
+        title: '이미 선택하셨습니다...',
+        text: '당신을 기다리고 있는 맛있는 밥 약속이 곧 성사됩니다 😘',
+        icon: 'success',
+      });
       return;
     }
     setIsModalOpen(true);

@@ -14,18 +14,16 @@ const ChooseEmailButtons = styled.a`
   cursor: pointer;
 `;
 
-const getParsedData = (id: string) => {
-  const data = localStorage.getItem(id);
-  if (!data) return null;
+const getParsedData = (data: string) => {
   return JSON.parse(data);
 };
 
 type ChooseEmailButtonProps = {
-  id: string;
+  data: string;
 };
 
-const ChooseEmailButton = ({ id }: ChooseEmailButtonProps) => {
-  const { enrollEmail, value } = getParsedData(id);
+const ChooseEmailButton = ({ data }: ChooseEmailButtonProps) => {
+  const { enrollEmail, value } = getParsedData(data);
   const setEnrollEmail = useSetRecoilState(emailState);
   const setValue = useSetRecoilState(uidState);
   const navigate = useNavigate();

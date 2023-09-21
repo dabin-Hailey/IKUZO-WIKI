@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import swal from 'sweetalert';
 import * as S from './Map.styled';
 
 declare const window: typeof globalThis & {
@@ -34,7 +35,11 @@ const MapComponent = ({
     const keyword = (document.getElementById('keyword') as HTMLInputElement)
       ?.value;
     if (!keyword) {
-      alert('검색어를 입력해주세요!');
+      swal({
+        title: '검색어를 입력해주세요.',
+        text: '검색어를 입력하지 않으면 검색할 수 없습니다. 🤔',
+        icon: 'warning',
+      });
       return false;
     }
     if (places) {
@@ -49,9 +54,17 @@ const MapComponent = ({
       displayPlaces(data);
       displayPagination(pagination);
     } else if (status === window.kakao.maps.services.Status.ZERO_RESULT) {
-      alert('검색 결과가 존재하지 않습니다.');
+      swal({
+        title: '검색 결과가 존재하지 않습니다.',
+        text: '검색 결과가 존재하지 않습니다. 😥',
+        icon: 'warning',
+      });
     } else if (status === window.kakao.maps.services.Status.ERROR) {
-      alert('검색 결과 중 오류가 발생했습니다.');
+      swal({
+        title: '검색 결과 중 오류가 발생했습니다.',
+        text: '검색 결과 중 오류가 발생했습니다. 😥',
+        icon: 'warning',
+      });
     }
   };
 
@@ -124,7 +137,6 @@ const MapComponent = ({
     el.className = 'item';
 
     el.addEventListener('click', () => {
-      console.log(places.place_name);
       handlePlaceClick(places.place_name, places.address_name);
       map.setCenter(position);
       map.setLevel(5);
@@ -242,7 +254,6 @@ const MapComponent = ({
       });
       if (initialValue) {
         setSearch(initialValue);
-        console.log(search);
         setTimeout(() => {
           searchPlaces();
         }, 100);
@@ -273,6 +284,7 @@ const MapComponent = ({
             id="form"
             onSubmit={searchPlaces}
           >
+            <label htmlFor="keyword">장소 검색</label>
             <input
               type="text"
               id="keyword"

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { findAccesKey } from '../../hooks/getStorageAuthData';
 import ChooseEmailButton from './ChooseEmailButton';
 
 const PageContainer = styled.div`
@@ -29,10 +30,11 @@ const PageWrapper = styled.div`
 
 const viewId = () => {
   const ids = [];
-  const localStorageLength = localStorage.length;
-  for (let i = 0; i < localStorageLength; i += 1) {
-    const key = localStorage.key(i) as string;
-    ids.push(key);
+  const keys = findAccesKey();
+  for (let i = 0; i < keys.length; i += 1) {
+    const key = keys[i];
+    const value = localStorage.getItem(key);
+    ids.push(value);
   }
   return ids;
 };
@@ -43,13 +45,15 @@ const index = () => {
   return (
     <PageContainer>
       <PageWrapper>
-        {ids.map((id: string) => {
-          return (
-            <div key={id}>
-              <ChooseEmailButton id={id} />
-            </div>
-          );
-        })}
+        {ids &&
+          ids.map((id: string | null) => {
+            const data = id as string;
+            return (
+              <div key={data}>
+                <ChooseEmailButton data={data} />
+              </div>
+            );
+          })}
         <NavLink to="/login">다른 아이디로 접속하기</NavLink>
       </PageWrapper>
     </PageContainer>

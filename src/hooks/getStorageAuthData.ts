@@ -2,6 +2,14 @@ import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { isLoginSelector } from '../recoil/authRecoil';
 
+const findAccesKey = () => {
+  const allKeys = Object.keys(localStorage);
+  const filteredKeys = allKeys.filter(key => {
+    return key.startsWith('access-');
+  });
+  return filteredKeys;
+};
+
 const isLenghtValid = (isLocalStorage: number) => {
   if (isLocalStorage === 0) {
     return false;
@@ -9,9 +17,9 @@ const isLenghtValid = (isLocalStorage: number) => {
   return true;
 };
 
-const findLocalStorageKey = (storageLength: number) => {
+const findLocalStorageKey = (storageLength: number, keys: string[]) => {
   for (let i = 0; i < storageLength; i += 1) {
-    const key = localStorage.key(i);
+    const key = keys[i];
     if (key) {
       const value = localStorage.getItem(key);
       const { expire } = JSON.parse(value as string);
@@ -28,8 +36,11 @@ const findLocalStorageKey = (storageLength: number) => {
 
 const getLocalData = () => {
   const isLocalStorage = localStorage.length;
-  if (isLenghtValid(isLocalStorage)) {
-    return findLocalStorageKey(isLocalStorage);
+  if (isLocalStorage > 0) {
+    const keys = findAccesKey();
+    if (isLenghtValid(keys.length)) {
+      return findLocalStorageKey(keys.length, keys);
+    }
   }
   return false;
 };
@@ -42,4 +53,4 @@ const getSessionData = () => {
   return false;
 };
 
-export { getLocalData, getSessionData };
+export { getLocalData, getSessionData, findAccesKey };
