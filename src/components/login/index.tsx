@@ -6,7 +6,7 @@ import { useLocation, useNavigate, NavLink } from 'react-router-dom';
 import { createUser, signIn } from '../../utils/util';
 import { emailState, uidState } from '../../recoil/authRecoil';
 import { loginFunciton } from '../../hooks/getAuth';
-import logoImg from '../../assets/logo.png';
+import foodImg from '../../assets/free-icon-food.png';
 import loginImg from '../../assets/yelloBg.avif';
 
 type Inputs = {
@@ -59,10 +59,11 @@ const Form = styled.form`
 `;
 
 const FormImg = styled.div`
-  width: 5rem;
-  padding: 2rem 1.6rem 1.6rem;
-  border: 4px solid #414042;
+  width: 6rem;
   border-radius: 50%;
+  border: 4px solid #f09136;
+  padding: 1.5rem;
+  background-color: #fff5d2;
   img {
     width: 100%;
   }
@@ -124,8 +125,8 @@ const StyledInput = styled.input`
   transition: border-color 0.2s;
 
   &:focus {
-    border-color: #f09136;
     outline: none;
+    border: 3px solid #f09136;
   }
 `;
 
@@ -142,7 +143,7 @@ const LastStyledInput = styled.input`
   transition: border-color 0.2s;
 
   &:focus {
-    border-color: #f09136;
+    border: 3px solid #f09136;
     outline: none;
   }
 
@@ -184,8 +185,8 @@ const LoginComponent = () => {
       <Form onSubmit={handleSubmit(onSubmit)}>
         <FormImg>
           <img
-            src={logoImg}
-            alt="logo img"
+            src={foodImg}
+            alt="사랑과 로맨스 아이콘  제작자: Eucalyp - Flaticon"
           />
         </FormImg>
         <StyledInput
