@@ -9,9 +9,10 @@ import sidebar from '../../../assets/sidebar.svg';
 
 const GallerySidebar = styled.div`
   position: relative;
-  width: 13.7rem;
+  width: 10rem;
+  min-width: 10rem;
   min-height: 20rem;
-  height: 75vh;
+  height: 30rem;
   padding: 2rem;
 
   background-color: var(--color-beige);

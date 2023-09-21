@@ -6,19 +6,37 @@ import HeaderComponent from '../Header';
 import Footer from '../Footer';
 
 const GalleryWrapper = styled.div`
-  width: 90%;
-  margin: 8rem auto 2rem;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  padding: 0 5%;
 `;
 
 const Gallery = styled.div`
+  box-sizing: border-box;
   display: flex;
-  gap: 3rem;
+  justify-content: space-between;
+  max-width: 1500px;
+  min-width: 1300px;
   height: 100%;
+  margin: auto;
+  padding: 8rem 0;
+
+  border: 3px solid red;
+
+  @media screen and (min-width: 1500px) {
+    justify-content: space-evenly;
+    gap: 90px;
+  }
 `;
 
-const ContentWrapper = styled.div`
-  width: calc(100vw - 20rem);
-`;
+// const ContentWrapper = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   gap: 20rem;
+
+//   margin-bottom: 4rem;
+// `;
 
 const GalleryLayout = () => {
   return (
@@ -27,9 +45,9 @@ const GalleryLayout = () => {
       <GalleryWrapper>
         <Gallery>
           <SidebarGallery />
-          <ContentWrapper>
-            <Outlet />
-          </ContentWrapper>
+          {/* <ContentWrapper> */}
+          <Outlet />
+          {/* </ContentWrapper> */}
         </Gallery>
       </GalleryWrapper>
       <Footer />

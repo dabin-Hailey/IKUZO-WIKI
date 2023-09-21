@@ -5,7 +5,7 @@ import sidebar from '../../../assets/sidebar.svg';
 
 const SidebarWikiWrapper = styled.div`
   position: relative;
-  width: 12rem;
+  width: 10rem;
   min-height: 20rem;
   height: 30rem;
   padding: 2rem;
