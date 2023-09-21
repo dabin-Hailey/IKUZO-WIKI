@@ -96,12 +96,14 @@ const SortContainer = styled.div`
 `;
 
 const TextField = styled.div`
-  display: flex;
-  align-items: center;
+  overflow: hidden;
+  white-space: wrap;
+  word-break: keep-all;
+  line-height: 1.4;
 
-  width: 240px;
-  height: 27px;
   font-size: 16px;
+  margin-top: 8px;
+  padding-bottom: 3px;
   border-bottom: 1px solid #c1c1c1;
 `;
 

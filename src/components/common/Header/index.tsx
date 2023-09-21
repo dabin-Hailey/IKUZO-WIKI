@@ -5,7 +5,7 @@ import headerIconSvg from '../../../assets/logo.png';
 import LoginButton from './LoginBtn';
 
 interface StyledHeaderProps {
-  transparent: boolean;
+  transparent: string;
 }
 
 const HeaderWrapper = styled.div<StyledHeaderProps>`
@@ -14,17 +14,23 @@ const HeaderWrapper = styled.div<StyledHeaderProps>`
   top: 0;
   left: 0;
   right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   height: 5rem;
   color: #ffd850;
   font-weight: 700;
   background-color: ${props => {
-    return props.transparent ? 'rgba(57, 57, 57, 0.5)' : '#393939';
+    return props.transparent === 'true' ? 'rgba(57, 57, 57, 0.5)' : '#393939';
   }};
-  padding: 0 10%;
   z-index: 9;
+`;
+
+const Inner = styled.div`
+  width: 90%;
+  max-width: 1500px;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const LeftWrapper = styled.div`
@@ -88,48 +94,50 @@ const StyledHeader: React.FC<StyledHeaderProps> = ({ transparent }) => {
 
   return (
     <HeaderWrapper transparent={transparent}>
-      <LeftWrapper>
-        <HeaderIcon
-          src={headerIconSvg}
-          alt="headerIcon"
-        />
-        <LeftTitle onClick={handleGoToHome}>IKUZO</LeftTitle>
-      </LeftWrapper>
-      <RightWrapper>
-        <RightList>
-          <RightItem>
-            <NavItem
-              className={({ isActive }) => {
-                return isActive ? 'nav__active' : 'nav__default';
-              }}
-              to="/"
-            >
-              Home
-            </NavItem>
-          </RightItem>
-          <RightItem>
-            <NavItem
-              className={({ isActive }) => {
-                return isActive ? 'nav__active' : 'nav__default';
-              }}
-              to="/wiki"
-            >
-              Wiki
-            </NavItem>
-          </RightItem>
-          <RightItem>
-            <NavItem
-              className={({ isActive }) => {
-                return isActive ? 'nav__active' : 'nav__default';
-              }}
-              to="/gallery"
-            >
-              Gallery
-            </NavItem>
-          </RightItem>
-        </RightList>
-        <LoginButton />
-      </RightWrapper>
+      <Inner>
+        <LeftWrapper>
+          <HeaderIcon
+            src={headerIconSvg}
+            alt="headerIcon"
+          />
+          <LeftTitle onClick={handleGoToHome}>SWAL</LeftTitle>
+        </LeftWrapper>
+        <RightWrapper>
+          <RightList>
+            <RightItem>
+              <NavItem
+                className={({ isActive }) => {
+                  return isActive ? 'nav__active' : 'nav__default';
+                }}
+                to="/"
+              >
+                Home
+              </NavItem>
+            </RightItem>
+            <RightItem>
+              <NavItem
+                className={({ isActive }) => {
+                  return isActive ? 'nav__active' : 'nav__default';
+                }}
+                to="/wiki"
+              >
+                Wiki
+              </NavItem>
+            </RightItem>
+            <RightItem>
+              <NavItem
+                className={({ isActive }) => {
+                  return isActive ? 'nav__active' : 'nav__default';
+                }}
+                to="/gallery"
+              >
+                Gallery
+              </NavItem>
+            </RightItem>
+          </RightList>
+          <LoginButton />
+        </RightWrapper>
+      </Inner>
     </HeaderWrapper>
   );
 };

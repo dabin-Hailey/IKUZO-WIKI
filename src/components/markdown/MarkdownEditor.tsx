@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { updateData } from '../../utils/util';
-import MarkdownContainer from './Markdown.styled';
+import * as S from './Markdown.styled';
 
 const MarkdownEditor = ({
   wiki,
@@ -31,25 +31,25 @@ const MarkdownEditor = ({
   };
 
   return (
-    <MarkdownContainer>
-      <div className="markdown-header">
-        <div className="title">
-          <span className="primary">IKUZO</span> {wiki}
-        </div>
-        <button
+    <S.MarkdownContainer>
+      <S.MarkdownHeader>
+        <S.Title>
+          <S.Primary className="primary">SWAL</S.Primary> {wiki}
+        </S.Title>
+        <S.MarkdownButton
           className="markdown-button"
           type="button"
           onClick={handleUpdateData}
         >
           {status}
-        </button>
-      </div>
-      <div className="viewer-wrapper">
+        </S.MarkdownButton>
+      </S.MarkdownHeader>
+      <S.ViewerWrapper>
         <Editor
           ref={editorRef}
           initialValue={content}
           previewStyle="tab"
-          height="600px"
+          height="100%"
           initialEditType="markdown"
           useCommandShortcut
           toolbarItems={[
@@ -59,8 +59,8 @@ const MarkdownEditor = ({
             ['table', 'link'],
           ]}
         />
-      </div>
-    </MarkdownContainer>
+      </S.ViewerWrapper>
+    </S.MarkdownContainer>
   );
 };
 
