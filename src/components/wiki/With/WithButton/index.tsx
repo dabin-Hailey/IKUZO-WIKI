@@ -1,9 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import swal from 'sweetalert';
 import getLoginAuth from '../../../../hooks/getLoginAuth';
 import { updateDataByNumber } from '../../../../utils/util';
-import { isCountSelector, countState } from '../../../../recoil/countRecoil';
+import {
+  isCountSelector,
+  countState,
+  countIdState,
+} from '../../../../recoil/countRecoil';
 
 type Props = {
   id: string;
@@ -53,29 +58,53 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const Notice = () => {
-  return <div>경고경고</div>;
-};
-
 const WithButton: React.FC<Props> = ({ id, joined, people }) => {
   const isLogin = getLoginAuth();
   const isCount = useRecoilValue(isCountSelector);
   const [value, setValue] = useRecoilState(countState);
+  const setValueId = useSetRecoilState(countIdState);
 
   const onClick = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     if (!isLogin) {
-      alert('로그인이 필요합니다.');
+      swal({
+        title: '로그인이 필요합니다.',
+        text: '로그인 좋은 말로 할 때 하세요~! 🤬',
+        icon: 'warning',
+      });
       return;
     }
     if (isCount) {
-      alert('이미 참여하셨습니다.');
-      console.log('이미 참여하셨습니다.');
-
+      swal({
+        title: '이미 선택하셨습니다.',
+        text: '당신을 기다리고 있는 밥약속이 있어요!! 🍚',
+        icon: 'warning',
+      });
       return;
     }
-    setValue(value + 1);
-    await updateDataByNumber('with-collection', id, 'joined');
+    swal({
+      title: '밥약속에 참여하시겠습니까?',
+      text: '참여하시면 취소할 수 없습니다. 🤔',
+      icon: 'warning',
+      buttons: ['아니요', '네'],
+    }).then(async value => {
+      if (value) {
+        swal({
+          title: '참여가 완료되었습니다.',
+          text: '당신을 기다리고 있는 밥약속이 곧 성사됩니다 😘',
+          icon: 'success',
+        });
+        setValue(value + 1);
+        setValueId(id);
+        await updateDataByNumber('with-collection', id, 'joined');
+      } else {
+        swal({
+          title: '취소되었습니다.',
+          text: '다음에는 꼭 참여해주세요 🥺',
+          icon: 'error',
+        });
+      }
+    });
   };
 
   const isFull = joined === people;

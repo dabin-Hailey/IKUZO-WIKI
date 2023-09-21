@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import swal from 'sweetalert';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../../../../utils/firebase.config';
 import WikiModal from '../../../../assets/wiki-modal.png';
@@ -201,7 +202,6 @@ const Modal: React.FC<ModalProps> = ({
   const [isLocationValid, setIsLocationValid] = useState(false);
 
   const handlePlaceSelection = (address: string) => {
-    console.log(address);
     setLocation(address);
     onLocationChange(address);
     setIsLocationValid(address.length > 0);
@@ -209,8 +209,6 @@ const Modal: React.FC<ModalProps> = ({
 
   const handleRegister = async () => {
     if (!isTitleValid || !isContentValid || !isLocationValid) {
-      console.log(isTitleValid, isContentValid, isLocationValid);
-      console.log('invalid');
       return;
     }
     try {
@@ -225,7 +223,11 @@ const Modal: React.FC<ModalProps> = ({
 
       onClose();
     } catch (error) {
-      console.error(error);
+      swal({
+        title: '오류가 발생했습니다.',
+        text: '잠시 후 다시 시도해주세요.',
+        icon: 'error',
+      });
     }
   };
 

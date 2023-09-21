@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import swal from 'sweetalert';
 import styled from 'styled-components';
+import { useRecoilValue } from 'recoil';
+import { isLoginSelector } from '../../../recoil/authRecoil';
 import AddModal from './AddModal';
 import sidebar from '../../../assets/sidebar.svg';
 
@@ -93,8 +96,16 @@ const AddButton = styled.button`
 
 const SidebarGallery = () => {
   const [modal, setModal] = useState(false);
+  const isLogin = useRecoilValue(isLoginSelector);
+
   const handleModal = () => {
-    setModal(!modal);
+    if (!isLogin) {
+      swal({
+        title: '로그인이 필요합니다.',
+        text: '로그인 좋은 말로 할 때 하세요~! 🤬',
+        icon: 'warning',
+      });
+    } else setModal(!modal);
   };
 
   return (

@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import swal from 'sweetalert';
+import { useRecoilValue } from 'recoil';
 import WithItem from './WIthItem';
 import Modal from './Modal';
 import getLoginAuth from '../../../hooks/getLoginAuth';
+import { isCountSelector } from '../../../recoil/countRecoil';
 
 export interface Root {
   id: string;
@@ -94,6 +97,7 @@ const ItemWrapper = styled.div`
 
 const index: React.FC<Props> = ({ data }): JSX.Element => {
   const isLogin = getLoginAuth();
+  const isCount = useRecoilValue(isCountSelector);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [modalData, setModalData] = useState({
@@ -104,9 +108,22 @@ const index: React.FC<Props> = ({ data }): JSX.Element => {
     maxPeople: 0,
   });
 
-  const openModal = () => {
+  const openModal = (e: React.MouseEvent) => {
+    e.preventDefault();
     if (!isLogin) {
-      alert('로그인이 필요합니다.');
+      swal({
+        title: '로그인이 필요합니다.',
+        text: '로그인 좋은 말로 할 때 하세요~! 🤬',
+        icon: 'warning',
+      });
+      return;
+    }
+    if (isCount) {
+      swal({
+        title: '이미 선택하셨습니다...',
+        text: '당신을 기다리고 있는 맛있는 밥 약속이 곧 성사됩니다 😘',
+        icon: 'success',
+      });
       return;
     }
     setIsModalOpen(true);
@@ -167,9 +184,7 @@ const index: React.FC<Props> = ({ data }): JSX.Element => {
         </Highlight>
         <EnrollButton
           type="button"
-          onClick={() => {
-            openModal();
-          }}
+          onClick={openModal}
         >
           Open Modal
         </EnrollButton>{' '}
