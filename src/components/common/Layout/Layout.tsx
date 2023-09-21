@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import SidebarGallery from '../SidebarGallery';
+import SidebarWiki from '../SidebarWiki';
 import HeaderComponent from '../Header';
 import Footer from '../Footer';
 
@@ -30,12 +31,22 @@ const Layout = styled.div`
 `;
 
 const LayoutComponent = () => {
+  const location = useLocation();
+  const renderSidebar = () => {
+    if (location.pathname.includes('/wiki')) {
+      return <SidebarWiki />;
+    }
+    if (location.pathname.includes('/gallery')) {
+      return <SidebarGallery />;
+    }
+    return null;
+  };
   return (
     <>
       <HeaderComponent transparent="false" />
       <LayoutContainer>
         <Layout>
-          <SidebarGallery />
+          {renderSidebar()}
           <Outlet />
         </Layout>
       </LayoutContainer>
