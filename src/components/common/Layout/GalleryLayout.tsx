@@ -23,7 +23,7 @@ const ContentWrapper = styled.div`
 const GalleryLayout = () => {
   return (
     <>
-      <HeaderComponent transparent={false} />
+      <HeaderComponent transparent="false" />
       <GalleryWrapper>
         <Gallery>
           <SidebarGallery />

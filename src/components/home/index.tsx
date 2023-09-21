@@ -303,7 +303,7 @@ const Home = () => {
 
   return (
     <HomeWrapper className="home">
-      <Header transparent />
+      <Header transparent="true" />
       <HomeBackground className="home__background">
         <HomeBgImage
           className="home__bgImg"
