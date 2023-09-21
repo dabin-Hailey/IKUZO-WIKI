@@ -5,12 +5,6 @@ import { getDataByField } from '../../utils/util';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Header from '../common/Header';
 import bcImg from '../../assets/Home-bcimage.jpg';
-import bcImgMiddle from '../../assets/Home-bcimage-middle.jpg';
-import bcImgSmall from '../../assets/Home-bcimage-small.jpg';
-import bcImgXSmall from '../../assets/Home-bcimage-Xsmall.jpg';
-import slide1 from '../../assets/slide_1.jpg';
-import slide2 from '../../assets/slide_2.jpg';
-import slide3 from '../../assets/slide_3.jpg';
 
 export interface Root {
   id?: string;
@@ -25,28 +19,9 @@ const HomeWrapper = styled.div`
 const HomeBackground = styled.div`
   position: relative;
   overflow: hidden;
-`;
-
-const HomeBgImage = styled.img`
-  width: 100%;
-  height: auto;
-  display: block;
-
-  @media screen and (max-width: 2000px) {
-    content: url(${bcImg});
-  }
-
-  @media screen and (max-width: 1200px) {
-    content: url(${bcImgMiddle});
-  }
-
-  @media screen and (max-width: 800px) {
-    content: url(${bcImgSmall});
-  }
-
-  @media screen and (max-width: 500px) {
-    content: url(${bcImgXSmall});
-  }
+  height: 100vh;
+  width: 100vw;
+  background: url(${bcImg}) center/cover;
 `;
 
 const HomeBgImageCover = styled.div`
@@ -66,7 +41,8 @@ const HomeInner = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 80%;
+  width: 90%;
+  max-width: 1500px;
   text-align: center;
   color: white;
   transform: translate(-50%, -50%);
@@ -76,9 +52,6 @@ const HomeInner = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
-
-  @media screen and (max-width: 500px) {
   }
 `;
 
@@ -305,11 +278,6 @@ const Home = () => {
     <HomeWrapper className="home">
       <Header transparent="true" />
       <HomeBackground className="home__background">
-        <HomeBgImage
-          className="home__bgImg"
-          src={bcImg}
-          alt="bcImg"
-        />
         <HomeBgImageCover className="home__bgImg--cover" />
       </HomeBackground>
       <HomeInner className="home__inner">

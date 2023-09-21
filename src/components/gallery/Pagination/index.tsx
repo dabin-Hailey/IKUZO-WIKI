@@ -54,14 +54,8 @@ const PaginationComponent: React.FC<PaginationProps> = ({
   handlePageChange,
 }) => {
   return (
-    //   <MyPaginate
-    //   pageCount={20}
-    //   onPageChange={this.handlePageClick}
-    //   forcePage={currentPage}
-    // />
     <MyPaginate>
       <ReactPaginate
-        // className="pagination"
         activePage={activePage}
         itemsCountPerPage={itemsPerPage}
         totalItemsCount={totalItems}
@@ -71,8 +65,6 @@ const PaginationComponent: React.FC<PaginationProps> = ({
         linkClass="page-link"
       />
     </MyPaginate>
-
-    // </MyPaginate>
   );
 };
 
