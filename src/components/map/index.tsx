@@ -95,14 +95,6 @@ const MapComponent = ({
         window.kakao.maps.event.addListener(marker, 'mouseout', () => {
           infoWindow.close();
         });
-
-        // itemEl.onmouseover = () => {
-        //   displayInfowindow(marker, title);
-        // };
-
-        // itemEl.onmouseout = () => {
-        //   infoWindow.close();
-        // };
       })(marker, places[i].place_name);
 
       fragment.appendChild(itemEl);

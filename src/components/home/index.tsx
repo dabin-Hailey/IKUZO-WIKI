@@ -283,7 +283,7 @@ const Home = () => {
       <HomeInner className="home__inner">
         <HomeText className="homeText">
           <HomeTextSubtitle className="homeText__subtitle">
-            IKUZO MAIN NEWS
+            SWAL MAIN NEWS
           </HomeTextSubtitle>
           <HomeTextTitle className="homeText__title">
             2023 <span>가을 맛집 탐방 </span> 정모
