@@ -91,7 +91,7 @@ const GalleryListing = ({ category }: State): JSX.Element => {
   useEffect(() => {
     setTimeout(() => {
       fetchData(category);
-    }, 1000);
+    }, 500);
   }, []);
 
   const itemsPerPage = 8;
@@ -100,7 +100,11 @@ const GalleryListing = ({ category }: State): JSX.Element => {
   const currentItems = list.slice(indexOfFirstItem, indexOfLastItem);
 
   const handlePageChange = (PageNumber: number) => {
+    setLoading(true);
     setCurrentPage(PageNumber);
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
   };
 
   if (loading) {

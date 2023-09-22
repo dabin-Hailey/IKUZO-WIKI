@@ -33,7 +33,7 @@ const Notice = () => {
   useEffect(() => {
     setTimeout(() => {
       fetchData();
-    }, 1000);
+    }, 500);
   }, []);
 
   if (loading) {
