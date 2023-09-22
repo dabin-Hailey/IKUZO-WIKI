@@ -33,7 +33,7 @@ const Skeleton = styled.div`
   }
 
   &.button {
-    width: 7rem;
+    width: 8rem;
     height: 3rem;
     border-radius: 30px;
 
@@ -41,12 +41,12 @@ const Skeleton = styled.div`
   }
 
   &.viewer {
+    box-sizing: border-box;
     width: 100%;
     height: 60vh;
-    margin-top: 60px;
+    margin-top: 50px;
     padding: 20px 30px 40px;
     border-radius: 15px;
-    box-sizing: border-box;
   }
 
   &.item {
