@@ -1,5 +1,5 @@
 <div align=left>
-<img src="https://firebasestorage.googleapis.com/v0/b/fc-wiki-allocation.appspot.com/o/readme%2Flogo%EB%A6%AC%EB%93%9C%EB%AF%B8%EC%9A%A9.png?alt=media&token=4e8fef96-e346-4231-a8e0-22886ab7e45d" width="75px">
+<img src="https://firebasestorage.googleapis.com/v0/b/testfc-74eda.appspot.com/o/KakaoTalk_20230919_133841507%20(1).png?alt=media&token=36ff51dc-5415-4c50-9b4c-b74485e8f562" width="75px">
 </div>
 
 # 🍽️ 맛집 소모임 WIKI APP
@@ -21,13 +21,17 @@ _맛집 & 밥약 관리 웹서비스, **"SWAL"**_
 
   </div>
 
-## 📌 SWAL의 주요 기능
+## 📌 SWAL 구현 영상
+
+[![YouTube 동영상 썸네일](https://firebasestorage.googleapis.com/v0/b/testfc-74eda.appspot.com/o/%EC%9D%B4%EB%AF%B8%EC%A7%80%201.png?alt=media&token=7efeefdf-281c-4043-8fab-0c1f091998c6)](https://www.youtube.com/watch?v=GNmNqdlCuXY)
 
 ✅ 회원 관리 : 로그인, 로그아웃, 회원가입을 할 수 있습니다.
 
 ✅ 맛집 공유 : 맛집을 공유할 수 있습니다. 맛집 이름, 주소, 카테고리를 분류해서 저장할 수 있습니다.
 
 ✅ 밥약 관리 : 밥약을 만들거나 참여할 수 있습니다. 최대 9명으로 구성된 밥약속을 만들거나 참여해보세요. 지도에서 맛집을 찾아 합류할 수 있습니다.
+
+## 📌 SWAL의 주요 기능
 
 ## 📌 SWAL의 비지니스 / 프로덕트 문제
 
@@ -96,7 +100,7 @@ SWAL를 사용하기 위해서는 먼저 회원 가입을 해야 합니다. <br>
 
 ## 👤 SWAL의 유저 플로우
 
-<img src="https://firebasestorage.googleapis.com/v0/b/fc-wiki-allocation.appspot.com/o/readme%2FUserflow.png?alt=media&token=787126a6-d95d-4b94-b5fd-3c66dae87c07">
+<img src="https://firebasestorage.googleapis.com/v0/b/testfc-74eda.appspot.com/o/2-min.jpg?alt=media&token=d580b143-c020-44f8-9c6e-7088d9b881c3"/>
 
 ## 🛠️ SWAL의 기술 스택
 
