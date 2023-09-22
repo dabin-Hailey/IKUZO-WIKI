@@ -94,7 +94,9 @@ const WithButton: React.FC<Props> = ({ id, joined, people }) => {
           text: '당신을 기다리고 있는 밥약속이 곧 성사됩니다 😘',
           icon: 'success',
         });
-        setValue(value + 1);
+        setValue((prev: number) => {
+          return prev + 1;
+        });
         setValueId(id);
         await updateDataByNumber('with-collection', id, 'joined');
       } else {

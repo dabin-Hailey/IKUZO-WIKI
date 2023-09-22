@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import swal from 'sweetalert';
+import { useSetRecoilState } from 'recoil';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../../../../utils/firebase.config';
 import WikiModal from '../../../../assets/wiki-modal.png';
 import MapComponent from '../../../map';
+import { countState, countIdState } from '../../../../recoil/countRecoil';
 
 interface ModalProps {
   isOpen: boolean;
@@ -201,6 +203,9 @@ const Modal: React.FC<ModalProps> = ({
   const [isContentValid, setIsContentValid] = useState(false);
   const [isLocationValid, setIsLocationValid] = useState(false);
 
+  const setCountState = useSetRecoilState(countState);
+  const setCountIdState = useSetRecoilState(countIdState);
+
   const handlePlaceSelection = (address: string) => {
     setLocation(address);
     onLocationChange(address);
@@ -220,6 +225,14 @@ const Modal: React.FC<ModalProps> = ({
         time: Math.floor(Date.now() / 1000) + recruitmentTime * 60,
         title,
       });
+
+      setCountState((prev: number) => {
+        return prev + 1;
+      });
+
+      const date = new Date();
+      const dataId = `with-collection-${date.getTime()}`;
+      setCountIdState(dataId);
 
       onClose();
     } catch (error) {
