@@ -35,10 +35,10 @@ const ModalWrapper = styled.div`
 const ModalContent = styled.div`
   position: relative;
   width: 60rem;
-  height: 80%;
+  height: 75%;
   max-height: 80%;
   overflow-x: hidden;
-  padding-bottom: 15rem;
+  padding-bottom: 7rem;
   box-sizing: border-box;
 
   border-radius: 1.5rem;
@@ -70,7 +70,7 @@ const ModalImageContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  height: 40%;
+  height: 22rem;
 
   border-radius: 1rem 1rem 0 0;
 
@@ -136,9 +136,9 @@ const WithBtn = styled.div<{ $active?: boolean }>`
 const EnrollButton = styled.button`
   font-family: 'IBMPlexSansKR-Regular';
   position: relative;
-  bottom: -53rem;
-  right: 9rem;
-  left: 9rem;
+  bottom: -2rem;
+  right: 0;
+  left: 0;
   padding: 0.5rem 1.5rem;
 
   color: var(--color-white);
@@ -365,14 +365,13 @@ const Modal: React.FC<ModalProps> = ({
               onMaxPeopleChange(e);
             }}
           />
+          <EnrollButton
+            type="button"
+            onClick={handleRegister}
+          >
+            등록하기
+          </EnrollButton>
         </StringLabel>
-
-        <EnrollButton
-          type="button"
-          onClick={handleRegister}
-        >
-          등록하기
-        </EnrollButton>
 
         <ExitButton
           type="button"
