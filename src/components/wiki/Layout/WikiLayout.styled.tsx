@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface Props {
+  color?: string;
+}
+
 export const WikiContainer = styled.div`
   box-sizing: border-box;
   width: 100%;
@@ -12,6 +16,7 @@ export const WikiHeader = styled.div`
   padding-top: 10px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   height: 70px;
   border-bottom: 3px solid var(--color-orange);
@@ -19,7 +24,7 @@ export const WikiHeader = styled.div`
 
 export const Title = styled.div`
   font-family: 'IBMPlexSansKR-Regular';
-  font-size: 3rem;
+  font-size: 2.7rem;
   font-weight: 700;
 `;
 
@@ -29,7 +34,7 @@ export const Primary = styled.span`
 
 export const WikiButton = styled.button`
   font-family: 'SBAggroB';
-  width: 7rem;
+  width: 8rem;
   height: 3rem;
   background-color: var(--color-primary);
   color: var(--color-white);
@@ -47,7 +52,7 @@ export const WikiButton = styled.button`
   }
 `;
 
-export const Contents = styled.div`
+export const Contents = styled.div<Props>`
   box-sizing: border-box;
   width: 100%;
   height: 60vh;
@@ -55,6 +60,8 @@ export const Contents = styled.div`
   padding: 20px 30px 40px;
 
   border-radius: 15px;
-  background-color: #f2f2f2;
+  background-color: ${props => {
+    return props.color ? props.color : '#f2f2f2';
+  }};
   overflow: auto;
 `;
