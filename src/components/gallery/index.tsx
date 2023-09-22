@@ -34,11 +34,8 @@ const GalleryList = styled.div`
   gap: 2rem 3%;
 
   width: 1030px;
+  height: 30rem;
   margin-top: 20px;
-
-  @media screen and (min-width: 1600px) {
-    width: 1200px;
-  }
 `;
 
 // Component
@@ -91,7 +88,7 @@ const GalleryListing = ({ category }: State): JSX.Element => {
   useEffect(() => {
     setTimeout(() => {
       fetchData(category);
-    }, 1000);
+    }, 500);
   }, []);
 
   const itemsPerPage = 8;
@@ -100,7 +97,11 @@ const GalleryListing = ({ category }: State): JSX.Element => {
   const currentItems = list.slice(indexOfFirstItem, indexOfLastItem);
 
   const handlePageChange = (PageNumber: number) => {
+    setLoading(true);
     setCurrentPage(PageNumber);
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
   };
 
   if (loading) {

@@ -2,18 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 import SkeletonElement from './Skeleton';
 
-const SkeletonWrapper = styled.div`
-  position: relative;
-  overflow: hidden;
-`;
-
 const MarkdownSkeleton = styled.div`
-  width: 850px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1070px;
+  margin: 0 0 0 5%;
   height: 79vh;
-  display: flex;
-  flex-direction: column;
 
   .HeaderWrapper {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 70px;
+
     display: flex;
     justify-content: space-between;
   }
@@ -21,15 +24,13 @@ const MarkdownSkeleton = styled.div`
 
 const SkeletonMarkdown = () => {
   return (
-    <SkeletonWrapper>
-      <MarkdownSkeleton>
-        <div className="HeaderWrapper">
-          <SkeletonElement type="title" />
-          <SkeletonElement type="button" />
-        </div>
-        <SkeletonElement type="viewer" />
-      </MarkdownSkeleton>
-    </SkeletonWrapper>
+    <MarkdownSkeleton>
+      <div className="HeaderWrapper">
+        <SkeletonElement type="title" />
+        <SkeletonElement type="button" />
+      </div>
+      <SkeletonElement type="viewer" />
+    </MarkdownSkeleton>
   );
 };
 

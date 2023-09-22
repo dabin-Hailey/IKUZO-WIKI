@@ -12,8 +12,13 @@ export interface Root {
   category?: string;
 }
 
+interface CarouselButtonProps {
+  direction: 'prev' | 'next';
+}
+
 const HomeWrapper = styled.div`
   position: relative;
+  overflow-x: hidden;
 `;
 
 const HomeBackground = styled.div`
@@ -42,7 +47,7 @@ const HomeInner = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 90%;
-  max-width: 1500px;
+  max-width: 1400px;
   text-align: center;
   color: white;
   transform: translate(-50%, -50%);
@@ -219,6 +224,12 @@ const HomeSwiperFrame = styled.div`
 const StyledCarouselContainer = styled.div`
   width: 100%;
   height: 100%;
+  max-width: 600px;
+  max-height: 400px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
 `;
 
@@ -226,9 +237,38 @@ const CarouselImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  position: absolute; /* 컨테이너 내에서 위치 조정을 위해 */
+  position: absolute;
   top: 0;
   left: 0;
+`;
+
+const CarouselButton = styled.button<CarouselButtonProps>`
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 50%;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+
+  ${({ direction }) => {
+    return direction === 'prev' ? 'left: 0.2rem;' : 'right: 0.2rem;';
+  }}
 `;
 
 const Home = () => {
@@ -289,7 +329,7 @@ const Home = () => {
             2023 <span>가을 맛집 탐방 </span> 정모
           </HomeTextTitle>
           <HomeTextDescription className="homeText__description">
-            2023년 9월 11일일 강남 패스트캠퍼스에서 진행된 가을 야유회로 모든
+            2023년 9월 11일 강남 패스트캠퍼스에서 진행된 가을 야유회로 모든
             팀원들이 만나는 만남의 장이 열렸다. 해당 만남의 장에서 많은 팀들은
             자유롭게 주제를 정하고 기획을 하였으며 신나게 놀았다.
           </HomeTextDescription>
@@ -319,27 +359,14 @@ const Home = () => {
               renderArrowPrev={(onClickHandler, hasPrev) => {
                 if (hasPrev) {
                   return (
-                    <button
-                      type="button"
+                    <CarouselButton
+                      direction="prev"
                       onClick={onClickHandler}
                       title="<"
-                      style={{
-                        width: '2rem',
-                        height: '2rem',
-                        position: 'absolute',
-                        top: '50%',
-                        left: '0.2rem',
-                        zIndex: 2,
-                        transform: 'translateY(-50%)',
-                        background: 'transparent',
-                        border: '1px solid white',
-                        borderRadius: '50%',
-                        color: 'white',
-                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                      }}
+                      style={{ left: '0.2rem' }}
                     >
                       &lt;
-                    </button>
+                    </CarouselButton>
                   );
                 }
                 return null;
@@ -347,27 +374,14 @@ const Home = () => {
               renderArrowNext={(onClickHandler, hasNext) => {
                 if (hasNext) {
                   return (
-                    <button
-                      type="button"
+                    <CarouselButton
+                      direction="next"
                       onClick={onClickHandler}
                       title=">"
-                      style={{
-                        width: '2rem',
-                        height: '2rem',
-                        position: 'absolute',
-                        top: '50%',
-                        right: '.2rem',
-                        zIndex: 2,
-                        transform: 'translateY(-50%)',
-                        background: 'transparent',
-                        border: '1px solid white',
-                        borderRadius: '50%',
-                        color: 'white',
-                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                      }}
+                      style={{ right: '.2rem' }}
                     >
                       &gt;
-                    </button>
+                    </CarouselButton>
                   );
                 }
                 return null;

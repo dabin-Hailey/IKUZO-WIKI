@@ -24,6 +24,7 @@ import { db, storage, auth } from './firebase.config';
 interface Notice {
   id: string;
   html?: string;
+  contents?: string;
   markdown?: string;
   title?: string;
   category?: string;
@@ -32,6 +33,7 @@ interface Notice {
   restaurant?: string;
   people?: number;
   time?: number;
+  joined?: number;
 }
 
 export const getData = async (collectionName: string): Promise<Notice[]> => {
@@ -87,7 +89,7 @@ export const addImage = async (image: File) => {
 
 export const setData = async (
   collectionName: string,
-  props: any,
+  props: Omit<Notice, 'id'>,
 ): Promise<void> => {
   const date = new Date();
   const dataId = `${collectionName}-${date.getTime()}`;
@@ -97,7 +99,7 @@ export const setData = async (
 
 export const setGalleryData = async (
   collectionName: string,
-  props: any,
+  props: Omit<Notice, 'id'>,
 ): Promise<void> => {
   const date = new Date();
   const dataId = `food${date.getTime()}`;
@@ -115,7 +117,7 @@ export const setGalleryData = async (
 export const updateData = async (
   collectionName: string,
   dataId: string,
-  props: any,
+  props: Omit<Notice, 'id'>,
 ): Promise<void> => {
   await setDoc(doc(db, collectionName, dataId), props);
 };
@@ -215,4 +217,13 @@ export const onAuthStateChanged = (
 
 export const signOut = async () => {
   await auth.signOut();
+};
+
+export const setWithModalData = async (
+  collectionName: string,
+  props: Notice,
+): Promise<void> => {
+  const dataId = props.id;
+
+  await setDoc(doc(db, collectionName, dataId), props);
 };

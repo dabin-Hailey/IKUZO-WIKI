@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import swal from 'sweetalert';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../../../../utils/firebase.config';
 import WikiModal from '../../../../assets/wiki-modal.png';
 import MapComponent from '../../../map';
+import { setWithModalData } from '../../../../utils/util';
+import { countIdState, countState } from '../../../../recoil/countRecoil';
+import { emailState } from '../../../../recoil/authRecoil';
 
 interface ModalProps {
   isOpen: boolean;
@@ -35,10 +39,10 @@ const ModalWrapper = styled.div`
 const ModalContent = styled.div`
   position: relative;
   width: 60rem;
-  height: 80%;
+  height: 75%;
   max-height: 80%;
   overflow-x: hidden;
-  padding-bottom: 15rem;
+  padding-bottom: 7rem;
   box-sizing: border-box;
 
   border-radius: 1.5rem;
@@ -70,7 +74,7 @@ const ModalImageContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  height: 40%;
+  height: 22rem;
 
   border-radius: 1rem 1rem 0 0;
 
@@ -136,9 +140,9 @@ const WithBtn = styled.div<{ $active?: boolean }>`
 const EnrollButton = styled.button`
   font-family: 'IBMPlexSansKR-Regular';
   position: relative;
-  bottom: -53rem;
-  right: 9rem;
-  left: 9rem;
+  bottom: -2rem;
+  right: 0;
+  left: 0;
   padding: 0.5rem 1.5rem;
 
   color: var(--color-white);
@@ -200,6 +204,9 @@ const Modal: React.FC<ModalProps> = ({
   const [isTitleValid, setIsTitleValid] = useState(false);
   const [isContentValid, setIsContentValid] = useState(false);
   const [isLocationValid, setIsLocationValid] = useState(false);
+  const setCount = useSetRecoilState(countState);
+  const setCountId = useSetRecoilState(countIdState);
+  const getEmail = useRecoilValue(emailState);
 
   const handlePlaceSelection = (address: string) => {
     setLocation(address);
@@ -211,14 +218,20 @@ const Modal: React.FC<ModalProps> = ({
     if (!isTitleValid || !isContentValid || !isLocationValid) {
       return;
     }
+    const ids = `${getEmail}-${Date.now()}`;
     try {
-      await setData('with-collection', {
+      await setWithModalData('with-collection', {
+        id: ids,
         contents,
         joined: 1,
         location,
         people: maxPeople,
         time: Math.floor(Date.now() / 1000) + recruitmentTime * 60,
         title,
+      });
+      setCountId(ids);
+      setCount((prev: number) => {
+        return prev + 1;
       });
 
       onClose();
@@ -365,14 +378,13 @@ const Modal: React.FC<ModalProps> = ({
               onMaxPeopleChange(e);
             }}
           />
+          <EnrollButton
+            type="button"
+            onClick={handleRegister}
+          >
+            등록하기
+          </EnrollButton>
         </StringLabel>
-
-        <EnrollButton
-          type="button"
-          onClick={handleRegister}
-        >
-          등록하기
-        </EnrollButton>
 
         <ExitButton
           type="button"
