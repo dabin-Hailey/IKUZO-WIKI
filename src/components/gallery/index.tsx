@@ -91,7 +91,7 @@ const GalleryListing = ({ category }: State): JSX.Element => {
   useEffect(() => {
     setTimeout(() => {
       fetchData(category);
-    }, 1000);
+    }, 500);
   }, []);
 
   const itemsPerPage = 8;
