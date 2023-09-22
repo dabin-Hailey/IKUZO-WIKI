@@ -28,28 +28,36 @@ const Skeleton = styled.div`
   }
 
   &.title {
-    width: 50%;
-    height: 50px;
+    width: 40%;
+    height: 60px;
   }
 
   &.button {
-    width: 5rem;
-    height: 2.5rem;
+    width: 7rem;
+    height: 3rem;
     border-radius: 30px;
+
+    transform: translateY(1px);
   }
 
   &.viewer {
-    width: 790px;
+    width: 100%;
     height: 60vh;
-    margin-top: 50px;
+    margin-top: 60px;
     padding: 20px 30px 40px;
     border-radius: 15px;
+    box-sizing: border-box;
   }
 
   &.item {
-    width: 15rem;
-    height: 15rem;
+    --length: 14rem;
+    width: var(--length);
+    height: var(--length);
     border-radius: 1rem;
+
+    @media screen and (min-width: 1600px) {
+      --length: 17rem;
+    }
   }
 
   @keyframes skeleton-loader {
