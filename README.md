@@ -25,13 +25,13 @@ _맛집 & 밥약 관리 웹서비스, **"SWAL"**_
 
 [![YouTube 동영상 썸네일](https://firebasestorage.googleapis.com/v0/b/testfc-74eda.appspot.com/o/%EC%9D%B4%EB%AF%B8%EC%A7%80%201.png?alt=media&token=7efeefdf-281c-4043-8fab-0c1f091998c6)](https://www.youtube.com/watch?v=GNmNqdlCuXY)
 
+## 📌 SWAL의 주요 기능
+
 ✅ 회원 관리 : 로그인, 로그아웃, 회원가입을 할 수 있습니다.
 
 ✅ 맛집 공유 : 맛집을 공유할 수 있습니다. 맛집 이름, 주소, 카테고리를 분류해서 저장할 수 있습니다.
 
 ✅ 밥약 관리 : 밥약을 만들거나 참여할 수 있습니다. 최대 9명으로 구성된 밥약속을 만들거나 참여해보세요. 지도에서 맛집을 찾아 합류할 수 있습니다.
-
-## 📌 SWAL의 주요 기능
 
 ## 📌 SWAL의 비지니스 / 프로덕트 문제
 
