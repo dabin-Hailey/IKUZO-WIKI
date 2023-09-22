@@ -23,7 +23,7 @@ _맛집 & 밥약 관리 웹서비스, **"SWAL"**_
 
 ## 📌 SWAL 구현 영상
 
-[![YouTube 동영상 썸네일](https://firebasestorage.googleapis.com/v0/b/testfc-74eda.appspot.com/o/%EC%9D%B4%EB%AF%B8%EC%A7%80%201.png?alt=media&token=7efeefdf-281c-4043-8fab-0c1f091998c6)](https://www.youtube.com/watch?v=GNmNqdlCuXY)
+![영상](https://www.youtube.com/watch?v=GNmNqdlCuXY)
 
 ✅ 회원 관리 : 로그인, 로그아웃, 회원가입을 할 수 있습니다.
 
