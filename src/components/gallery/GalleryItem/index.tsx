@@ -73,10 +73,6 @@ const ItemWrapper = styled.div`
   &:hover ${ItemImage} {
     transform: scale(1.1);
   }
-
-  @media screen and (min-width: 1600px) {
-    --length: 17rem;
-  }
 `;
 
 const ContentWrapper = styled.div`

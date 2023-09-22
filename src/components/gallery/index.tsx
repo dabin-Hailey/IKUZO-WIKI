@@ -34,11 +34,8 @@ const GalleryList = styled.div`
   gap: 2rem 3%;
 
   width: 1030px;
+  height: 30rem;
   margin-top: 20px;
-
-  @media screen and (min-width: 1600px) {
-    width: 1200px;
-  }
 `;
 
 // Component

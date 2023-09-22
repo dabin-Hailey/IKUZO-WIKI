@@ -54,10 +54,7 @@ const Skeleton = styled.div`
     width: var(--length);
     height: var(--length);
     border-radius: 1rem;
-
-    @media screen and (min-width: 1600px) {
-      --length: 17rem;
-    }
+    box-sizing: border-box;
   }
 
   @keyframes skeleton-loader {
