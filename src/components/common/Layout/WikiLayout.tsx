@@ -1,12 +1,11 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
-import { Outlet, useLocation } from 'react-router-dom';
-import SidebarGallery from '../SidebarGallery';
 import SidebarWiki from '../SidebarWiki';
 import HeaderComponent from '../Header';
 import Footer from '../Footer';
 
-const LayoutContainer = styled.div`
+const WikiWrapper = styled.div`
   box-sizing: border-box;
   width: 100vw;
   height: 100vh;
@@ -31,7 +30,7 @@ const Inner = styled.div`
   }
 `;
 
-const Layout = styled.div`
+const Wiki = styled.div`
   box-sizing: border-box;
   display: flex;
   justify-content: flex-end;
@@ -42,31 +41,21 @@ const Layout = styled.div`
   padding: 8rem 0;
 `;
 
-const LayoutComponent = () => {
-  const location = useLocation();
-  const renderSidebar = () => {
-    if (location.pathname.includes('/wiki')) {
-      return <SidebarWiki />;
-    }
-    if (location.pathname.includes('/gallery')) {
-      return <SidebarGallery />;
-    }
-    return null;
-  };
+const WikiLayout = () => {
   return (
     <>
       <HeaderComponent transparent="false" />
-      <LayoutContainer>
+      <WikiWrapper>
         <Inner>
-          <Layout>
-            {renderSidebar()}
+          <Wiki>
+            <SidebarWiki />
             <Outlet />
-          </Layout>
+          </Wiki>
         </Inner>
-      </LayoutContainer>
+      </WikiWrapper>
       <Footer />
     </>
   );
 };
 
-export default LayoutComponent;
+export default WikiLayout;
