@@ -49,7 +49,41 @@ const MapComponent = ({
     return true;
   };
 
-  const placesSearchCB = (data: any, status: string, pagination: object) => {
+  interface Place {
+    address_name: string;
+    category_group_code: string;
+    category_group_name: string;
+    category_name: string;
+    distance: string;
+    id: string;
+    phone: string;
+    place_name: string;
+    place_url: string;
+    road_address_name: string;
+    x: string;
+    y: string;
+  }
+
+  interface PaginationData {
+    current: number;
+    first: number;
+    gotoFirst: () => void;
+    gotoLast: () => void;
+    gotoPage: (pageNumber: number) => void;
+    hasNextPage: boolean;
+    hasPrevPage: boolean;
+    last: number;
+    nextPage: () => void;
+    perPage: number;
+    prevPage: () => void;
+    totalCount: number;
+  }
+
+  const placesSearchCB = (
+    data: Place[],
+    status: string,
+    pagination: PaginationData,
+  ) => {
     if (status === window.kakao.maps.services.Status.OK) {
       displayPlaces(data);
       displayPagination(pagination);
@@ -68,7 +102,7 @@ const MapComponent = ({
     }
   };
 
-  const displayPlaces = (places: any) => {
+  const displayPlaces = (places: Place[]) => {
     const listEl = document.getElementById('places-list');
     const menuEl = document.getElementById('menu-container') as HTMLElement;
     const fragment = document.createDocumentFragment();
@@ -108,7 +142,12 @@ const MapComponent = ({
     }
   };
 
-  function getListItem(position: any, index: any, places: any) {
+  interface Coordinates {
+    La: number;
+    Ma: number;
+  }
+
+  function getListItem(position: Coordinates, index: number, places: Place) {
     const el = document.createElement('li');
     let itemStr =
       `<span class="markerbg marker_${index + 1}"></span>` +
@@ -137,7 +176,7 @@ const MapComponent = ({
     return el;
   }
 
-  function addMarker(position: any, idx: any, place: any) {
+  function addMarker(position: Coordinates[], idx: number, place: Place) {
     const imageSrc =
       'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png';
     const imageSize = new window.kakao.maps.Size(36, 37);
@@ -177,13 +216,15 @@ const MapComponent = ({
     markers = [];
   }
 
-  function removeAllChildNodes(el: any) {
-    while (el.hasChildNodes()) {
-      el.removeChild(el.lastChild);
+  function removeAllChildNodes(el: Node | null) {
+    if (el !== null) {
+      while (el.firstChild) {
+        el.removeChild(el.firstChild);
+      }
     }
   }
 
-  function displayPagination(pagination: any) {
+  function displayPagination(pagination: PaginationData) {
     const paginationEl = document.getElementById('pagination');
     const fragment = document.createDocumentFragment();
     let i: number;
@@ -218,7 +259,7 @@ const MapComponent = ({
     }
   }
 
-  function displayInfowindow(marker: any, title: any) {
+  function displayInfowindow(marker: any, title: string) {
     const content = `<div style="padding:5px;z-index:1;">${title}</div>`;
 
     infoWindow.setContent(content);
@@ -262,7 +303,7 @@ const MapComponent = ({
     };
   }, []);
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e?.target.value);
   };
 
