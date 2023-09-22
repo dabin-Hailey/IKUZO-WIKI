@@ -256,59 +256,60 @@ IKUZO-WIKI/
 
 <br/>
 <!-- 맨 마지막에 -->
+
 ## 👩‍💻 Contributor 👨‍💻
 
 <table>
   <tr>
     <td align="center" width="150px">
-      <a href="깃헙 주소" target="_blank">
-        <img src="" alt="김민섭 프로필" />
+      <a href="https://github.com/LikeFireAndSky" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/107862297?v=4" alt="김민섭 프로필" />
       </a>
     </td>
     <td align="center" width="150px">
-      <a href="깃헙 주소" target="_blank">
-        <img src="" alt="이승현 프로필" />
+      <a href="https://github.com/seungsimdang" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/93538221?v=4" alt="이승현 프로필" />
       </a>
     </td>
     <td align="center" width="150px">
-      <a href="깃헙 주소" target="_blank">
-        <img src="" alt="김다빈 프로필" />
+      <a href="https://github.com/dabin-Hailey" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/139190686?v=4" alt="김다빈 프로필" />
       </a>
     </td>
     <td align="center" width="150px">
-      <a href="깃헙 주소" target="_blank">
-        <img src="" alt="한은지 프로필" />
+      <a href="https://github.com/lilviolie" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/95364951?v=4" alt="한은지 프로필" />
       </a>
     </td>
     <td align="center" width="150px">
-      <a href="깃헙 주소" target="_blank">
-        <img src="" alt="소유나 프로필" />
+      <a href="https://github.com/seacrab808" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/93272421?v=4" alt="소유나 프로필" />
       </a>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <a href="블로그 주소" target="_blank">
+      <a href="https://velog.io/@icdmiracle927" target="_blank">
         김민섭 (FE)
       </a>
     </td>
     <td align="center">
-      <a href="블로그 주소" target="_blank">
+      <a href="https://seungsimdang.github.io/" target="_blank">
         이승현 (FE)
       </a>
     </td>
     <td align="center">
-      <a href="블로그 주소" target="_blank">
+      <a href="https://velog.io/@mary0393" target="_blank">
         김다빈 (FE)
       </a>
     </td>
     <td align="center">
-      <a href="블로그 주소" target="_blank">
+      <a href="https://velog.io/@lilviolie" target="_blank">
         한은지 (FE)
       </a>
     </td>
     <td align="center">
-      <a href="블로그 주소" target="_blank">
+      <a href="https://seacrab.tistory.com/" target="_blank">
         소유나 (FE)
       </a>
     </td>
