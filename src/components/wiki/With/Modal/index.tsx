@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import swal from 'sweetalert';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../../../../utils/firebase.config';
 import WikiModal from '../../../../assets/wiki-modal.png';
 import MapComponent from '../../../map';
+import { setWithModalData } from '../../../../utils/util';
+import { countIdState, countState } from '../../../../recoil/countRecoil';
+import { emailState } from '../../../../recoil/authRecoil';
 
 interface ModalProps {
   isOpen: boolean;
@@ -200,6 +204,9 @@ const Modal: React.FC<ModalProps> = ({
   const [isTitleValid, setIsTitleValid] = useState(false);
   const [isContentValid, setIsContentValid] = useState(false);
   const [isLocationValid, setIsLocationValid] = useState(false);
+  const setCount = useSetRecoilState(countState);
+  const setCountId = useSetRecoilState(countIdState);
+  const getEmail = useRecoilValue(emailState);
 
   const handlePlaceSelection = (address: string) => {
     setLocation(address);
@@ -211,14 +218,20 @@ const Modal: React.FC<ModalProps> = ({
     if (!isTitleValid || !isContentValid || !isLocationValid) {
       return;
     }
+    const ids = `${getEmail}-${Date.now()}`;
     try {
-      await setData('with-collection', {
+      await setWithModalData('with-collection', {
+        id: ids,
         contents,
         joined: 1,
         location,
         people: maxPeople,
         time: Math.floor(Date.now() / 1000) + recruitmentTime * 60,
         title,
+      });
+      setCountId(ids);
+      setCount((prev: number) => {
+        return prev + 1;
       });
 
       onClose();
