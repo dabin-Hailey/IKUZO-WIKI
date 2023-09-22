@@ -94,7 +94,7 @@ SWAL를 사용하기 위해서는 먼저 회원 가입을 해야 합니다. <br>
 5. **Gallery**페이지에서 맛집 정보를 공유하세요 !
    <!-- Gallrey페이지 img -->
    다른 회원들이 공유한 맛집들을 카테고리별로 정리해서 볼 수 있습니다!
-   <img src=" https://blog.kakaocdn.net/dn/bhEHCe/btsu7Uprvyt/3sk4xGekKR6eAerRMcc7ek/img.png" alt="밥약 등록 페이지">
+   <img src="https://blog.kakaocdn.net/dn/bhEHCe/btsu7Uprvyt/3sk4xGekKR6eAerRMcc7ek/img.png" alt="밥약 등록 페이지">
    나만의 맛집을 지도에서 찾아 등록할 수 있어요 !
    맛있게 나온 사진을 첨부해서 맛집을 공유해봐요 😉
 
