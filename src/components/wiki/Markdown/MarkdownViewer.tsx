@@ -2,8 +2,8 @@ import React from 'react';
 import swal from 'sweetalert';
 import { Viewer } from '@toast-ui/react-editor';
 import { useRecoilValue } from 'recoil';
-import { isLoginSelector } from '../../recoil/authRecoil';
-import * as S from './Markdown.styled';
+import { isLoginSelector } from '../../../recoil/authRecoil';
+import * as S from '../Layout/WikiLayout.styled';
 
 const MarkdownViewer = ({
   wiki,
@@ -19,12 +19,12 @@ const MarkdownViewer = ({
   const isCount = useRecoilValue(isLoginSelector);
 
   return (
-    <S.MarkdownContainer>
-      <S.MarkdownHeader>
+    <S.WikiContainer>
+      <S.WikiHeader>
         <S.Title>
           <S.Primary>SWAL</S.Primary> {wiki}
         </S.Title>
-        <S.MarkdownButton
+        <S.WikiButton
           type="button"
           onClick={() => {
             if (isCount) {
@@ -39,12 +39,12 @@ const MarkdownViewer = ({
           }}
         >
           {status}
-        </S.MarkdownButton>
-      </S.MarkdownHeader>
-      <S.ViewerWrapper>
+        </S.WikiButton>
+      </S.WikiHeader>
+      <S.Contents>
         <Viewer initialValue={content} />
-      </S.ViewerWrapper>
-    </S.MarkdownContainer>
+      </S.Contents>
+    </S.WikiContainer>
   );
 };
 
