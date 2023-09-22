@@ -175,10 +175,10 @@ const AddModal = ({ onChange }: { onChange: () => void }) => {
         photo: imageURL,
         restaurant,
       });
-
-      setIsSubMitting(false);
-      window.location.replace('/gallery');
     }
+
+    setIsSubMitting(false);
+    window.location.replace(`/gallery/${form.category.value}`);
   };
 
   return (
