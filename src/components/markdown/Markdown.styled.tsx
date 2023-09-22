@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const MarkdownContainer = styled.div`
   box-sizing: border-box;
   width: 100%;
-  max-width: 1500px;
+  max-width: 1070px;
+  margin: 0 0 0 5%;
   height: 79vh;
 `;
 
@@ -57,5 +58,3 @@ export const ViewerWrapper = styled.div`
   background-color: #f2f2f2;
   overflow: auto;
 `;
-
-export default MarkdownContainer;

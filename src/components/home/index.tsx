@@ -42,7 +42,7 @@ const HomeInner = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 90%;
-  max-width: 1500px;
+  max-width: 1400px;
   text-align: center;
   color: white;
   transform: translate(-50%, -50%);
