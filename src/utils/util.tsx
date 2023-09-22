@@ -24,6 +24,7 @@ import { db, storage, auth } from './firebase.config';
 interface Notice {
   id: string;
   html?: string;
+  contents?: string;
   markdown?: string;
   title?: string;
   category?: string;
@@ -32,6 +33,7 @@ interface Notice {
   restaurant?: string;
   people?: number;
   time?: number;
+  joined?: number;
 }
 
 export const getData = async (collectionName: string): Promise<Notice[]> => {
@@ -215,4 +217,13 @@ export const onAuthStateChanged = (
 
 export const signOut = async () => {
   await auth.signOut();
+};
+
+export const setWithModalData = async (
+  collectionName: string,
+  props: Notice,
+): Promise<void> => {
+  const dataId = props.id;
+
+  await setDoc(doc(db, collectionName, dataId), props);
 };

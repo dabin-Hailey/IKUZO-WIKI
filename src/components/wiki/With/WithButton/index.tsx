@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import swal from 'sweetalert';
 import getLoginAuth from '../../../../hooks/getLoginAuth';
 import { updateDataByNumber } from '../../../../utils/util';
@@ -9,6 +9,7 @@ import {
   countState,
   countIdState,
 } from '../../../../recoil/countRecoil';
+import { emailState } from '../../../../recoil/authRecoil';
 
 type Props = {
   id: string;
@@ -61,8 +62,16 @@ const ButtonContainer = styled.div`
 const WithButton: React.FC<Props> = ({ id, joined, people }) => {
   const isLogin = getLoginAuth();
   const isCount = useRecoilValue(isCountSelector);
-  const [value, setValue] = useRecoilState(countState);
+  const email = useRecoilValue(emailState);
+  const setValue = useSetRecoilState(countState);
   const setValueId = useSetRecoilState(countIdState);
+
+  const checkDoubleJoin = () => {
+    if (id.includes(email)) {
+      return true;
+    }
+    return false;
+  };
 
   const onClick = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
@@ -82,6 +91,14 @@ const WithButton: React.FC<Props> = ({ id, joined, people }) => {
       });
       return;
     }
+    if (checkDoubleJoin()) {
+      swal({
+        title: '이미 선택하셨습니다.',
+        text: '당신이 만든 밥약속이 꽉 채워지기를 기다리고 있어요!! 🤸‍♂️',
+        icon: 'warning',
+      });
+      return;
+    }
     swal({
       title: '밥약속에 참여하시겠습니까?',
       text: '참여하시면 취소할 수 없습니다. 🤔',
@@ -94,7 +111,9 @@ const WithButton: React.FC<Props> = ({ id, joined, people }) => {
           text: '당신을 기다리고 있는 밥약속이 곧 성사됩니다 😘',
           icon: 'success',
         });
-        setValue(value + 1);
+        setValue((prev: number) => {
+          return prev + 1;
+        });
         setValueId(id);
         await updateDataByNumber('with-collection', id, 'joined');
       } else {
