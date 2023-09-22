@@ -1,8 +1,7 @@
-<div align=left>
-<img src="https://firebasestorage.googleapis.com/v0/b/testfc-74eda.appspot.com/o/KakaoTalk_20230919_133841507%20(1).png?alt=media&token=36ff51dc-5415-4c50-9b4c-b74485e8f562" width="75px">
-</div>
-
-# 🍽️ 맛집 소모임 WIKI APP
+<p align="center">
+  <img width="150" height="180" alt="Starbucks logo" src="https://firebasestorage.googleapis.com/v0/b/testfc-74eda.appspot.com/o/KakaoTalk_20230919_133841507%20(1).png?alt=media&token=36ff51dc-5415-4c50-9b4c-b74485e8f562" />
+  <h2 align="center">🍽️ SWAL - 맛집 소모임 WIKI APP</h2>
+</p>
 
 _맛집 & 밥약 관리 웹서비스, **"SWAL"**_
 
