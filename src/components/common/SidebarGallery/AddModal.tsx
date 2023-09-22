@@ -133,10 +133,21 @@ const AddModal = ({ onChange }: { onChange: () => void }) => {
   const [imgFile, setImgFile] = useState<File>();
   const [isSubmitting, setIsSubMitting] = useState(false);
   const imgRef = useRef<HTMLInputElement>(null);
+  const MAX_IMAGE_SIZE_BYTES = 1024 * 1024 * 2;
 
   const previewImage = () => {
     if (imgRef.current && imgRef.current.files) {
       const file = imgRef.current.files[0];
+
+      if (file.size > MAX_IMAGE_SIZE_BYTES) {
+        swal({
+          icon: 'error',
+          title: '이미지 크기 제한 초과',
+          text: '2MB 이하의 이미지를 업로드해주세요.',
+        });
+        return;
+      }
+
       setImgFile(file);
 
       const reader = new FileReader();
