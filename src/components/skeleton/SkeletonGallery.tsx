@@ -8,16 +8,24 @@ const SkeletonWrapper = styled.div`
 `;
 
 const GallerySkeleton = styled.div`
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 2rem 3%;
+
+  width: 1030px;
+  margin-top: 20px;
+
+  @media screen and (min-width: 1600px) {
+    width: 1200px;
+  }
 `;
 
 const SkeletonGallery = () => {
   return (
     <SkeletonWrapper>
       <GallerySkeleton>
+        <SkeletonElement type="item" />
+        <SkeletonElement type="item" />
         <SkeletonElement type="item" />
         <SkeletonElement type="item" />
         <SkeletonElement type="item" />
