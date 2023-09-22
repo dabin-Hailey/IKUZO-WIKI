@@ -196,7 +196,7 @@ const AddModal = ({ onChange }: { onChange: () => void }) => {
           <ImageLabel src={imgPath}>
             <InputFile
               type="file"
-              accept=".png, .jpeg .jpg"
+              accept=".png, .jpeg, .jpg"
               onChange={previewImage}
               ref={imgRef}
             />

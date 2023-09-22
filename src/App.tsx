@@ -9,7 +9,8 @@ import Login from './pages/Login';
 import NoticePage from './pages/Notice';
 import IntroPage from './pages/Intro';
 import With from './pages/With';
-import LayoutComponent from './components/common/Layout/Layout';
+import WikiLayout from './components/common/Layout/WikiLayout';
+import GalleryLayout from './components/common/Layout/GalleryLayout';
 import Register from './pages/Register';
 import ChooseId from './pages/ChooseId';
 
@@ -24,7 +25,7 @@ const App = () => {
       {/* 위치 페이지 라우팅 */}
       <Route
         path="/wiki/*"
-        element={<LayoutComponent />}
+        element={<WikiLayout />}
       >
         <Route
           path="notice"
@@ -46,7 +47,7 @@ const App = () => {
       {/* 갤러리 페이지 라우팅 */}
       <Route
         path="/gallery/*"
-        element={<LayoutComponent />}
+        element={<GalleryLayout />}
       >
         <Route
           path="korean"

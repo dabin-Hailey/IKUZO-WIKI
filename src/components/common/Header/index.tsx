@@ -25,7 +25,7 @@ const HeaderWrapper = styled.div<StyledHeaderProps>`
 
 const Inner = styled.div`
   width: 90%;
-  max-width: 1500px;
+  max-width: 1400px;
   height: 100%;
   margin: auto;
   display: flex;

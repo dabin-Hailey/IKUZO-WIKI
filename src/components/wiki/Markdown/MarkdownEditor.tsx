@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
-import { updateData } from '../../utils/util';
-import * as S from './Markdown.styled';
+import { updateData } from '../../../utils/util';
+import * as S from '../Layout/WikiLayout.styled';
 
 const MarkdownEditor = ({
   wiki,
@@ -31,20 +31,20 @@ const MarkdownEditor = ({
   };
 
   return (
-    <S.MarkdownContainer>
-      <S.MarkdownHeader>
+    <S.WikiContainer>
+      <S.WikiHeader>
         <S.Title>
           <S.Primary className="primary">SWAL</S.Primary> {wiki}
         </S.Title>
-        <S.MarkdownButton
+        <S.WikiButton
           className="markdown-button"
           type="button"
           onClick={handleUpdateData}
         >
           {status}
-        </S.MarkdownButton>
-      </S.MarkdownHeader>
-      <S.ViewerWrapper>
+        </S.WikiButton>
+      </S.WikiHeader>
+      <S.Contents>
         <Editor
           ref={editorRef}
           initialValue={content}
@@ -59,8 +59,8 @@ const MarkdownEditor = ({
             ['table', 'link'],
           ]}
         />
-      </S.ViewerWrapper>
-    </S.MarkdownContainer>
+      </S.Contents>
+    </S.WikiContainer>
   );
 };
 

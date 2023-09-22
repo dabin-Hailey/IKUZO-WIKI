@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import MarkdownViewer from '../../markdown/MarkdownViewer';
-import MarkdownEditor from '../../markdown/MarkdownEditor';
+import MarkdownViewer from '../Markdown/MarkdownViewer';
+import MarkdownEditor from '../Markdown/MarkdownEditor';
 import { getData } from '../../../utils/util';
 import SkeletonMarkdown from '../../skeleton/SkeletonMarkdown';
 

@@ -6,6 +6,7 @@ import WithItem from './WIthItem';
 import Modal from './Modal';
 import getLoginAuth from '../../../hooks/getLoginAuth';
 import { isCountSelector } from '../../../recoil/countRecoil';
+import * as S from '../Layout/WikiLayout.styled';
 
 export interface Root {
   id: string;
@@ -25,74 +26,12 @@ export interface WithProp {
   joined: number;
 }
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  width: 80%;
-  min-height: 70vh;
-
-  gap: 1rem;
-`;
-
-const Title = styled.h1`
-  font-family: 'IBMPlexSansKR-Regular';
-  display: flex;
-  justify-content: space-between;
-
-  width: 90%;
-
-  font-size: 2rem;
-  font-weight: 700;
-  line-height: 7rem;
-  border-bottom: 0.2rem solid var(--color-orange);
-
-  .non__highlight {
-    color: black;
-  }
-`;
-
-const Highlight = styled.em`
-  color: var(--color-orange);
-`;
-
-const EnrollButton = styled.button`
-  font-family: 'SBAggroB';
-  font-size: 0.8rem;
-  color: white;
-
-  margin: auto 0;
-  padding: 0.8rem 1.2rem;
-  white-space: nowrap;
-  border-radius: 1rem;
-  border: none;
-  background-color: var(--color-primary);
-  cursor: pointer;
-  transform: translateY(1px);
-  transition: 0.2s;
-
-  &:hover {
-    transform: translateY(3px);
-    background-color: var(--color-btn);
-  }
-`;
-
-const ItemContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  width: 90%;
-
-  gap: 2rem;
-`;
-
 const ItemWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
   width: 100%;
+  margin-bottom: 20px;
 `;
 
 const index: React.FC<Props> = ({ data }): JSX.Element => {
@@ -177,19 +116,20 @@ const index: React.FC<Props> = ({ data }): JSX.Element => {
   };
 
   return (
-    <Container>
-      <Title>
-        <Highlight>
-          같이 먹을 사람 <em className="non__highlight">구해요</em>
-        </Highlight>
-        <EnrollButton
+    <S.WikiContainer>
+      <S.WikiHeader>
+        <S.Title>
+          <S.Primary>같이 먹을 사람</S.Primary> 구해요
+        </S.Title>
+        <S.WikiButton
           type="button"
           onClick={openModal}
         >
-          Open Modal
-        </EnrollButton>{' '}
-      </Title>
-      <ItemContainer>
+          밥 약속 만들기
+        </S.WikiButton>
+      </S.WikiHeader>
+
+      <S.Contents color="white">
         {data &&
           data.map((item: Root) => {
             const { id } = item;
@@ -209,7 +149,7 @@ const index: React.FC<Props> = ({ data }): JSX.Element => {
               </ItemWrapper>
             );
           })}
-      </ItemContainer>
+      </S.Contents>
       <Modal
         isOpen={isModalOpen}
         onClose={closeModal}
@@ -219,7 +159,7 @@ const index: React.FC<Props> = ({ data }): JSX.Element => {
         onRecruitmentTimeChange={handleRecruitmentTimeChange}
         onMaxPeopleChange={handleMaxPeopleChange}
       />
-    </Container>
+    </S.WikiContainer>
   );
 };
 
